@@ -73,6 +73,7 @@ import {
   Notification
 } from 'element-ui';
 
+
 Vue.use(Pagination);
 Vue.use(Dialog);
 Vue.use(Autocomplete);
