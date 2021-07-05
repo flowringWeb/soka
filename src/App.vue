@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/Step1">Step1</router-link>
     </div>
     
     <router-view/>
@@ -10,6 +10,11 @@
 </template>
 
 <style lang="scss">
+* {
+  &::before, &::after{
+    box-sizing: border-box;
+  }
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
