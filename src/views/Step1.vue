@@ -2,31 +2,31 @@
 export default {
   data() {
     return {
-      labelPosition:"left",
+      labelPosition: "left",
       form: {
         orgName: "",
-        orgnNo:"",
+        orgnNo: "",
         date1: "",
         dct: "",
         depart: [],
-        orgPerson:"",
+        orgPerson: "",
         date2: "",
-        state:"",
-        note:"",
+        state: "",
+        note: "",
       },
       options: [
         {
-          value: 'HTML',
-          label: 'HTML'
-        }, 
+          value: "HTML",
+          label: "HTML",
+        },
         {
-          value: 'CSS',
-          label: 'CSS'
-        }, 
+          value: "CSS",
+          label: "CSS",
+        },
         {
-          value: 'JavaScript',
-          label: 'JavaScript'
-        }
+          value: "JavaScript",
+          label: "JavaScript",
+        },
       ],
     };
   },
@@ -110,6 +110,96 @@ export default {
         </el-col>
       </el-row>
     </div>
+
+    <!-- >>>>>>> -->
+
+    <!-- <div class="step1Form">
+      <el-row :gutter="10" type="flex">
+        <el-form
+          ref="form"
+          :model="form"
+          :inline="true"
+          label-width="auto"
+          size="large"
+          :label-position="labelPosition"
+        >
+          <el-col :span="8">
+            <el-form-item label="組織劃分案名">
+              <el-input v-model="form.orgName" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="組織劃分案編號">
+              <el-input v-model.number="form.orgnNo" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="劃分建議生效月">
+              <el-col :span="11">
+                <el-date-picker
+                  type="date"
+                  placeholder="請選擇日期"
+                  v-model="form.date1"
+                ></el-date-picker>
+              </el-col>
+            </el-form-item>
+            <el-form-item label="全區會">
+              <el-input v-model="form.dct" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="提報單位(凍結區域頂點)">
+              <el-select
+                v-model="form.depart"
+                filterable
+                allow-create
+                placeholder="請選擇"
+              >
+                <el-option
+                  v-for="item in options"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                >
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="劃分案負責人">
+              <el-input v-model="form.orgPerson" clearable></el-input>
+            </el-form-item>
+            <el-form-item label="立案時間">
+              <el-col :span="11">
+                <el-time-picker
+                  placeholder="請選擇時間"
+                  v-model="form.date2"
+                ></el-time-picker>
+              </el-col>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="8">
+            <el-form-item label="組織劃分案說明">
+              <el-input
+                type="textarea"
+                v-model="form.state"
+                clearable
+                maxlength="150"
+                show-word-limit
+                :autosize="{ minRows: 5, maxRows: 8 }"
+              >
+              </el-input>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="8">
+            <el-form-item label="備註">
+              <el-input
+                type="textarea"
+                v-model="form.note"
+                clearable
+                maxlength="150"
+                show-word-limit
+                :autosize="{ minRows: 5, maxRows: 8 }"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-form>
+      </el-row>
+    </div> -->
   </div>
 </template>
 <style lang="scss" scoped>
