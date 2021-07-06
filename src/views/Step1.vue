@@ -8,12 +8,26 @@ export default {
         orgnNo:"",
         date1: "",
         dct: "",
-        depart:"",
+        depart: [],
         orgPerson:"",
         date2: "",
         state:"",
         note:"",
       },
+      options: [
+        {
+          value: 'HTML',
+          label: 'HTML'
+        }, 
+        {
+          value: 'CSS',
+          label: 'CSS'
+        }, 
+        {
+          value: 'JavaScript',
+          label: 'JavaScript'
+        }
+      ],
     };
   },
 };
@@ -46,9 +60,12 @@ export default {
               <el-input v-model="form.dct" clearable></el-input>
             </el-form-item>
             <el-form-item label="提報單位(凍結區域頂點)">
-              <el-select v-model="form.depart" placeholder="請選擇" filterable allow-create>
-                <el-option label="Zone one" value="shanghai"></el-option>
-                <el-option label="Zone two" value="beijing"></el-option>
+              <el-select v-model="form.depart" filterable allow-create placeholder="請選擇">
+                <el-option v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                </el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="劃分案負責人">
@@ -70,7 +87,7 @@ export default {
               <el-input type="textarea" 
                 v-model="form.state" 
                 clearable 
-                maxlength="50" 
+                maxlength="150" 
                 show-word-limit
                 :autosize="{ minRows: 5, maxRows: 8}"
                 >
@@ -84,7 +101,7 @@ export default {
               <el-input type="textarea" 
               v-model="form.note"
               clearable 
-              maxlength="50" 
+              maxlength="150" 
               show-word-limit 
               :autosize="{ minRows: 5, maxRows: 8}"
               ></el-input>
