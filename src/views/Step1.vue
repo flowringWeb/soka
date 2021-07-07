@@ -4,6 +4,7 @@ export default {
     return {
       labelPosition: "left",
       currentRow: null,
+      value2: "不選定",
       form: {
         orgName: "",
         orgnNo: "",
@@ -39,11 +40,27 @@ export default {
           icon: "",
         },
       ],
+      tableData2: [
+        {
+          depart: "壯年部",
+          local: "汐止區",
+          name: "ooo",
+          state: false,
+          value: '不選定'
+        },
+        {
+          depart: "婦女部",
+          local: "大安區",
+          name: "ooo",
+          state: true,
+          value: '選定'
+        },
+      ],
     };
   },
   methods: {
-    //參數務必要{}解構
-    tableRowStyle({row, rowIndex} ) {
+    //參數務必用{}解構
+    tableRowStyle({ row, rowIndex }) {
       // console.log(row.local, rowIndex);
       let stylejson = {};
       if (rowIndex === 1) {
@@ -53,6 +70,10 @@ export default {
         return "";
       }
     },
+    //switch change
+    changeStatus($event, row, index) {
+        console.log($event, row, index);
+    }
   },
 };
 </script>
@@ -133,7 +154,6 @@ export default {
               </el-input>
             </el-form-item>
           </el-form>
-          
         </el-col>
         <el-col :span="8">
           <el-form ref="form" :model="form" :inline="true" label-width="auto">
@@ -188,6 +208,35 @@ export default {
                   size="small"
                 ></el-button>
                 {{ scope.row.icon }}
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-col>
+        <el-col :span="12">
+          <h5 class="ml-2">劃分案成員 (由凍結頂點篩選出劃分案參與成員)</h5>
+          <el-table :data="tableData2">
+            <el-table-column prop="depart" label="部門" align="center">
+            </el-table-column>
+            <el-table-column prop="local" label="職稱" align="center">
+            </el-table-column>
+            <el-table-column prop="name" label="姓名" align="center">
+            </el-table-column>
+            <el-table-column
+              label="劃分案負責人"
+              align="center"
+            >
+              <template slot-scope="scope">
+                <el-tooltip :content="scope.row.value" placement="top">
+                  <el-switch
+                    v-model="scope.row.value"
+                    active-color="#13ce66"
+                    inactive-color="#ccc"
+                    active-value="選定"
+                    inactive-value="不選定"
+                    @change="changeStatus($event,scope.row, scope.$index)"
+                  >
+                  </el-switch>
+                </el-tooltip>
               </template>
             </el-table-column>
           </el-table>
