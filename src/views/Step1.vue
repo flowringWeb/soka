@@ -46,14 +46,91 @@ export default {
           local: "汐止區",
           name: "ooo",
           state: false,
-          value: '不選定'
+          value: "不選定",
         },
         {
           depart: "婦女部",
           local: "大安區",
           name: "ooo",
           state: true,
-          value: '選定'
+          value: "選定",
+        },
+      ],
+      tableData3: [
+        {
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "周oo",
+          job: "地區綜合長",
+          id: 1
+        },
+        {
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "莫xx",
+          job: "地區部長",
+          id: 2
+        },
+      ],
+      tableData4: [
+        {
+          depart: "壯年部",
+          local: "汐止區",
+          name: "ooo",
+          state: false,
+          value: "不選定",
+        },
+        {
+          depart: "婦女部",
+          local: "大安區",
+          name: "ooo",
+          state: true,
+          value: "選定",
+        },
+      ],
+      active: 4,
+      stepList: [
+        {
+          title: "step1",
+          description: "建立 Project",
+          icon: "el-icon-edit",
+        },
+        {
+          title: "step2",
+          description: "組織異動",
+          icon: "el-icon-upload",
+        },
+        {
+          title: "step3",
+          description: "人員異動",
+          icon: "el-icon-upload",
+        },
+        {
+          title: "step4",
+          description: "內部審核",
+          icon: "el-icon-upload",
+        },
+        {
+          title: "step5",
+          description: "呈核報告書",
+          icon: "el-icon-upload",
+        },
+        {
+          title: "step6",
+          description: "報告書簽核",
+          icon: "el-icon-edit",
+        },
+        {
+          title: "step7",
+          description: "人事任命作業",
+          icon: "el-icon-edit",
+        },
+        {
+          title: "step8",
+          description: "人事任命簽核",
+          icon: "el-icon-edit",
         },
       ],
     };
@@ -72,8 +149,20 @@ export default {
     },
     //switch change
     changeStatus($event, row, index) {
-        console.log($event, row, index);
-    }
+      console.log($event, row, index);
+    },
+    //steps
+    before() {
+      if (this.active-- < 0) {
+        this.active = 0;
+      }
+    },
+    next() {
+      if (this.active++ > 7) {
+        this.active = 0;
+        // alert('恭喜完成')
+      }
+    },
   },
 };
 </script>
@@ -81,6 +170,24 @@ export default {
 <template>
   <!-- ref= "form" 即使col不同也可以在同個 form 裡 -->
   <div>
+    <el-steps
+      class="mb-md-5"
+      :active="active"
+      align-center
+      finish-status="success"
+    >
+      <el-step
+        v-for="(item, index) in stepList"
+        :title="item.title"
+        :description="item.description"
+        :icon="item.icon"
+        :key="index"
+      >
+      </el-step>
+    </el-steps>
+    <!-- <el-button style="margin-top: 5px" @click="next">Next step</el-button>
+    <el-button style="margin-top: 5px" @click="before">Before step</el-button> -->
+
     <div class="title">STEP 1: 組織劃分- 建立 Project</div>
     <div class="step1Form">
       <el-row :gutter="10" type="flex">
@@ -170,7 +277,7 @@ export default {
           </el-form>
         </el-col>
       </el-row>
-      <el-row>
+      <el-row class="mb-4">
         <el-col :span="8">
           <div>
             <h5>劃分範圍 (人事異動範圍) (凍結區域)</h5>
@@ -221,10 +328,7 @@ export default {
             </el-table-column>
             <el-table-column prop="name" label="姓名" align="center">
             </el-table-column>
-            <el-table-column
-              label="劃分案負責人"
-              align="center"
-            >
+            <el-table-column label="劃分案負責人" align="center">
               <template slot-scope="scope">
                 <el-tooltip :content="scope.row.value" placement="top">
                   <el-switch
@@ -233,13 +337,39 @@ export default {
                     inactive-color="#ccc"
                     active-value="選定"
                     inactive-value="不選定"
-                    @change="changeStatus($event,scope.row, scope.$index)"
+                    @change="changeStatus($event, scope.row, scope.$index)"
                   >
                   </el-switch>
                 </el-tooltip>
               </template>
             </el-table-column>
           </el-table>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="20">
+          <div class="mb-4">
+            <h5 class="ml-2">人員搜尋清單</h5>
+            <el-table :data="tableData3">
+              <el-table-column type="selection" label="選擇" align="center">
+              </el-table-column>
+              <el-table-column prop="depart" label="部別" align="center">
+              </el-table-column>
+              <el-table-column prop="org" label="組織 / 單位名稱" show-overflow-tooltip align="center">
+              </el-table-column>
+              <el-table-column prop="name" label="姓名" align="center">
+              </el-table-column>
+              <el-table-column prop="job" label="擔任職務" align="center">
+              </el-table-column>
+              <el-table-column prop="id" label="會員編號" align="center">
+              </el-table-column>
+              <el-table-column label="單筆加入協助清單" align="center">
+              </el-table-column>
+            </el-table>
+          </div>
+        </el-col>
+        <el-col :span="20">
+          <h5 class="ml-2">協助人員清單</h5>
         </el-col>
       </el-row>
     </div>
