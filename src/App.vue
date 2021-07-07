@@ -1,10 +1,23 @@
+<script>
+import PropTest from "@/components/PropTest.vue";
+export default {
+  components: {
+    PropTest
+  },
+  data() {
+    return {
+        msg: 'aaa'
+    }
+  }
+}
+</script>
 <template>
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/Step1">Step1</router-link>
+      <!-- <PropTest :sample="msg"></PropTest> -->
     </div>
-    
     <router-view/>
   </div>
 </template>
