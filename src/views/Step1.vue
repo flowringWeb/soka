@@ -33,11 +33,13 @@ export default {
       tableData: [
         {
           local: "汐止區",
-          icon: "",
+          type: "success",
+          icon: "el-icon-check"
         },
         {
           local: "松山區",
-          icon: "",
+          type: "danger",
+          icon: "el-icon-delete"
         },
       ],
       tableData2: [
@@ -45,14 +47,12 @@ export default {
           depart: "壯年部",
           local: "汐止區",
           name: "ooo",
-          state: false,
           value: "不選定",
         },
         {
           depart: "婦女部",
           local: "大安區",
           name: "ooo",
-          state: true,
           value: "選定",
         },
       ],
@@ -63,7 +63,9 @@ export default {
           org: "汐止區/青山地區",
           name: "周oo",
           job: "地區綜合長",
-          id: 1
+          id: 1,
+          type: "success",
+          icon: "el-icon-check"
         },
         {
           check: "",
@@ -71,7 +73,9 @@ export default {
           org: "汐止區/青山地區",
           name: "莫xx",
           job: "地區部長",
-          id: 2
+          id: 2,
+          type: "danger",
+          icon: "el-icon-delete"
         },
       ],
       tableData4: [
@@ -309,12 +313,11 @@ export default {
             <el-table-column prop="icon" label="刪除 / 新增" align="center">
               <template slot-scope="scope">
                 <el-button
-                  type="danger"
-                  icon="el-icon-delete"
+                  :type="scope.row.type"
+                  :icon="scope.row.icon"
                   circle
                   size="small"
                 ></el-button>
-                {{ scope.row.icon }}
               </template>
             </el-table-column>
           </el-table>
@@ -350,12 +353,17 @@ export default {
         <el-col :span="20">
           <div class="mb-4">
             <h5 class="ml-2">人員搜尋清單</h5>
-            <el-table :data="tableData3">
+            <el-table :data="tableData3" class="mb-3">
               <el-table-column type="selection" label="選擇" align="center">
               </el-table-column>
               <el-table-column prop="depart" label="部別" align="center">
               </el-table-column>
-              <el-table-column prop="org" label="組織 / 單位名稱" show-overflow-tooltip align="center">
+              <el-table-column
+                prop="org"
+                label="組織 / 單位名稱"
+                show-overflow-tooltip
+                align="center"
+              >
               </el-table-column>
               <el-table-column prop="name" label="姓名" align="center">
               </el-table-column>
@@ -364,12 +372,23 @@ export default {
               <el-table-column prop="id" label="會員編號" align="center">
               </el-table-column>
               <el-table-column label="單筆加入協助清單" align="center">
+                <template slot-scope="scope">
+                  <el-button
+                    :type="scope.row.type"
+                    :icon="scope.row.icon"
+                    circle
+                    size="small"
+                  ></el-button>
+                </template>
               </el-table-column>
             </el-table>
+            <el-button type="primary">加入協助清單</el-button>
           </div>
         </el-col>
         <el-col :span="20">
           <h5 class="ml-2">協助人員清單</h5>
+
+          <el-button type="primary">刪除</el-button>
         </el-col>
       </el-row>
     </div>
