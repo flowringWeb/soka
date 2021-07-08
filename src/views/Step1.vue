@@ -34,12 +34,12 @@ export default {
         {
           local: "汐止區",
           type: "success",
-          icon: "el-icon-check"
+          icon: "el-icon-check",
         },
         {
           local: "松山區",
           type: "danger",
-          icon: "el-icon-delete"
+          icon: "el-icon-delete",
         },
       ],
       tableData2: [
@@ -65,7 +65,7 @@ export default {
           job: "地區綜合長",
           id: 1,
           type: "success",
-          icon: "el-icon-check"
+          icon: "el-icon-check",
         },
         {
           check: "",
@@ -75,23 +75,35 @@ export default {
           job: "地區部長",
           id: 2,
           type: "danger",
-          icon: "el-icon-delete"
+          icon: "el-icon-delete",
         },
       ],
       tableData4: [
         {
+          check: "",
           depart: "壯年部",
-          local: "汐止區",
-          name: "ooo",
-          state: false,
-          value: "不選定",
+          org: "汐止區/青山地區",
+          name: "周oo",
+          job: "地區綜合長",
+          checked1:true,
+          checked2:false,
+          checked3:true,
+          state: "25員撥到A組",
+          type: "danger",
+          icon: "el-icon-delete",
         },
         {
-          depart: "婦女部",
-          local: "大安區",
-          name: "ooo",
-          state: true,
-          value: "選定",
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "莫xx",
+          job: "地區部長",
+          checked1:false,
+          checked2:false,
+          checked3:true,
+          state: "25員撥到B組",
+          type: "danger",
+          icon: "el-icon-delete",
         },
       ],
       active: 4,
@@ -167,6 +179,22 @@ export default {
         // alert('恭喜完成')
       }
     },
+    //表格裡的icon 切換 => tableData4
+    toggle(row) {
+      // console.log(row.id);
+      this.tableData3.forEach((item) => {
+        // console.log(item.id);
+        if ( item.id == row.id ) {
+          if (item.type == 'danger') {
+            item.type = "success";
+            item.icon = "el-icon-check";
+          } else {
+            item.type = "danger";
+            item.icon = "el-icon-delete";
+          }
+        } 
+      });
+    },
   },
 };
 </script>
@@ -189,9 +217,6 @@ export default {
       >
       </el-step>
     </el-steps>
-    <!-- <el-button style="margin-top: 5px" @click="next">Next step</el-button>
-    <el-button style="margin-top: 5px" @click="before">Before step</el-button> -->
-
     <div class="title">STEP 1: 組織劃分- 建立 Project</div>
     <div class="step1Form">
       <el-row :gutter="10" type="flex">
@@ -378,6 +403,7 @@ export default {
                     :icon="scope.row.icon"
                     circle
                     size="small"
+                    @click="toggle(scope.row)"
                   ></el-button>
                 </template>
               </el-table-column>
@@ -387,7 +413,42 @@ export default {
         </el-col>
         <el-col :span="20">
           <h5 class="ml-2">協助人員清單</h5>
-
+          <el-table :data="tableData4" class="mb-3">
+            <el-table-column type="selection" label="選擇" align="center">
+            </el-table-column>
+            <el-table-column prop="depart" label="部別" align="center">
+            </el-table-column>
+            <el-table-column
+              prop="org"
+              label="組織 / 單位名稱"
+              show-overflow-tooltip
+              align="center"
+            >
+            </el-table-column>
+            <el-table-column prop="name" label="姓名" align="center">
+            </el-table-column>
+            <el-table-column prop="job" label="擔任職務" align="center">
+            </el-table-column>
+            <el-table-column label="協作階段權限" align="center">
+              <template slot-scope="scope">
+                <el-checkbox v-model="scope.row.checked1">Step2 組織異動</el-checkbox>
+                <el-checkbox v-model="scope.row.checked2">Step3 人員異動</el-checkbox>
+                <el-checkbox v-model="scope.row.checked3">Step7 人事命令</el-checkbox>
+              </template>
+            </el-table-column>
+            <el-table-column prop="state" label="協作說明" align="center">
+            </el-table-column>
+            <el-table-column label="刪除" align="center">
+              <template slot-scope="scope">
+                <el-button
+                  :type="scope.row.type"
+                  :icon="scope.row.icon"
+                  circle
+                  size="small"
+                ></el-button>
+              </template>
+            </el-table-column>
+          </el-table>
           <el-button type="primary">刪除</el-button>
         </el-col>
       </el-row>
