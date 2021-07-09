@@ -1,3 +1,4 @@
+import VueTree from '@ssthouse/vue-tree-chart';
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -74,6 +75,7 @@ import {
   Notification
 } from 'element-ui';
 
+Vue.component('vue-tree', VueTree);
 
 Vue.use(Pagination);
 Vue.use(Dialog);
