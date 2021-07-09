@@ -5,6 +5,12 @@ export default {
       labelPosition: "left",
       currentRow: null,
       value2: "不選定",
+      pageObj: {
+        startPage: 1,
+        endPage: 5,
+        pageSize: 5,
+        currentPage: 1,
+      },
       form: {
         orgName: "",
         orgnNo: "",
@@ -56,7 +62,7 @@ export default {
           value: "選定",
         },
       ],
-      tableData3: [
+      tableData3Source: [
         {
           check: "",
           depart: "壯年部",
@@ -69,7 +75,7 @@ export default {
         },
         {
           check: "",
-          depart: "壯年部",
+          depart: "青年部",
           org: "汐止區/青山地區",
           name: "莫xx",
           job: "地區部長",
@@ -77,7 +83,108 @@ export default {
           type: "danger",
           icon: "el-icon-delete",
         },
+        {
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "周oo",
+          job: "地區綜合長",
+          id: 3,
+          type: "success",
+          icon: "el-icon-check",
+        },
+        {
+          check: "",
+          depart: "青年部",
+          org: "汐止區/青山地區",
+          name: "莫xx",
+          job: "地區部長",
+          id: 4,
+          type: "danger",
+          icon: "el-icon-delete",
+        },
+        {
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "周oo",
+          job: "地區綜合長",
+          id: 5,
+          type: "success",
+          icon: "el-icon-check",
+        },
+        {
+          check: "",
+          depart: "青年部",
+          org: "汐止區/青山地區",
+          name: "莫xx",
+          job: "地區部長",
+          id: 6,
+          type: "danger",
+          icon: "el-icon-delete",
+        },
+        {
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "周oo",
+          job: "地區綜合長",
+          id: 7,
+          type: "success",
+          icon: "el-icon-check",
+        },
+        {
+          check: "",
+          depart: "青年部",
+          org: "汐止區/青山地區",
+          name: "莫xx",
+          job: "地區部長",
+          id: 8,
+          type: "danger",
+          icon: "el-icon-delete",
+        },
+        {
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "周oo",
+          job: "地區綜合長",
+          id: 9,
+          type: "success",
+          icon: "el-icon-check",
+        },
+        {
+          check: "",
+          depart: "青年部",
+          org: "汐止區/青山地區",
+          name: "莫xx",
+          job: "地區部長",
+          id: 10,
+          type: "danger",
+          icon: "el-icon-delete",
+        },
+        {
+          check: "",
+          depart: "壯年部",
+          org: "汐止區/青山地區",
+          name: "周oo",
+          job: "地區綜合長",
+          id: 11,
+          type: "success",
+          icon: "el-icon-check",
+        },
+        {
+          check: "",
+          depart: "青年部",
+          org: "汐止區/青山地區",
+          name: "莫xx",
+          job: "地區部長",
+          id: 12,
+          type: "danger",
+          icon: "el-icon-delete",
+        },
       ],
+      tableData3: [],
       tableData4: [
         {
           check: "",
@@ -182,14 +289,38 @@ export default {
     //表格裡的icon 切換 => tableData4
     toggle(row) {
       // console.log(row.id);
-      if (row.type == 'success') {
-        row.type = 'danger'
-        row.icon = 'el-icon-delete'
+      if (row.type == "success") {
+        row.type = "danger";
+        row.icon = "el-icon-delete";
       } else {
-        row.type = 'success'
-        row.icon = 'el-icon-check'
+        row.type = "success";
+        row.icon = "el-icon-check";
       }
-    }
+    },
+    //分頁 size
+    handleSizeChange(val) {
+      console.log(val);
+      this.pageObj.pageSize = val;
+      this.pageObj.currentPage = 1;
+      this.bindingData();
+    },
+    handleCurrentChange(val) {
+      console.log(val);
+      this.pageObj.currentPage = val;
+      this.bindingData();
+    },
+    bindingData() {
+      var startIndex = (this.pageObj.currentPage - 1) * this.pageObj.pageSize;
+      this.pageObj.startPage = startIndex + 1;
+      this.pageObj.endPage = this.pageObj.startPage + this.pageObj.pageSize - 1;
+      this.tableData3 = this.tableData3Source.slice(
+        startIndex,
+        startIndex + this.pageObj.pageSize
+      );
+    },
+  },
+  mounted: function () {
+    this.bindingData();
   },
 };
 </script>
@@ -465,36 +596,57 @@ export default {
         <el-col :span="20">
           <div class="mb-4">
             <h5 class="ml-2">人員搜尋清單</h5>
-            <el-table :data="tableData3" class="mb-3">
-              <el-table-column type="selection" label="選擇" align="center">
-              </el-table-column>
-              <el-table-column prop="depart" label="部別" align="center">
-              </el-table-column>
-              <el-table-column
-                prop="org"
-                label="組織 / 單位名稱"
-                show-overflow-tooltip
-                align="center"
-              >
-              </el-table-column>
-              <el-table-column prop="name" label="姓名" align="center">
-              </el-table-column>
-              <el-table-column prop="job" label="擔任職務" align="center">
-              </el-table-column>
-              <el-table-column prop="id" label="會員編號" align="center">
-              </el-table-column>
-              <el-table-column label="單筆加入協助清單" align="center">
-                <template slot-scope="scope">
-                  <el-button
-                    :type="scope.row.type"
-                    :icon="scope.row.icon"
-                    circle
-                    size="small"
-                    @click="toggle(scope.row)"
-                  ></el-button>
-                </template>
-              </el-table-column>
-            </el-table>
+            <div>
+              <el-table :data="tableData3" class="mb-3">
+                <el-table-column type="selection" label="選擇" align="center">
+                </el-table-column>
+                <el-table-column prop="depart" label="部別" align="center">
+                </el-table-column>
+                <el-table-column
+                  prop="org"
+                  label="組織 / 單位名稱"
+                  show-overflow-tooltip
+                  align="center"
+                >
+                </el-table-column>
+                <el-table-column prop="name" label="姓名" align="center">
+                </el-table-column>
+                <el-table-column prop="job" label="擔任職務" align="center">
+                </el-table-column>
+                <el-table-column prop="id" label="會員編號" align="center">
+                </el-table-column>
+                <el-table-column label="單筆加入協助清單" align="center">
+                  <template slot-scope="scope">
+                    <el-button
+                      :type="scope.row.type"
+                      :icon="scope.row.icon"
+                      circle
+                      size="small"
+                      @click="toggle(scope.row)"
+                    ></el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+              <div class="pagination">
+                <el-pagination
+                  class=""
+                  @size-change="handleSizeChange"
+                  @current-change="handleCurrentChange"
+                  :current-page.sync="pageObj.currentPage"
+                  :page-size="pageObj.pageSize"
+                  :page-sizes="[2, 5, 10, 50]"
+                  layout="prev, pager, next"
+                  :total="tableData3Source.length"
+                >
+                </el-pagination>
+                <div>{{ pageObj.pageSize }} 筆數 / 頁</div>
+                <div>
+                  目前顯示第{{ pageObj.startPage }}~ {{ pageObj.endPage }}筆，共
+                  {{ pageObj.pageSize }} 筆
+                </div>
+              </div>
+            </div>
+
             <el-button type="primary">加入協助清單</el-button>
           </div>
         </el-col>
@@ -542,6 +694,24 @@ export default {
               </template>
             </el-table-column>
           </el-table>
+          <div class="pagination">
+            <el-pagination
+              class=""
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page.sync="pageObj.currentPage"
+              :page-size="pageObj.pageSize"
+              :page-sizes="[2, 5, 10, 50]"
+              layout="prev, pager, next"
+              :total="tableData3Source.length"
+            >
+            </el-pagination>
+            <div>{{ pageObj.pageSize }} 筆數 / 頁</div>
+            <div>
+              目前顯示第{{ pageObj.startPage }}~ {{ pageObj.endPage }}筆，共
+              {{ pageObj.pageSize }} 筆
+            </div>
+          </div>
           <el-button type="primary">刪除</el-button>
         </el-col>
       </el-row>
@@ -659,6 +829,14 @@ export default {
 h5 {
   margin-bottom: 0.5rem;
   padding: 0.5rem 0.1rem;
+  background-color: #ccc;
+}
+
+.pagination {
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #ccc;
 }
 
