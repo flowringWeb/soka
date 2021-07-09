@@ -85,9 +85,9 @@ export default {
           org: "汐止區/青山地區",
           name: "周oo",
           job: "地區綜合長",
-          checked1:true,
-          checked2:false,
-          checked3:true,
+          checked1: true,
+          checked2: false,
+          checked3: true,
           state: "25員撥到A組",
           type: "danger",
           icon: "el-icon-delete",
@@ -98,9 +98,9 @@ export default {
           org: "汐止區/青山地區",
           name: "莫xx",
           job: "地區部長",
-          checked1:false,
-          checked2:false,
-          checked3:true,
+          checked1: false,
+          checked2: false,
+          checked3: true,
           state: "25員撥到B組",
           type: "danger",
           icon: "el-icon-delete",
@@ -182,19 +182,14 @@ export default {
     //表格裡的icon 切換 => tableData4
     toggle(row) {
       // console.log(row.id);
-      this.tableData3.forEach((item) => {
-        // console.log(item.id);
-        if ( item.id == row.id ) {
-          if (item.type == 'danger') {
-            item.type = "success";
-            item.icon = "el-icon-check";
-          } else {
-            item.type = "danger";
-            item.icon = "el-icon-delete";
-          }
-        } 
-      });
-    },
+      if (row.type == 'success') {
+        row.type = 'danger'
+        row.icon = 'el-icon-delete'
+      } else {
+        row.type = 'success'
+        row.icon = 'el-icon-check'
+      }
+    }
   },
 };
 </script>
@@ -375,6 +370,98 @@ export default {
         </el-col>
       </el-row>
       <el-row>
+        <el-col :span="24">
+          <h4 class="mb-3">指派協助人員</h4>
+          <el-row :gutter="0" type="flex" justify="center" align="top">
+            <el-col :span="8">
+              <el-form
+                ref="form"
+                :model="form"
+                :inline="true"
+                label-width="auto"
+                size="large"
+                :label-position="labelPosition"
+              >
+                <el-form-item label="協助人部門">
+                  <el-select
+                    class="select"
+                    v-model="form.depart"
+                    filterable
+                    allow-create
+                    placeholder="請選擇"
+                  >
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="協助人部別">
+                  <el-select
+                    class="select"
+                    v-model="form.depart"
+                    filterable
+                    allow-create
+                    placeholder="請選擇"
+                  >
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-form>
+            </el-col>
+            <el-col :span="8">
+              <el-form>
+                <el-form-item label="協助人姓名">
+                  <el-select
+                    class="select"
+                    v-model="form.depart"
+                    filterable
+                    allow-create
+                    placeholder="請選擇"
+                  >
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-form>
+            </el-col>
+            <el-col :span="8">
+              <el-form>
+                <el-form-item label="協助人會員編號">
+                  <el-select
+                    class="select"
+                    v-model="form.depart"
+                    filterable
+                    allow-create
+                    placeholder="請選擇"
+                  >
+                    <el-option
+                      v-for="item in options"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-form>
+            </el-col>
+          </el-row>
+        </el-col>
         <el-col :span="20">
           <div class="mb-4">
             <h5 class="ml-2">人員搜尋清單</h5>
@@ -431,9 +518,15 @@ export default {
             </el-table-column>
             <el-table-column label="協作階段權限" align="center">
               <template slot-scope="scope">
-                <el-checkbox v-model="scope.row.checked1">Step2 組織異動</el-checkbox>
-                <el-checkbox v-model="scope.row.checked2">Step3 人員異動</el-checkbox>
-                <el-checkbox v-model="scope.row.checked3">Step7 人事命令</el-checkbox>
+                <el-checkbox v-model="scope.row.checked1"
+                  >Step2 組織異動</el-checkbox
+                >
+                <el-checkbox v-model="scope.row.checked2"
+                  >Step3 人員異動</el-checkbox
+                >
+                <el-checkbox v-model="scope.row.checked3"
+                  >Step7 人事命令</el-checkbox
+                >
               </template>
             </el-table-column>
             <el-table-column prop="state" label="協作說明" align="center">
@@ -452,9 +545,12 @@ export default {
           <el-button type="primary">刪除</el-button>
         </el-col>
       </el-row>
+      <el-row type="flex" justify="center">
+        <el-button type="primary">建立 Project</el-button>
+      </el-row>
     </div>
 
-    <!-- >>>>>>> 不一樣的 layout -->
+    <!-- >>>>>>> 不一樣的 el-form layout -->
 
     <!-- <div class="step1Form">
       <el-row :gutter="10" type="flex">
