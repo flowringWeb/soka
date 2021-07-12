@@ -186,8 +186,11 @@ export default {
     </div> -->
 
     <div>
-        <div class="container">
+        <div class="title">STEP 1: 組織劃分- 組織單位異動</div>
+        <section class="tree">
+            <div class="tree__title">劃分前後組織樹</div>
             <vue2-org-tree
+                class="tree__self"
                 collapsable
                 :data="treeData" 
                 :horizontal="false"
@@ -197,18 +200,42 @@ export default {
                 @on-node-mouseover="onMouseover"
                 @on-node-mouseout="onMouseout"
             />
-            <!-- 创建浮窗盒子 -->
             <div v-show="isBoxShow" class="infobox">
                 <p>ID:{{ inforBox.id }}</p>
                 <p>Name:{{ inforBox.label }}</p>
             </div>
-
-        </div>
+        </section>
 
     </div>
 </template>
 <style lang="scss">
-
+    .tree {
+        &__title {
+            width: 100%;
+            color: #FFF;
+            background-color: #000;
+            padding: 0.5rem 0;
+        }
+        &__self {
+            width: 100%;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    .title {
+        text-align: center;
+        color: #fff;
+        background-color: #409af2;
+        padding: 1rem;
+    }
+    .sub-title {
+        color: #FFF;
+        background-color: rgb(161, 161, 161);
+        padding: .5rem;
+        // display: inline-block;
+    }
     .container {
         display: flex;
         flex-direction: column;
@@ -231,7 +258,7 @@ export default {
         border-radius: 4px;
         text-align: center;
     }
-
+    //scoped 拿掉，vue-org-tree 背景色會無法使用
     .bg-color-orange{
         color: #fff;
         border: 2px solid #409EFF;
