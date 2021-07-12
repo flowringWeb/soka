@@ -1,10 +1,13 @@
 import VueTree from '@ssthouse/vue-tree-chart';
+import Vue2OrgTree from 'vue2-org-tree';
+
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import "reset-css";
 import "./spacing.scss";
+import "./style.css";
 import {
   Pagination,
   Dialog,
@@ -76,6 +79,7 @@ import {
 } from 'element-ui';
 
 Vue.component('vue-tree', VueTree);
+Vue.use(Vue2OrgTree);
 
 Vue.use(Pagination);
 Vue.use(Dialog);
