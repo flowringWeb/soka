@@ -6,8 +6,9 @@ export default {
       currentRow: null,
       value2: "不選定",
       pageObj: {
-        startPage: 1,
-        endPage: 5,
+        startPage: 0,
+        endPage: 0,
+        pageLength: 5,
         pageSize: 5,
         currentPage: 1,
       },
@@ -298,25 +299,41 @@ export default {
       }
     },
     //分頁 size
-    handleSizeChange(val) {
-      console.log(val);
-      this.pageObj.pageSize = val;
-      this.pageObj.currentPage = 1;
-      this.bindingData();
-    },
+    // handleSizeChange(val) {
+    //   console.log(val);
+    //   this.pageObj.pageSize = val;
+    //   this.pageObj.currentPage = 1;
+    //   this.bindingData();
+    // },
     handleCurrentChange(val) {
-      console.log(val);
+      let totalLength = this.tableData3Source.length;
+      let lastPage = parseInt(totalLength/this.pageObj.pageSize) + 1;
+      let lastPageCount = Number(totalLength%this.pageObj.pageSize);
+      if ( val == lastPage) {
+        console.log('點選到最後一頁');
+        this.pageObj.pageLength = lastPageCount;
+      } else {
+        this.pageObj.pageLength = this.pageObj.pageSize;
+      }
       this.pageObj.currentPage = val;
       this.bindingData();
     },
     bindingData() {
-      var startIndex = (this.pageObj.currentPage - 1) * this.pageObj.pageSize;
-      this.pageObj.startPage = startIndex + 1;
-      this.pageObj.endPage = this.pageObj.startPage + this.pageObj.pageSize - 1;
+      let startIndex = (this.pageObj.currentPage - 1) * this.pageObj.pageSize;
       this.tableData3 = this.tableData3Source.slice(
         startIndex,
         startIndex + this.pageObj.pageSize
       );
+      let totalLength = this.tableData3Source.length;
+      let lastPage = parseInt(totalLength/this.pageObj.pageSize) + 1;
+      let lastPageCount = Number(totalLength%this.pageObj.pageSize);
+
+      this.pageObj.startPage = startIndex + 1;
+      if (this.pageObj.currentPage == lastPage ) {
+        this.pageObj.endPage = startIndex + lastPageCount;
+      } else {
+        this.pageObj.endPage = startIndex + this.pageObj.pageSize;
+      }
     },
   },
   mounted: function () {
@@ -630,11 +647,9 @@ export default {
               <div class="pagination">
                 <el-pagination
                   class=""
-                  @size-change="handleSizeChange"
                   @current-change="handleCurrentChange"
                   :current-page.sync="pageObj.currentPage"
                   :page-size="pageObj.pageSize"
-                  :page-sizes="[2, 5, 10, 50]"
                   layout="prev, pager, next"
                   :total="tableData3Source.length"
                 >
@@ -642,7 +657,7 @@ export default {
                 <div>{{ pageObj.pageSize }} 筆數 / 頁</div>
                 <div>
                   目前顯示第{{ pageObj.startPage }}~ {{ pageObj.endPage }}筆，共
-                  {{ pageObj.pageSize }} 筆
+                  {{ pageObj.pageLength }} 筆
                 </div>
               </div>
             </div>
@@ -697,11 +712,9 @@ export default {
           <div class="pagination">
             <el-pagination
               class=""
-              @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
               :current-page.sync="pageObj.currentPage"
               :page-size="pageObj.pageSize"
-              :page-sizes="[2, 5, 10, 50]"
               layout="prev, pager, next"
               :total="tableData3Source.length"
             >
