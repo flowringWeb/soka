@@ -102,6 +102,7 @@ export default {
                 ]
             },
             editableTabsValue: '2',
+            tabIndex: 2,
             editableTabs: [
                 {
                     title: 'Tab 1',
@@ -114,7 +115,80 @@ export default {
                     content: 'Tab 2 content'
                 }
             ],
-            tabIndex: 2
+            data: [
+                {
+                label: '汐止區女子部',
+                children: [
+                    {
+                        label: '區女子部長',
+                        children: [{
+                            label: 'aa'
+                            }]
+                    },
+                    {
+                        label: '汐止北本部女子部',
+                        children: [
+                            {
+                                label: '本部女子部長',
+                                children: [{
+                                    label: 'bb'
+                                }]
+                            },
+                            {
+                                label: '大同支部女子部',
+                                children: [{
+                                    label: '支部女子部長'
+                                }]
+                            },
+                            {
+                                label: '新台支部女子部',
+                                children: [
+                                    {
+                                        label: '支部女子部長'
+                                    },
+                                    {
+                                        label: '白雲地區女子部'
+                                    },
+                                    {
+                                        label: '青山地區女子部',
+                                        children: [
+                                            {
+                                                label: '地區女子部長',
+                                            },
+                                            {
+                                                label: '勝利組',
+                                                children: [
+                                                    {
+                                                        label: '組長',
+                                                    },
+                                                    {
+                                                        label: '組員'
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                label: '吉祥組',
+                                                children: [
+                                                    {
+                                                        label: '組長',
+                                                    },
+                                                    {
+                                                        label: '組員'
+                                                    }
+                                                ]
+                                            },
+                                        ]
+                                    },
+                                ]
+                            }
+                        ]
+                    }]
+                }, 
+            ],
+            defaultProps: {
+                children: 'children',
+                label: 'label'
+            }
         };
     },
     methods: {
@@ -172,7 +246,7 @@ export default {
             infobox.style.left = e.clientX +'px';
             infobox.style.top = e.clientY+'px';
         },
-        //tab 測試
+        //element UI tab 測試
         addTab(targetName) {
             let newTabName = ++this.tabIndex + '';
             this.editableTabs.push({
@@ -186,7 +260,7 @@ export default {
             let tabs = this.editableTabs;
             let activeName = this.editableTabsValue;
             
-            //藍色active狀態的與選定的是同一個才會進到 if 狀態
+            //藍色active狀態的與選定的是同一個才會進到 if 狀態判斷
             if (activeName === targetName) {
                 tabs.forEach((tab, index) => {
                     if (tab.name === targetName) {
@@ -199,7 +273,45 @@ export default {
             }
             this.editableTabsValue = activeName;
             this.editableTabs = tabs.filter(tab => tab.name !== targetName);
-        }
+        },
+        //element UI tree
+        handleDragStart(node, ev) {
+            // console.log('start', node);
+        },
+        // = handleDragOver(中間有過度流程)
+        handleDragEnter(draggingNode, dropNode, ev) {
+            // console.log('enter: ', draggingNode, dropNode.label);
+        },
+        //離開的最後一個節點 (中間有過度流程)
+        handleDragLeave(draggingNode, dropNode, ev) {
+            // console.log('leave: ', draggingNode, dropNode.label);
+        },
+        // = handleDragEnter = mouseover (中間有過度流程)
+        handleDragOver(draggingNode, dropNode, ev) {
+            // console.log('over: ', draggingNode,  dropNode.label);
+        },
+        //最後放入的最終點 = handleDrop
+        handleDragEnd(draggingNode, dropNode, dropType, ev) {
+            // console.log('end: ', dropNode.label, dropType);
+        },
+        // = handleDragEnd
+        handleDrop(draggingNode, dropNode, dropType, ev) {
+            // console.log('drop: ', dropNode.label, dropType);
+        },
+        allowDrop(draggingNode, dropNode, type) {
+            //同一level & 同一parentNode.id，才可以 prev || next 的放置
+            if (draggingNode.level === dropNode.level) {
+                if (draggingNode.parent.id === dropNode.parent.id) {
+                    return type === "prev" || type === "next";
+                }
+            } else {
+                return false;
+            }
+        },
+        //3 (包含3&3的內層)不能drag
+        // allowDrag(draggingNode) {
+        //     return draggingNode.label.indexOf('3') === -1;
+        // }
     },
     mounted() {
         this.toggleExpand(this.treeData, true);
@@ -208,22 +320,22 @@ export default {
 </script>
 <template>
     <!-- <div class="container">
-    <vue-tree
-        class="treeWrapper"
-        :dataset="richMediaData"
-        :config="treeConfig"
-    >
-        <template v-slot:node="{ node, collapsed }">
-        <div
-            class="rich-media-node"
-            :style="{ border: collapsed ? '2px solid grey' : '' }"
+        <vue-tree
+            class="treeWrapper"
+            :dataset="richMediaData"
+            :config="treeConfig"
         >
-            <span style="padding: 4px 0; font-weight: bold"
-            >{{ node.name }}</span
+            <template v-slot:node="{ node, collapsed }">
+            <div
+                class="rich-media-node"
+                :style="{ border: collapsed ? '2px solid grey' : '' }"
             >
-        </div>
-        </template>
-    </vue-tree>
+                <span style="padding: 4px 0; font-weight: bold"
+                >{{ node.name }}</span
+                >
+            </div>
+            </template>
+        </vue-tree>
     </div> -->
 
     <div>
@@ -247,13 +359,28 @@ export default {
             </div>
         </section>
 
-        <!-- <div style="margin-bottom: 20px;">
-        <el-button
-            size="small"
-            @click="addTab(editableTabsValue)"
+        <el-tree
+            :data="data"
+            node-key="id"
+            default-expand-all
+            @node-drag-start="handleDragStart"
+            @node-drag-enter="handleDragEnter"
+            @node-drag-leave="handleDragLeave"
+            @node-drag-over="handleDragOver"
+            @node-drag-end="handleDragEnd"
+            @node-drop="handleDrop"
+            draggable
+            :allow-drop="allowDrop"
         >
-            add tab
-        </el-button>
+        </el-tree>
+
+        <!-- <div style="margin-bottom: 20px;">
+            <el-button
+                size="small"
+                @click="addTab(editableTabsValue)"
+            >
+                add tab
+            </el-button>
         </div>
         <el-tabs v-model="editableTabsValue" type="card" 
             closable @tab-remove="removeTab">
