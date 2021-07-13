@@ -100,8 +100,21 @@ export default {
                         ]
                     },
                 ]
-            }
-
+            },
+            editableTabsValue: '2',
+            editableTabs: [
+                {
+                    title: 'Tab 1',
+                    name: '1',
+                    content: 'Tab 1 content'
+                }, 
+                {
+                    title: 'Tab 2',
+                    name: '2',
+                    content: 'Tab 2 content'
+                }
+            ],
+            tabIndex: 2
         };
     },
     methods: {
@@ -159,6 +172,34 @@ export default {
             infobox.style.left = e.clientX +'px';
             infobox.style.top = e.clientY+'px';
         },
+        //tab 測試
+        addTab(targetName) {
+            let newTabName = ++this.tabIndex + '';
+            this.editableTabs.push({
+                title: 'New Tab',
+                name: newTabName,
+                content: 'New Tab content'
+            });
+            this.editableTabsValue = newTabName;
+        },
+        removeTab(targetName) {
+            let tabs = this.editableTabs;
+            let activeName = this.editableTabsValue;
+            
+            //藍色active狀態的與選定的是同一個才會進到 if 狀態
+            if (activeName === targetName) {
+                tabs.forEach((tab, index) => {
+                    if (tab.name === targetName) {
+                        let nextTab = tabs[index + 1] || tabs[index - 1];
+                        if (nextTab) {
+                            activeName = nextTab.name;
+                        }
+                    }
+                });
+            }
+            this.editableTabsValue = activeName;
+            this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+        }
     },
     mounted() {
         this.toggleExpand(this.treeData, true);
@@ -206,6 +247,25 @@ export default {
             </div>
         </section>
 
+        <!-- <div style="margin-bottom: 20px;">
+        <el-button
+            size="small"
+            @click="addTab(editableTabsValue)"
+        >
+            add tab
+        </el-button>
+        </div>
+        <el-tabs v-model="editableTabsValue" type="card" 
+            closable @tab-remove="removeTab">
+            <el-tab-pane
+                v-for="(item) in editableTabs"
+                :key="item.name"
+                :label="item.title"
+                :name="item.name"
+            >
+                {{item.content}}
+            </el-tab-pane>
+        </el-tabs> -->
     </div>
 </template>
 <style lang="scss">
@@ -229,12 +289,6 @@ export default {
         color: #fff;
         background-color: #409af2;
         padding: 1rem;
-    }
-    .sub-title {
-        color: #FFF;
-        background-color: rgb(161, 161, 161);
-        padding: .5rem;
-        // display: inline-block;
     }
     .container {
         display: flex;
