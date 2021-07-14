@@ -214,6 +214,7 @@ export default {
                 editCount: "",
                 lastEditPerson: "Scott",
                 editingPerson: "Andy",
+                preLevel: "青山地區"
             },
             options: [
                 {
@@ -238,7 +239,7 @@ export default {
                 // child.children && vm.collapse(child.children);
             });
         },
-        // 展開時觸發
+        // 展開組織樹時觸發
         onExpand(e,data) {
             if ("expand" in data) {
                 data.expand = !data.expand;
@@ -250,7 +251,7 @@ export default {
                 this.$set(data, "expand", true);
             }
         },
-        //預設展開
+        //預設展開組織樹
         toggleExpand(data,val) {
             // console.log('=>',data); //data 以1層層來看
             var vm = this;
@@ -482,39 +483,103 @@ export default {
                 </el-col>
             </el-row>
         </div>
-        <section class="tree">
-            <div class="tree__title">劃分前後組織樹</div>
-            <vue2-org-tree
-                class="tree__self"
-                collapsable
-                :data="treeData" 
-                :horizontal="false"
-                :label-class-name="labelClassName" 
-                @on-expand="onExpand"
-                @on-node-click="NodeClick"
-                @on-node-mouseover="onMouseover"
-                @on-node-mouseout="onMouseout"
-            />
-            <div v-show="isBoxShow" class="infobox">
-                <p>ID:{{ inforBox.id }}</p>
-                <p>Name:{{ inforBox.label }}</p>
-            </div>
-        </section>
-
-        <el-tree
-            :data="data"
-            node-key="id"
-            default-expand-all
-            @node-drag-start="handleDragStart"
-            @node-drag-enter="handleDragEnter"
-            @node-drag-leave="handleDragLeave"
-            @node-drag-over="handleDragOver"
-            @node-drag-end="handleDragEnd"
-            @node-drop="handleDrop"
-            draggable
-            :allow-drop="allowDrop"
-        >
-        </el-tree>
+        <el-row>
+            <el-col :span="18">
+                <section class="tree">
+                    <div class="tree__title">劃分前後組織樹</div>
+                    <vue2-org-tree
+                        class="tree__self"
+                        collapsable
+                        :data="treeData" 
+                        :horizontal="false"
+                        :label-class-name="labelClassName" 
+                        @on-expand="onExpand"
+                        @on-node-click="NodeClick"
+                        @on-node-mouseover="onMouseover"
+                        @on-node-mouseout="onMouseout"
+                    />
+                    <div v-show="isBoxShow" class="infobox">
+                        <p>ID:{{ inforBox.id }}</p>
+                        <p>Name:{{ inforBox.label }}</p>
+                    </div>
+                </section>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="18">
+                <section class="archiTree">
+                    <h5 class="sub-title">(一)組織圖(選擇節點)</h5>
+                    <el-tree
+                        class="archiTree__tree"
+                        :data="data"
+                        node-key="id"
+                        default-expand-all
+                        @node-drag-start="handleDragStart"
+                        @node-drag-enter="handleDragEnter"
+                        @node-drag-leave="handleDragLeave"
+                        @node-drag-over="handleDragOver"
+                        @node-drag-end="handleDragEnd"
+                        @node-drop="handleDrop"
+                        draggable
+                        :allow-drop="allowDrop"
+                    >
+                    </el-tree>
+                    <div class="archiTree__option">
+                        <el-form :inline="true" label-width="auto">
+                            <div>
+                                <el-form-item label="修改次數:">
+                                    <el-input v-model.number="form2.editCount" placeholder="10" :disabled="true"></el-input>
+                                </el-form-item>
+                                <el-form-item label="最後編輯人:">
+                                    <el-input type="text" v-model="form2.lastEditPerson" :disabled="true">
+                                    </el-input>
+                                </el-form-item>
+                            </div>
+                            <div>
+                                <el-form-item label="編輯狀態:">
+                                    <el-select
+                                        v-model="form2.state"
+                                        placeholder="請選擇"
+                                    >
+                                        <template slot="prefix">
+                                            <i class="el-icon-lock"></i>
+                                        </template>
+                                        <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value"
+                                        >
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item label="編輯中人員:">
+                                    <el-input type="text" v-model="form2.editingPerson" :disabled="true">
+                                    </el-input>
+                                </el-form-item>
+                            </div>
+                        </el-form>
+                    </div>
+                    <el-row type="flex" justify="center">
+                        <el-button type="primary">編輯模式</el-button>
+                        <el-button type="primary">唯讀模式</el-button>
+                    </el-row>
+                </section>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="18">
+                <section>
+                    <h5 class="sub-title">(二)組織異動(新增/終止/移動)</h5>
+                    <el-form ref="form2" :model="form2" :inline="true" label-width="auto">
+                        <el-form-item label="上層組織:" class="my-2">
+                            <el-input type="text" v-model="form2.preLevel" :disabled="true">
+                            </el-input>
+                        </el-form-item>
+                    </el-form>
+                </section>
+            </el-col>
+        </el-row>
 
         <!-- <div style="margin-bottom: 20px;">
             <el-button
@@ -538,6 +603,10 @@ export default {
     </div>
 </template>
 <style lang="scss">
+    .aa {
+        display: flex;
+        justify-content: center;
+    }
     .tree {
         &__title {
             width: 100%;
@@ -546,7 +615,6 @@ export default {
             padding: 0.5rem 0;
         }
         &__self {
-            width: 80%;
             border: 1px solid #000;
             display: flex;
             flex-direction: column;
@@ -559,6 +627,11 @@ export default {
         background-color: #409af2;
         padding: 1rem;
     }
+    .sub-title {
+        padding: 0.5rem 0;
+        color: #FFF;
+        background-color: chocolate;
+    }
     .stepForm {
         padding: 3rem 1rem;
     }
@@ -567,7 +640,6 @@ export default {
         flex-direction: column;
         align-items: center;
     }
-
     .treeWrapper {
         width: 100vw;
         height: 600px;
@@ -590,7 +662,6 @@ export default {
         border: 2px solid #409EFF;
         background-color: #88c2fc;
     }
-
     .infobox{
         color: #fff;
         font-size: 0.5rem;
@@ -605,6 +676,18 @@ export default {
         text-align: left;
         z-index: 999;
         transition: all 0.3s;
+    }
+    .archiTree {
+        &__tree {
+            height: 50vh;
+            overflow-y: auto;
+            padding: 0.5rem 0;
+            border: 1px solid #000;
+        }
+        &__option {
+            display: flex;
+            justify-content: center;
+        }
     }
 
 </style>
