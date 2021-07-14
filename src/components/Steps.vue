@@ -3,7 +3,7 @@ export default {
   props: {
     currentStep: {
       type: Number,
-    }
+    },
   },
   data() {
     return {

@@ -1,7 +1,12 @@
 <script>
+import Steps from "@/components/Steps.vue";
 export default {
+  components: {
+      Steps
+  },
   data() {
     return {
+      currentStep: 0,
       labelPosition: "left",
       currentRow: null,
       value2: "不選定",
@@ -214,7 +219,6 @@ export default {
           icon: "el-icon-delete",
         },
       ],
-      active: 4,
       stepList: [
         {
           title: "step1",
@@ -345,21 +349,8 @@ export default {
 <template>
   <!-- ref= "form" 即使col不同也可以在同個 form 裡 -->
   <div>
-    <el-steps
-      class="mb-md-5"
-      :active="active"
-      align-center
-      finish-status="success"
-    >
-      <el-step
-        v-for="(item, index) in stepList"
-        :title="item.title"
-        :description="item.description"
-        :icon="item.icon"
-        :key="index"
-      >
-      </el-step>
-    </el-steps>
+    <Steps :currentStep="currentStep"></Steps>
+
     <div class="title">STEP 1: 組織劃分- 建立 Project</div>
     <div class="step1Form">
       <el-row :gutter="10" type="flex">
