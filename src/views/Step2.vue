@@ -1,7 +1,12 @@
 <script>
+import Steps from "@/components/Steps.vue";
 export default {
+    components: {
+        Steps
+    },
     data() {
         return {
+            currentStep: 1,
             richMediaData: {
                 name: "創價本部",
                 value: 800,
@@ -298,6 +303,7 @@ export default {
         handleDrop(draggingNode, dropNode, dropType, ev) {
             // console.log('drop: ', dropNode.label, dropType);
         },
+        //可否移動放置的判斷
         allowDrop(draggingNode, dropNode, type) {
             //同一level & 同一parentNode.id，才可以 prev || next 的放置
             if (draggingNode.level === dropNode.level) {
@@ -308,7 +314,7 @@ export default {
                 return false;
             }
         },
-        //3 (包含3&3的內層)不能drag
+        //(包含3&3的內層)不能drag
         // allowDrag(draggingNode) {
         //     return draggingNode.label.indexOf('3') === -1;
         // }
@@ -339,6 +345,8 @@ export default {
     </div> -->
 
     <div>
+        <Steps :currentStep="currentStep"></Steps>
+
         <div class="title">STEP 1: 組織劃分- 組織單位異動</div>
         <section class="tree">
             <div class="tree__title">劃分前後組織樹</div>
