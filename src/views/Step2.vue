@@ -6,7 +6,9 @@ export default {
     },
     data() {
         return {
+            //steps
             currentStep: 1,
+            // vue-tree-chart
             richMediaData: {
                 name: "創價本部",
                 value: 800,
@@ -48,6 +50,7 @@ export default {
             treeConfig: { 
                 nodeWidth: 120, nodeHeight: 100, levelHeight: 200 
             },
+            //vue-org-tree
             isBoxShow: false,
             inforBox:{
                 id: null,
@@ -106,6 +109,7 @@ export default {
                     },
                 ]
             },
+            //tabs
             editableTabsValue: '2',
             tabIndex: 2,
             editableTabs: [
@@ -120,6 +124,7 @@ export default {
                     content: 'Tab 2 content'
                 }
             ],
+            //element UI tree
             data: [
                 {
                 label: '汐止區女子部',
@@ -193,7 +198,33 @@ export default {
             defaultProps: {
                 children: 'children',
                 label: 'label'
-            }
+            },
+            //form 表單
+            labelPosition: "left",
+            form2: {
+                orgName: "專案",
+                orgnNo: 123,
+                date1: "",
+                dct: "",
+                depart: [],
+                orgPerson: "",
+                date2: "",
+                state: "",
+                note: "",
+                editCount: "",
+                lastEditPerson: "Scott",
+                editingPerson: "Andy",
+            },
+            options: [
+                {
+                    value: "修訂中",
+                    label: "修訂中",
+                },
+                {
+                    value: "閒置",
+                    label: "閒置",
+                },
+            ],
         };
     },
     methods: {
@@ -347,7 +378,110 @@ export default {
     <div>
         <Steps :currentStep="currentStep"></Steps>
 
-        <div class="title">STEP 1: 組織劃分- 組織單位異動</div>
+        <div class="title">STEP 2: 組織劃分- 組織單位異動</div>
+        <div class="stepForm">
+            <el-row :gutter="10" type="flex">
+                <el-col :span="8">
+                    <el-form
+                        ref="form2"
+                        :model="form2"
+                        :inline="true"
+                        label-width="auto"
+                        size="medium"
+                        :label-position="labelPosition"
+                    >
+                        <el-form-item label="組織劃分案名:">
+                            <el-input v-model="form2.orgName"
+                                type="text"
+                                maxlength="20"
+                                clearable
+                                :disabled="true"
+                            ></el-input>
+                        </el-form-item>
+                        <el-form-item label="組織劃分案編號:">
+                            <el-input v-model.number="form2.orgnNo" 
+                                clearable
+                                :disabled="true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="劃分建議生效月:">
+                        <el-col :span="11">
+                            <el-date-picker
+                                type="date"
+                                placeholder="2021-07-06"
+                                v-model="form2.date1"
+                                :disabled="true"
+                            ></el-date-picker>
+                        </el-col>
+                        </el-form-item>
+                        <el-form-item label="修改次數:">
+                            <el-input v-model.number="form2.editCount" clearable></el-input>
+                        </el-form-item>
+                        <el-form-item label="編輯狀態:">
+                            <el-select
+                                v-model="form2.state"
+                                placeholder="請選擇"
+                            >
+                                <template slot="prefix">
+                                    <i class="el-icon-lock"></i>
+                                </template>
+                                <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                >
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-form>
+                </el-col>
+                <el-col :span="8">
+                    <el-form ref="form2" :model="form2" :inline="true" label-width="auto">
+                        <el-form-item label="組織劃分案說明:">
+                            <el-input
+                                type="textarea"
+                                v-model="form2.state"
+                                clearable
+                                maxlength="150"
+                                show-word-limit
+                                :autosize="{ minRows: 5, maxRows: 8 }"
+                            >
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="最後編輯人:">
+                            <el-input type="text" v-model="form2.lastEditPerson" :disabled="true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="編輯中人員:">
+                            <el-input type="text" v-model="form2.editingPerson" :disabled="true">
+                            </el-input>
+                        </el-form-item>
+                </el-form>
+                </el-col>
+                <el-col :span="8">
+                    <el-form ref="form2" :model="form2" :inline="true" label-width="auto">
+                        <el-form-item label="備註:">
+                            <el-input
+                                type="textarea"
+                                v-model="form2.note"
+                                clearable
+                                maxlength="150"
+                                show-word-limit
+                                :autosize="{ minRows: 5, maxRows: 8 }"
+                            ></el-input>
+                        </el-form-item>
+                        <el-form-item label="最後編輯時間:">
+                            <el-time-picker
+                                placeholder="16:10:44"
+                                v-model="form2.date2"
+                                :disabled="true"
+                            ></el-time-picker>
+                        </el-form-item>
+                    </el-form>
+                </el-col>
+            </el-row>
+        </div>
         <section class="tree">
             <div class="tree__title">劃分前後組織樹</div>
             <vue2-org-tree
@@ -412,7 +546,7 @@ export default {
             padding: 0.5rem 0;
         }
         &__self {
-            width: 100%;
+            width: 80%;
             border: 1px solid #000;
             display: flex;
             flex-direction: column;
@@ -424,6 +558,9 @@ export default {
         color: #fff;
         background-color: #409af2;
         padding: 1rem;
+    }
+    .stepForm {
+        padding: 3rem 1rem;
     }
     .container {
         display: flex;

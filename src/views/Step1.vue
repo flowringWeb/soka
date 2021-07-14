@@ -6,10 +6,7 @@ export default {
   },
   data() {
     return {
-      currentStep: 0,
-      labelPosition: "left",
-      currentRow: null,
-      value2: "不選定",
+      //pagination
       pageObj: {
         startPage: 0,
         endPage: 0,
@@ -17,6 +14,10 @@ export default {
         pageSize: 5,
         currentPage: 1,
       },
+      //switch
+      value2: "不選定",
+      //form 表單
+      labelPosition: "left",
       form: {
         orgName: "",
         orgnNo: "",
@@ -219,6 +220,8 @@ export default {
           icon: "el-icon-delete",
         },
       ],
+      //steps
+      currentStep: 0,
       stepList: [
         {
           title: "step1",
@@ -302,7 +305,7 @@ export default {
         row.icon = "el-icon-check";
       }
     },
-    //分頁 size
+    //pagination 分頁 size
     // handleSizeChange(val) {
     //   console.log(val);
     //   this.pageObj.pageSize = val;
@@ -352,7 +355,7 @@ export default {
     <Steps :currentStep="currentStep"></Steps>
 
     <div class="title">STEP 1: 組織劃分- 建立 Project</div>
-    <div class="step1Form">
+    <div class="stepForm">
       <el-row :gutter="10" type="flex">
         <el-col :span="8">
           <el-form
@@ -360,16 +363,22 @@ export default {
             :model="form"
             :inline="true"
             label-width="auto"
-            size="large"
+            size="medium"
             :label-position="labelPosition"
           >
-            <el-form-item label="組織劃分案名">
-              <el-input v-model="form.orgName" clearable></el-input>
+            <el-form-item label="組織劃分案名:">
+              <el-input v-model="form.orgName"
+                  type="text"
+                  maxlength="20"
+                  clearable>
+              </el-input>
             </el-form-item>
-            <el-form-item label="組織劃分案編號">
-              <el-input v-model.number="form.orgnNo" clearable></el-input>
+            <el-form-item label="組織劃分案編號:">
+              <el-input v-model.number="form.orgnNo" 
+                clearable>
+              </el-input>
             </el-form-item>
-            <el-form-item label="劃分建議生效月">
+            <el-form-item label="劃分建議生效月:">
               <el-col :span="11">
                 <el-date-picker
                   type="date"
@@ -378,14 +387,12 @@ export default {
                 ></el-date-picker>
               </el-col>
             </el-form-item>
-            <el-form-item label="全區會">
+            <el-form-item label="全區會:">
               <el-input v-model="form.dct" clearable></el-input>
             </el-form-item>
             <el-form-item label="提報單位(凍結區域頂點)">
               <el-select
                 v-model="form.depart"
-                filterable
-                allow-create
                 placeholder="請選擇"
               >
                 <el-option
@@ -397,22 +404,20 @@ export default {
                 </el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="劃分案負責人">
+            <el-form-item label="劃分案負責人:">
               <el-input v-model="form.orgPerson" clearable></el-input>
             </el-form-item>
-            <el-form-item label="立案時間">
-              <el-col :span="11">
+            <el-form-item label="立案時間:">
                 <el-time-picker
-                  placeholder="請選擇時間"
+                  placeholder="請選擇時間:"
                   v-model="form.date2"
                 ></el-time-picker>
-              </el-col>
             </el-form-item>
           </el-form>
         </el-col>
         <el-col :span="8">
           <el-form ref="form" :model="form" :inline="true" label-width="auto">
-            <el-form-item label="組織劃分案說明">
+            <el-form-item label="組織劃分案說明:">
               <el-input
                 type="textarea"
                 v-model="form.state"
@@ -427,7 +432,7 @@ export default {
         </el-col>
         <el-col :span="8">
           <el-form ref="form" :model="form" :inline="true" label-width="auto">
-            <el-form-item label="備註">
+            <el-form-item label="備註:">
               <el-input
                 type="textarea"
                 v-model="form.note"
@@ -822,7 +827,7 @@ export default {
   background-color: #409af2;
   padding: 1rem;
 }
-.step1Form {
+.stepForm {
   padding: 3rem 1rem;
 }
 
