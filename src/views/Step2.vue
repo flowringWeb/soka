@@ -1,8 +1,10 @@
 <script>
 import Steps from "@/components/Steps.vue";
+import Pagination from "@/components/Pagination.vue";
 export default {
     components: {
-        Steps
+        Steps,
+        Pagination
     },
     data() {
         return {
@@ -515,159 +517,158 @@ export default {
                     </el-form>
                 </el-col>
             </el-row>
-        </div>
-        <el-row>
-            <el-col :span="18">
-                <section class="tree">
-                    <div class="tree__title">劃分前後組織樹</div>
-                    <vue2-org-tree
-                        class="tree__self"
-                        collapsable
-                        :data="treeData" 
-                        :horizontal="false"
-                        :label-class-name="labelClassName" 
-                        @on-expand="onExpand"
-                        @on-node-click="NodeClick"
-                        @on-node-mouseover="onMouseover"
-                        @on-node-mouseout="onMouseout"
-                    />
-                    <div v-show="isBoxShow" class="infobox">
-                        <p>ID:{{ inforBox.id }}</p>
-                        <p>Name:{{ inforBox.label }}</p>
-                    </div>
-                </section>
-            </el-col>
-        </el-row>
-        <el-row>
-            <el-col :span="18">
-                <section class="archiTree">
-                    <h5 class="sub-title">(一)組織圖(選擇節點)</h5>
-                    <el-tree
-                        class="archiTree__tree"
-                        :data="data"
-                        node-key="id"
-                        default-expand-all
-                        @node-drag-start="handleDragStart"
-                        @node-drag-enter="handleDragEnter"
-                        @node-drag-leave="handleDragLeave"
-                        @node-drag-over="handleDragOver"
-                        @node-drag-end="handleDragEnd"
-                        @node-drop="handleDrop"
-                        draggable
-                        :allow-drop="allowDrop"
-                    >
-                    </el-tree>
-                    <div class="archiTree__option">
-                        <el-form :inline="true" label-width="auto">
-                            <div>
-                                <el-form-item label="修改次數:">
-                                    <el-input v-model.number="form2.editCount" placeholder="10" :disabled="true"></el-input>
-                                </el-form-item>
-                                <el-form-item label="最後編輯人:">
-                                    <el-input type="text" v-model="form2.lastEditPerson" :disabled="true">
-                                    </el-input>
-                                </el-form-item>
-                            </div>
-                            <div>
-                                <el-form-item label="編輯狀態:">
-                                    <el-select
-                                        v-model="form2.state"
-                                        placeholder="請選擇"
-                                    >
-                                        <template slot="prefix">
-                                            <i class="el-icon-lock"></i>
-                                        </template>
-                                        <el-option
-                                            v-for="item in options"
-                                            :key="item.value"
-                                            :label="item.label"
-                                            :value="item.value"
+            <el-row>
+                <el-col :span="18">
+                    <section class="tree">
+                        <div class="tree__title">劃分前後組織樹</div>
+                        <vue2-org-tree
+                            class="tree__self"
+                            collapsable
+                            :data="treeData" 
+                            :horizontal="false"
+                            :label-class-name="labelClassName" 
+                            @on-expand="onExpand"
+                            @on-node-click="NodeClick"
+                            @on-node-mouseover="onMouseover"
+                            @on-node-mouseout="onMouseout"
+                        />
+                        <div v-show="isBoxShow" class="infobox">
+                            <p>ID:{{ inforBox.id }}</p>
+                            <p>Name:{{ inforBox.label }}</p>
+                        </div>
+                    </section>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="18">
+                    <section class="archiTree">
+                        <h5 class="sub-title">(一)組織圖(選擇節點)</h5>
+                        <el-tree
+                            class="archiTree__tree"
+                            :data="data"
+                            node-key="id"
+                            default-expand-all
+                            @node-drag-start="handleDragStart"
+                            @node-drag-enter="handleDragEnter"
+                            @node-drag-leave="handleDragLeave"
+                            @node-drag-over="handleDragOver"
+                            @node-drag-end="handleDragEnd"
+                            @node-drop="handleDrop"
+                            draggable
+                            :allow-drop="allowDrop"
+                        >
+                        </el-tree>
+                        <div class="archiTree__option">
+                            <el-form :inline="true" label-width="auto">
+                                <div>
+                                    <el-form-item label="修改次數:">
+                                        <el-input v-model.number="form2.editCount" placeholder="10" :disabled="true"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="最後編輯人:">
+                                        <el-input type="text" v-model="form2.lastEditPerson" :disabled="true">
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                                <div>
+                                    <el-form-item label="編輯狀態:">
+                                        <el-select
+                                            v-model="form2.state"
+                                            placeholder="請選擇"
                                         >
-                                        </el-option>
-                                    </el-select>
-                                </el-form-item>
-                                <el-form-item label="編輯中人員:">
-                                    <el-input type="text" v-model="form2.editingPerson" :disabled="true">
-                                    </el-input>
-                                </el-form-item>
-                            </div>
+                                            <template slot="prefix">
+                                                <i class="el-icon-lock"></i>
+                                            </template>
+                                            <el-option
+                                                v-for="item in options"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value"
+                                            >
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                    <el-form-item label="編輯中人員:">
+                                        <el-input type="text" v-model="form2.editingPerson" :disabled="true">
+                                        </el-input>
+                                    </el-form-item>
+                                </div>
+                            </el-form>
+                        </div>
+                        <el-row type="flex" justify="center">
+                            <el-button type="primary">編輯模式</el-button>
+                            <el-button type="primary">唯讀模式</el-button>
+                        </el-row>
+                    </section>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="18">
+                    <section>
+                        <div class="sub-title">(二)組織異動(新增/終止/移動)</div>
+                        <el-form ref="form2" :model="form2" :inline="true" label-width="auto">
+                            <el-form-item label="上層組織:" class="my-2">
+                                <el-input type="text" v-model="form2.preLevel" :disabled="true">
+                                </el-input>
+                            </el-form-item>
                         </el-form>
-                    </div>
-                    <el-row type="flex" justify="center">
-                        <el-button type="primary">編輯模式</el-button>
-                        <el-button type="primary">唯讀模式</el-button>
-                    </el-row>
-                </section>
-            </el-col>
-        </el-row>
-        <el-row>
-            <el-col :span="18">
-                <section>
-                    <div class="sub-title">(二)組織異動(新增/終止/移動)</div>
-                    <el-form ref="form2" :model="form2" :inline="true" label-width="auto">
-                        <el-form-item label="上層組織:" class="my-2">
-                            <el-input type="text" v-model="form2.preLevel" :disabled="true">
-                            </el-input>
-                        </el-form-item>
-                    </el-form>
-                    <div>
-                        <h5>組織清單</h5>
-                        <el-table :data="tableData1" class="mb-3" :header-cell-style="tableHeaderColor">
-                            <el-table-column prop="org" label="組織名稱" align="center">
-                            </el-table-column>
-                            <el-table-column
-                                prop="col1"
-                                label="狀態說明"
-                                align="center"
-                            >
-                                <template slot-scope="scope">
-                                    <el-input v-model="scope.row.col1"></el-input>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="lastLevel" label="上層組織(原)" align="center">
-                            </el-table-column>
-                            <el-table-column prop="place" label="移動至組織" align="center">
-                                <template slot-scope="scope">
-                                    <el-select
-                                        v-model="scope.row.place"
-                                        placeholder="請選擇"
-                                    >
-                                        <el-option
-                                            v-for="item in selectOptions"
-                                            :key="item.value"
-                                            :label="item.map"
-                                            :value="item.value"
+                        <div>
+                            <h5>組織清單</h5>
+                            <el-table :data="tableData1" class="mb-3" :header-cell-style="tableHeaderColor">
+                                <el-table-column prop="org" label="組織名稱" align="center">
+                                </el-table-column>
+                                <el-table-column
+                                    prop="col1"
+                                    label="狀態說明"
+                                    align="center"
+                                >
+                                    <template slot-scope="scope">
+                                        <el-input v-model="scope.row.col1"></el-input>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="lastLevel" label="上層組織(原)" align="center">
+                                </el-table-column>
+                                <el-table-column prop="place" label="移動至組織" align="center">
+                                    <template slot-scope="scope">
+                                        <el-select
+                                            v-model="scope.row.place"
+                                            placeholder="請選擇"
                                         >
-                                        </el-option>
-                                    </el-select>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="pcode" label="郵遞區號" align="center">
-                                <template slot-scope="scope">
-                                    <el-input v-model="scope.row.pcode"></el-input>
-                                </template>
-                            </el-table-column>
-                            <el-table-column label="新增/中止" align="center">
-                                <template slot-scope="scope">
-                                    <el-button
-                                        size="mini"
-                                        type="success"
-                                        @click="handleEdit(scope.$index, scope.row)">儲存
-                                    </el-button>
-                                    <el-button
-                                        size="mini"
-                                        type="danger"
-                                        @click="handleDelete(scope.$index, scope.row)">中止
-                                    </el-button>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-
-                    </div>
-                </section>
-            </el-col>
-        </el-row>
-
+                                            <el-option
+                                                v-for="item in selectOptions"
+                                                :key="item.value"
+                                                :label="item.map"
+                                                :value="item.value"
+                                            >
+                                            </el-option>
+                                        </el-select>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="pcode" label="郵遞區號" align="center">
+                                    <template slot-scope="scope">
+                                        <el-input v-model="scope.row.pcode"></el-input>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column label="新增/中止" align="center">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                            size="mini"
+                                            type="success"
+                                            @click="handleEdit(scope.$index, scope.row)">儲存
+                                        </el-button>
+                                        <el-button
+                                            size="mini"
+                                            type="danger"
+                                            @click="handleDelete(scope.$index, scope.row)">中止
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <Pagination></Pagination>
+                        </div>
+                    </section>
+                </el-col>
+            </el-row>
+        </div>
         <!-- <div style="margin-bottom: 20px;">
             <el-button
                 size="small"
