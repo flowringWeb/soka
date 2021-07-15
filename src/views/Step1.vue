@@ -610,7 +610,7 @@ export default {
           <div class="mb-4">
             <h5 class="ml-2">人員搜尋清單</h5>
             <div>
-              <el-table :data="tableData3" class="mb-3">
+              <el-table :data="tableData3" class="mb-3" :header-cell-style="{ background: '#eee' }">
                 <el-table-column type="selection" label="選擇" align="center">
                 </el-table-column>
                 <el-table-column prop="depart" label="部別" align="center">
@@ -642,7 +642,6 @@ export default {
               </el-table>
               <div class="pagination">
                 <el-pagination
-                  class=""
                   @current-change="handleCurrentChange"
                   :current-page.sync="pageObj.currentPage"
                   :page-size="pageObj.pageSize"

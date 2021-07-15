@@ -226,6 +226,32 @@ export default {
                     label: "閒置",
                 },
             ],
+            tableData1: [
+                {
+                    org: "勝利組",
+                    col1: "",
+                    lastLevel: "青山地區",
+                    place: "地區綜合長",
+                    pcode: 231,
+                },
+                {
+                    org: "吉祥組",
+                    col1: "",
+                    lastLevel: "汐止地區",
+                    place: "地區綜合長",
+                    pcode: 222,
+                },
+            ],
+            selectOptions: [
+                {
+                    map: "綜合地區",
+                    value: "綜合地區"
+                },
+                {
+                    map: "汐止地區",
+                    value: "汐止地區"
+                }
+            ]
         };
     },
     methods: {
@@ -350,6 +376,13 @@ export default {
         // allowDrag(draggingNode) {
         //     return draggingNode.label.indexOf('3') === -1;
         // }
+        //table header
+        tableHeaderColor({row, column, rowIndex, columnIndex}) {
+            if (rowIndex === 0) {
+                return 'background-color: #eee;'
+            }
+
+        }
     },
     mounted() {
         this.toggleExpand(this.treeData, true);
@@ -570,13 +603,67 @@ export default {
         <el-row>
             <el-col :span="18">
                 <section>
-                    <h5 class="sub-title">(二)組織異動(新增/終止/移動)</h5>
+                    <div class="sub-title">(二)組織異動(新增/終止/移動)</div>
                     <el-form ref="form2" :model="form2" :inline="true" label-width="auto">
                         <el-form-item label="上層組織:" class="my-2">
                             <el-input type="text" v-model="form2.preLevel" :disabled="true">
                             </el-input>
                         </el-form-item>
                     </el-form>
+                    <div>
+                        <h5>組織清單</h5>
+                        <el-table :data="tableData1" class="mb-3" :header-cell-style="tableHeaderColor">
+                            <el-table-column prop="org" label="組織名稱" align="center">
+                            </el-table-column>
+                            <el-table-column
+                                prop="col1"
+                                label="狀態說明"
+                                align="center"
+                            >
+                                <template slot-scope="scope">
+                                    <el-input v-model="scope.row.col1"></el-input>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="lastLevel" label="上層組織(原)" align="center">
+                            </el-table-column>
+                            <el-table-column prop="place" label="移動至組織" align="center">
+                                <template slot-scope="scope">
+                                    <el-select
+                                        v-model="scope.row.place"
+                                        placeholder="請選擇"
+                                    >
+                                        <el-option
+                                            v-for="item in selectOptions"
+                                            :key="item.value"
+                                            :label="item.map"
+                                            :value="item.value"
+                                        >
+                                        </el-option>
+                                    </el-select>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="pcode" label="郵遞區號" align="center">
+                                <template slot-scope="scope">
+                                    <el-input v-model="scope.row.pcode"></el-input>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="新增/中止" align="center">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        size="mini"
+                                        type="success"
+                                        @click="handleEdit(scope.$index, scope.row)">儲存
+                                    </el-button>
+                                    <el-button
+                                        size="mini"
+                                        type="danger"
+                                        @click="handleDelete(scope.$index, scope.row)">中止
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+
+                    </div>
                 </section>
             </el-col>
         </el-row>
@@ -603,9 +690,10 @@ export default {
     </div>
 </template>
 <style lang="scss">
-    .aa {
-        display: flex;
-        justify-content: center;
+    h5 {
+        margin-bottom: 0.5rem;
+        padding: 0.5rem 0.1rem;
+        background-color: #ccc;
     }
     .tree {
         &__title {
@@ -630,7 +718,7 @@ export default {
     .sub-title {
         padding: 0.5rem 0;
         color: #FFF;
-        background-color: chocolate;
+        background-color: #000;
     }
     .stepForm {
         padding: 3rem 1rem;
