@@ -793,7 +793,6 @@ export default {
                 </el-col>
             </el-row>
         </div>
-        <Tree></Tree>
         <!-- <div style="margin-bottom: 20px;">
             <el-button
                 size="small"

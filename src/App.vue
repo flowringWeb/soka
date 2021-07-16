@@ -16,7 +16,8 @@ export default {
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/Step1">Step1</router-link> |
-      <router-link to="/Step2">Step2</router-link>
+      <router-link to="/Step2">Step2</router-link> |
+      <router-link to="/Step3">Step3</router-link>
       <!-- <PropTest :sample="msg"></PropTest> -->
     </div>
     <router-view/>

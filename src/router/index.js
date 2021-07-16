@@ -19,7 +19,12 @@ const routes = [
     path: '/Step2',
     name: 'Step2',
     component: () => import('../views/Step2.vue')
-  }
+  },
+  {
+    path: '/Step3',
+    name: 'Step3',
+    component: () => import('../views/Step3.vue')
+  },
 ]
 
 const router = new VueRouter({
