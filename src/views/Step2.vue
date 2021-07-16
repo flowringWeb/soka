@@ -1,10 +1,12 @@
 <script>
 import Steps from "@/components/Steps.vue";
 import Pagination from "@/components/Pagination.vue";
+import Tree from "@/components/Tree.vue";
 export default {
     components: {
         Steps,
-        Pagination
+        Pagination,
+        Tree
     },
     data() {
         return {
@@ -216,7 +218,9 @@ export default {
                 editCount: "",
                 lastEditPerson: "Scott",
                 editingPerson: "Andy",
-                preLevel: "青山地區"
+                preLevel: "青山地區",
+                progress: "",
+                version: 3
             },
             options: [
                 {
@@ -253,7 +257,43 @@ export default {
                     map: "汐止地區",
                     value: "汐止地區"
                 }
-            ]
+            ],
+            tableData2: [
+                {
+                    org: "勝利組",
+                    lastLevel: "青山地區",
+                    add: "",
+                    trans: "",
+                    stop: "",
+                    btn: ""
+                },
+                {
+                    org: "吉祥組",
+                    lastLevel: "汐止地區",
+                    add: "",
+                    trans: "",
+                    stop: "",
+                    btn: ""
+                },
+            ],
+            tableData3: [
+                {
+                    dapart: "壯",
+                    name: "AAA",
+                    reply: "再調整",
+                    content: "反饋內容",
+                    version: 2,
+                },
+                {
+                    dapart: "壯",
+                    name: "BBB",
+                    reply: "再調整",
+                    content: "反饋內容",
+                    version: 2,
+                },
+
+            ],
+            radio: '2',
         };
     },
     methods: {
@@ -383,7 +423,9 @@ export default {
             if (rowIndex === 0) {
                 return 'background-color: #eee;'
             }
-
+        },
+        onSubmit() {
+            console.log('submit!');
         }
     },
     mounted() {
@@ -517,7 +559,7 @@ export default {
                     </el-form>
                 </el-col>
             </el-row>
-            <el-row>
+            <el-row class="mb-3">
                 <el-col :span="18">
                     <section class="tree">
                         <div class="tree__title">劃分前後組織樹</div>
@@ -611,7 +653,7 @@ export default {
                                 </el-input>
                             </el-form-item>
                         </el-form>
-                        <div>
+                        <div class="mb-3">
                             <h5>組織清單</h5>
                             <el-table :data="tableData1" class="mb-3" :header-cell-style="tableHeaderColor">
                                 <el-table-column prop="org" label="組織名稱" align="center">
@@ -665,10 +707,93 @@ export default {
                             </el-table>
                             <Pagination></Pagination>
                         </div>
+                        <div>
+                            <h5>組織異動歷程</h5>
+                            <el-table :data="tableData2" class="mb-3" :header-cell-style="tableHeaderColor">
+                                <el-table-column prop="org" label="組織名稱(原)" align="center">
+                                </el-table-column>
+                                <el-table-column prop="lastLevel" label="上層組織(原)" align="center">
+                                </el-table-column>
+                                <el-table-column prop="add" label="新增" align="center">
+                                </el-table-column>
+                                <el-table-column prop="trans" label="移動" align="center">
+                                </el-table-column>
+                                <el-table-column prop="stop" label="中止" align="center">
+                                </el-table-column>
+                                <el-table-column prop="btn" label="" align="center">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                            size="mini"
+                                            type="danger"
+                                            @click="handleEdit(scope.$index, scope.row)">取消
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <Pagination></Pagination>
+                        </div>
+                        <el-row type="flex" justify="center" class="mb-3">
+                            <el-button type="success" round>儲存&瀏覽劃分前後組織樹</el-button>
+                        </el-row>
+                        <div class="sub-title">(三)四部協同作業(意見)</div>
+                        <div>
+                            <el-row>
+                                <el-form :inline="true" :model="form2" ref="form2">
+                                    <el-col :span="7">
+                                        <el-form-item label="進度回覆:">
+                                            <el-radio v-model="radio" label="1">同意</el-radio>
+                                            <el-radio v-model="radio" label="2">再調整 </el-radio>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="10" align="middle">
+                                        <el-form-item>
+                                            <el-input type="textarea"
+                                            v-model="form2.progress"
+                                            :autosize="{ minRows: 2, maxRows: 4 }" placeholder="請輸入意見內容..."></el-input>
+                                        </el-form-item>
+                                        <el-form-item>
+                                            <el-button type="primary" @click="onSubmit">意見提報</el-button>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="7">
+                                        <el-form-item label="目前版次:">
+                                            <el-input v-model="form2.version" :disabled="true"></el-input>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-form>
+                            </el-row>
+                        </div>
+                        <div>
+                            <h5>四部意見彙整</h5>
+                            <el-table :data="tableData3" class="mb-3" :header-cell-style="tableHeaderColor">
+                                <el-table-column prop="dapart" label="部別" align="center">
+                                </el-table-column>
+                                <el-table-column prop="name" label="姓名" align="center">
+                                </el-table-column>
+                                <el-table-column prop="reply" label="進度回覆" align="center">
+                                </el-table-column>
+                                <el-table-column prop="content" label="意見內容" align="center">
+                                </el-table-column>
+                                <el-table-column prop="version" label="版次" align="center">
+                                </el-table-column>
+                            </el-table>
+                            <el-form ref="form2" :model="form2" :inline="true">
+                                <el-row type="flex" justify="center">
+                                    <el-form-item label="最後編輯時間:">
+                                        <el-time-picker
+                                            placeholder="16:10:44"
+                                            v-model="form2.date2"
+                                            :disabled="true"
+                                        ></el-time-picker>
+                                    </el-form-item>
+                                </el-row>
+                            </el-form>
+                        </div>
                     </section>
                 </el-col>
             </el-row>
         </div>
+        <Tree></Tree>
         <!-- <div style="margin-bottom: 20px;">
             <el-button
                 size="small"
