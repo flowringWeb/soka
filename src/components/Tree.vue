@@ -11,242 +11,196 @@ export default {
                     {
                         key: 1,
                         name: "1欧阳欧阳",
-                        department_name: "自然语言理解",
-                        thumb_avatar:
-                        "https://wework.qpic.cn/wwhead/duc2TvpEgSSdsPInfahzx4aJ1O6xvTyicq9a42ib5dPH2PSQ0dYNSKtprRTYoicSRQIl6prf5X6Zvc/100",
+                        department: "桃園東區女子部長",
                     },
                     {
                         key: 2,
                         parent: 1,
                         name: "2Copricat",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "https://wework.qpic.cn/wwhead/duc2TvpEgSSdsPInfahzx4aJ1O6xvTyicq9a42ib5dPH2PSQ0dYNSKtprRTYoicSRQIl6prf5X6Zvc/100",
+                        department: "八德區",
+                        note: "副本部長"
                     },
                     {
                         key: 3,
                         parent: 1,
                         name: "3Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "平鎮區",
                     },
                     {
                         key: 4,
                         parent: 2,
                         name: "4test",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/Rjj2rga1966wT52fvkfxEW4D0fHmoGwfrKgZO4kG3ibQJ3jCQPz4yww/100",
+                        department: "计算机视觉",
+                        note: {
+                            secName: "兩支部長",
+                            content: [
+                                {
+                                    name: "小明",
+                                    num: 23
+                                },
+                                {
+                                    name: "小玉",
+                                    num: 22
+                                }
+                            ]
+                        }
                     },
                     {
                         key: 5,
                         parent: 1,
                         name: "5test",
-                        department_name: "test",
-                        isAssistant: true,
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/Rjj2rga1966wT52fvkfxEW4D0fHmoGwfrKgZO4kG3ibQJ3jCQPz4yww/100",
+                        department: "大溪區",
+                        isAssistant: true,  
                     },
                     {
                         key: 6,
                         parent: 2,
                         name: "6Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 7,
                         parent: 3,
                         name: "7Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 8,
                         parent: 3,
                         name: "8Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 88,
                         parent: 5,
                         name: "88Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 9,
                         parent: 5,
                         name: "9Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 10,
                         parent: 4,
                         name: "10Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 11,
                         parent: 4,
                         name: "11Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 12,
                         parent: 4,
                         name: "12Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 13,
                         parent: 4,
                         name: "13Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 14,
                         parent: 6,
                         name: "14Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 15,
                         parent: 6,
                         name: "15Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 16,
                         parent: 6,
                         name: "16Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 17,
                         parent: 6,
                         name: "17Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 15,
                         parent: 7,
                         name: "15Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 16,
                         parent: 7,
                         name: "16Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 17,
                         parent: 7,
                         name: "17Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 18,
                         parent: 7,
                         name: "18Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 19,
                         parent: 8,
                         name: "19Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 20,
                         parent: 8,
                         name: "20Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 21,
                         parent: 88,
                         name: "21Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 22,
                         parent: 88,
                         name: "22Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 23,
                         parent: 9,
                         name: "23Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 24,
                         parent: 9,
                         name: "24Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 25,
                         parent: 9,
                         name: "25Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                     {
                         key: 26,
                         parent: 9,
                         name: "26Demeter",
-                        department_name: "计算机视觉",
-                        thumb_avatar:
-                        "http://wework.qpic.cn/bizmail/GHNsibLplp0MYdkmU3OzeUSay9ejakJtK0It1VIrRVAIFrlaqVtia0JQ/100",
+                        department: "计算机视觉",
                     },
                 ],
             },
@@ -259,23 +213,36 @@ export default {
                 "undoManager.isEnabled": false,
                 layout: $(go.TreeLayout, {
                     angle: 90,
-                    layerSpacing: 20,
+                    layerSpacing: 40,
                     nodeSpacing: 50,
                 })
             });
+
+            var tooltiptemplate =
+            $("ToolTip", {
+                    "Border.fill": "#409af2",
+                    "Border.stroke": "#409af2",
+                }, $(go.TextBlock, {
+                    font: "bold 1rem Helvetica, bold Arial, sans-serif",
+                    stroke: "#FFF",
+                    margin: 5
+                    },
+                    new go.Binding("text", "", this.tooltipTextConverter))
+            );
 
             // 定義節點模板
             myDiagram.nodeTemplate = $(
                 go.Node,
                 "Spot",
-                // {
-                //     isShadowed: true,
-                //     shadowOffset: new go.Point(0, 2),
-                //     shadowBlur: 10,
-                //     shadowColor: "#ccc",
-                //     movable: false,
-                //     selectionAdorned: false,
-                // },
+                {
+                    toolTip: tooltiptemplate,
+                    // isShadowed: true,
+                    // shadowOffset: new go.Point(0, 2),
+                    // shadowBlur: 10,
+                    // shadowColor: "#ccc",
+                    // movable: false,
+                    // selectionAdorned: false,
+                },
                 $(
                     go.Panel,
                     "Position",
@@ -321,7 +288,7 @@ export default {
                         go.Panel,
                         "Table",
                         {
-                            margin: new go.Margin(90, 0, 0, 0),
+                            margin: new go.Margin(10, 0, 0, 0),
                         },
                         $(
                             // 姓名
@@ -330,28 +297,28 @@ export default {
                             {
                                 stroke: "rgba(0, 0, 0, 0.8)",
                                 font: "bold 14px sans-serif",
-                                editable: true,
+                                editable: false,
                                 isMultiline: false,
                                 margin: new go.Margin(0, 0, 48, 0),
                                 cursor: "pointer",
                             },
-                            new go.Binding("text", "name")
+                            new go.Binding("text", "department")
                         ),
                         $(
-                            // 部门
+                            // 部門
                             go.TextBlock,
                             "自然语言理解",
                             {
-                                width: 100,
+                                // width: 100,
                                 textAlign: "center",
                                 stroke: "rgba(0, 0, 0, 0.5)",
                                 font: " 12px sans-serif",
-                                editable: true,
+                                editable: false,
                                 isMultiline: false,
-                                margin: new go.Margin(32, 0, 32, 0),
+                                margin: new go.Margin(15, 0, 15, 0),
                                 cursor: "pointer",
                             },
-                            new go.Binding("text", "department_name")
+                            new go.Binding("text", "name")
                         )
 
                     )
@@ -393,6 +360,27 @@ export default {
         // SideTreeLayout() {
         //     go.TreeLayout.call(this);
         // },
+        
+        // tooltipTextConverter: function(data) {
+        //     console.log('=>',data);
+        //     let str = "";
+        //     str += data.note;
+        //     return str;
+        // },
+        tooltipTextConverter: function(data) {
+            var str = data.note.secName;
+            data.note.content.forEach((item)=> {
+                var context = 
+                `
+                    <p>${item.name} ${item.num}</p>
+                `
+                str += context
+            })
+            return str;
+        },
+        showToolTip () {
+
+        }
     },
     mounted: function() {
         this.initGo();
@@ -402,6 +390,9 @@ export default {
 <template>
     <div>
         <div id="orgSelfTree"></div>
+        <!-- <div id="toolTipDIV" style="position: absolute; background: white; z-index: 1000; display: none;">
+            <p id="toolTipParagraph">Tooltip</p>
+        </div> -->
     </div>
 </template>
 <style lang="scss">
@@ -411,4 +402,5 @@ export default {
         height: 80vh;
         // overflow: auto;
     }
+    
 </style>
