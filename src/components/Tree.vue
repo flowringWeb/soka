@@ -1,6 +1,5 @@
 <script>
 import go from "gojs";
-import { SideTreeLayout } from "@/SideTreeLayout.js";
 export default {
     data() {
         return {
@@ -10,7 +9,7 @@ export default {
                 nodeDataArray: [
                     {
                         key: 1,
-                        name: "1欧阳欧阳",
+                        name: "1歐陽",
                         department: "桃園東區女子部長",
                     },
                     {
@@ -18,7 +17,19 @@ export default {
                         parent: 1,
                         name: "2Copricat",
                         department: "八德區",
-                        note: "副本部長"
+                        note: {
+                            secName: "副本部長",
+                            content: [
+                                {
+                                    name: "小王",
+                                    num: 11
+                                },
+                                {
+                                    name: "小綠",
+                                    num: 234
+                                }
+                            ]
+                        }
                     },
                     {
                         key: 3,
@@ -225,7 +236,8 @@ export default {
                 }, $(go.TextBlock, {
                     font: "bold 1rem Helvetica, bold Arial, sans-serif",
                     stroke: "#FFF",
-                    margin: 5
+                    margin: 5,
+                    textAlign: "center",
                     },
                     new go.Binding("text", "", this.tooltipTextConverter))
             );
@@ -296,7 +308,7 @@ export default {
                             "姓名",
                             {
                                 stroke: "rgba(0, 0, 0, 0.8)",
-                                font: "bold 14px sans-serif",
+                                font: "bold 1rem sans-serif",
                                 editable: false,
                                 isMultiline: false,
                                 margin: new go.Margin(0, 0, 48, 0),
@@ -372,15 +384,14 @@ export default {
             data.note.content.forEach((item)=> {
                 var context = 
                 `
-                    <p>${item.name} ${item.num}</p>
+                    ${item.name} ${item.num}
                 `
                 str += context
             })
+            console.log(str);
             return str;
         },
-        showToolTip () {
 
-        }
     },
     mounted: function() {
         this.initGo();
@@ -390,9 +401,6 @@ export default {
 <template>
     <div>
         <div id="orgSelfTree"></div>
-        <!-- <div id="toolTipDIV" style="position: absolute; background: white; z-index: 1000; display: none;">
-            <p id="toolTipParagraph">Tooltip</p>
-        </div> -->
     </div>
 </template>
 <style lang="scss">
@@ -402,5 +410,11 @@ export default {
         height: 80vh;
         // overflow: auto;
     }
-    
+    #toolTipDIV {
+        position: absolute;
+        background-color: cornflowerblue;
+        color: #FFF;
+        z-index: 1000;
+        display: none;
+    }
 </style>
