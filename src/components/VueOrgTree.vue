@@ -226,18 +226,21 @@ export default {
             // console.log(e, data);
         },
         onMouseout(e, data) {
-            this.isBoxShow = false
+            this.isBoxShow = false;
         },
         onMouseover(e, data) {
+            // console.log(e);
+            let distance = 50;
             this.inforBox = data;
-            // console.log('inforBox',this.inforBox);
             this.isBoxShow = true;
             let infobox = document.querySelector('.infobox');
-            infobox.style.left = e.clientX +'px';
-            infobox.style.top = e.clientY+'px';
+            infobox.style.left = (e.clientX - distance ) +'px';
+            infobox.style.top = (e.clientY - distance ) +'px';
+            // console.log(infobox.style.left);
+            // console.log(infobox.style.top)
         },
         renderContent(h, node) {
-            console.log('=>',node);
+            // console.log('=>',node);
             return (
                 <div class={'diy-wrapper', node.isCurrent ? 'current-select' : ''} >
                     <div class="diy-con-name">{node.label}</div>
@@ -305,7 +308,7 @@ export default {
         font-size: 0.5rem;
         background: rgba(0, 0, 0, 0.7);
         width: 100px;
-        height: 80px;
+        height: 50px;
         border-radius: 15px;
         position: absolute;
         left:0;
