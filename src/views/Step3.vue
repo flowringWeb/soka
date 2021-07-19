@@ -1,8 +1,10 @@
 <script>
-import Tree from "@/components/Tree.vue";
+import VueOkrTree from "@/components/VueOkrTree.vue";
+import VueOrgTree from "@/components/VueOrgTree.vue";
 export default {
     components: {
-        Tree
+        VueOkrTree,
+        VueOrgTree
     },
     data() {
         return {
@@ -13,7 +15,8 @@ export default {
 </script>
 <template>
     <div>
-
+        <VueOkrTree></VueOkrTree>
+        <VueOrgTree></VueOrgTree>
     </div>
 </template>
 <style lang="">

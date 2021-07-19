@@ -1,5 +1,9 @@
+// vue-tree-chart
 import VueTree from '@ssthouse/vue-tree-chart';
 import Vue2OrgTree from 'vue2-org-tree';
+
+//vue-okr-tree
+import 'vue-okr-tree/dist/vue-okr-tree.css';
 
 import Vue from 'vue'
 import App from './App.vue'

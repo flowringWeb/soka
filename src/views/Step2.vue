@@ -1,12 +1,12 @@
 <script>
 import Steps from "@/components/Steps.vue";
 import Pagination from "@/components/Pagination.vue";
-import Tree from "@/components/Tree.vue";
+import GoTree from "@/components/GoTree.vue";
 export default {
     components: {
         Steps,
         Pagination,
-        Tree
+        GoTree
     },
     data() {
         return {
@@ -64,22 +64,27 @@ export default {
             treeData: {
                 id: 0,
                 label: "創價本部",
+                content: "許xx 34",
                 children: [
                     {
                         id: 1,
                         label: "勝利支部",
+                        content: "許xx 34",
                         children: [
                             {
                                 id: 4,
-                                label: "A地區"
+                                label: "A地區",
+                                content: "許xx 34",
                             },
                             {
                                 id: 5,
-                                label: "B地區"
+                                label: "B地區",
+                                content: "許xx 34",
                             },
                             {
                                 id: 6,
-                                label: "C地區"
+                                label: "C地區",
+                                content: "許xx 34",
                             },
                         ]
                     },
@@ -100,14 +105,17 @@ export default {
                     {
                         id: 3,
                         label: "和平支部",
+                        content: "許xx 34",
                         children: [
                             {
                                 id: 9,
                                 label: "F地區",
+                                content: "許xx 34",
                             },
                             {
                                 id: 10,
                                 label: "G地區",
+                                content: "許xx 34",
                             }
                         ]
                     },
@@ -426,6 +434,15 @@ export default {
         },
         onSubmit() {
             console.log('submit!');
+        },
+        renderContent(h, node) {
+            console.log('=>',node);
+            return (
+                <div class={'diy-wrapper', node.isCurrent ? 'current-select' : ''} >
+                    <div class="diy-con-name">{node.label}</div>
+                    <div class="diy-con-content">{node.content}</div>
+                </div>
+            )
         }
     },
     mounted() {
@@ -559,7 +576,7 @@ export default {
                     </el-form>
                 </el-col>
             </el-row>
-            <el-row class="mb-3">
+            <!-- <el-row class="mb-3">
                 <el-col :span="18">
                     <section class="tree">
                         <div class="tree__title">劃分前後組織樹</div>
@@ -580,7 +597,7 @@ export default {
                         </div>
                     </section>
                 </el-col>
-            </el-row>
+            </el-row> -->
             <el-row>
                 <el-col :span="18">
                     <section class="archiTree">
@@ -812,7 +829,7 @@ export default {
                 {{item.content}}
             </el-tab-pane>
         </el-tabs> -->
-        <Tree></Tree>
+        <GoTree></GoTree>
     </div>
 </template>
 <style lang="scss">
