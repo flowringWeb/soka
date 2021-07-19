@@ -41,7 +41,7 @@ export default {
                         key: 4,
                         parent: 2,
                         name: "4test",
-                        department: "计算机视觉",
+                        department: "福豐支部女子部長",
                         note: {
                             secName: "兩支部長",
                             content: [
@@ -67,7 +67,7 @@ export default {
                         key: 6,
                         parent: 2,
                         name: "6Demeter",
-                        department: "计算机视觉",
+                        department: "介壽支部女子部長",
                     },
                     {
                         key: 7,
@@ -97,25 +97,25 @@ export default {
                         key: 10,
                         parent: 4,
                         name: "10Demeter",
-                        department: "计算机视觉",
+                        department: "忠勇",
                     },
                     {
                         key: 11,
                         parent: 4,
                         name: "11Demeter",
-                        department: "计算机视觉",
+                        department: "桃德",
                     },
                     {
                         key: 12,
                         parent: 4,
                         name: "12Demeter",
-                        department: "计算机视觉",
+                        department: "大楠",
                     },
                     {
                         key: 13,
                         parent: 4,
                         name: "13Demeter",
-                        department: "计算机视觉",
+                        department: "永豐",
                     },
                     {
                         key: 14,
@@ -335,6 +335,10 @@ export default {
 
                     )
                 ),
+                $("TreeExpanderButton", {
+                    alignment: go.Spot.Bottom,
+                    alignmentFocus: go.Spot.Center
+                })
 
             );
             myDiagram.linkTemplate = $(

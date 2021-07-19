@@ -11,9 +11,9 @@ export default {
     }    
 }
 </script>
-<template lang="">
+<template>
     <div>
-        <Tree></Tree>
+
     </div>
 </template>
 <style lang="">

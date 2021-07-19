@@ -812,6 +812,7 @@ export default {
                 {{item.content}}
             </el-tab-pane>
         </el-tabs> -->
+        <Tree></Tree>
     </div>
 </template>
 <style lang="scss">
