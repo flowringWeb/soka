@@ -618,8 +618,8 @@ export default {
             </el-tab-pane>
         </el-tabs> -->
         
-        <!-- <GoTree></GoTree>
-        <VueOrgTree></VueOrgTree> -->
+        <!-- <GoTree></GoTree> -->
+        <!-- <VueOrgTree></VueOrgTree> -->
         <VueTreeChart></VueTreeChart> 
     </div>
 </template>
