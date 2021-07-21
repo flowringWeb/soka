@@ -621,9 +621,9 @@ export default {
         </el-tabs> -->
         
         <GoTree></GoTree>
-        <!-- <VueOkrTree></VueOkrTree>
+        <!-- <VueOkrTree></VueOkrTree> -->
         <VueOrgTree></VueOrgTree>
-        <VueTreeChart></VueTreeChart> -->
+        <VueTreeChart></VueTreeChart> 
     </div>
 </template>
 <style lang="scss">
@@ -645,22 +645,6 @@ export default {
     }
     .stepForm {
         padding: 3rem 1rem;
-    }
-    .treeWrapper {
-        width: 100vw;
-        height: 600px;
-    }
-    .rich-media-node {
-        width: 80px;
-        padding: 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        color: white;
-        background-color: #f7c616;
-        border-radius: 4px;
-        text-align: center;
     }
     .archiTree {
         &__tree {

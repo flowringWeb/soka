@@ -414,11 +414,4 @@ export default {
         height: 80vh;
         // overflow: auto;
     }
-    #toolTipDIV {
-        position: absolute;
-        background-color: cornflowerblue;
-        color: #FFF;
-        z-index: 1000;
-        display: none;
-    }
 </style>

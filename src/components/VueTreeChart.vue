@@ -3,74 +3,563 @@
         data() {
             return {
                 richMediaData: {
-                    name: "創價本部",
-                    value: 800,
+                    depart: "桃園東區女子部長",
+                    name: 800,
                     children: [
                         {
-                        name: "勝利支部",
-                        value: 400,
-                        children: [
+                            depart: "八德本部女子部長",
+                            name: "吳曉雯",
+                            age: 33,
+                            sub: "副本部長",
+                            group: [
                                 {
-                                    name: "A地區",
-                                    value: 100,
+                                    name: "王xx",
+                                    age: 12,
                                 },
                                 {
-                                    name: "B地區",
-                                    value: 300,
-                                },
-                                {
-                                    name: "C地區",
-                                    value: 200,
-                                },
+                                    name: "王oo",
+                                    age: 55,
+                                }
                             ],
+                            children: [
+                                    {
+                                        depart: "A地區",
+                                        name: 100,
+                                        sub: "副本部長",
+                                        group: [
+                                            {
+                                                name: "王xx",
+                                                age: 12,
+                                            },
+                                            {
+                                                name: "王oo",
+                                                age: 55,
+                                            }
+                                        ],
+                                        children: [
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    },
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        depart: "B地區",
+                                        name: 300,
+                                        sub: "副本部長",
+                                        group: [
+                                            {
+                                                name: "王xx",
+                                                age: 12,
+                                            },
+                                            {
+                                                name: "王oo",
+                                                age: 55,
+                                            }
+                                        ],
+                                        children: [
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    },
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                        ]
+                                    },
+                                ],
                         },
                         {
-                        name: "榮光支部",
-                        value: 200,
-                        children: [
-                                {
-                                    name: "D地區",
-                                    value: 230,
-                                },
-                            ],
+                            depart: "榮光支部",
+                            name: 200,
+                            sub: "副本部長",
+                                group: [
+                                    {
+                                        name: "王xx",
+                                        age: 12,
+                                    },
+                                    {
+                                        name: "王oo",
+                                        age: 55,
+                                    },
+                                    {
+                                        name: "王xx",
+                                        age: 12,
+                                    },
+                                    {
+                                        name: "王oo",
+                                        age: 55,
+                                    },
+                                    {
+                                        name: "王xx",
+                                        age: 12,
+                                    },
+                                    {
+                                        name: "王oo",
+                                        age: 55,
+                                    }
+                                ],
+                                children: [
+                                    {
+                                        depart: "C地區",
+                                        name: 230,
+                                        sub: "副本部長",
+                                        group: [
+                                            {
+                                                name: "王xx",
+                                                age: 12,
+                                            },
+                                            {
+                                                name: "王oo",
+                                                age: 55,
+                                            }
+                                        ],
+                                        children: [
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    },
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        depart: "D地區",
+                                        name: 230,
+                                        sub: "副本部長",
+                                        group: [
+                                            {
+                                                name: "王xx",
+                                                age: 12,
+                                            },
+                                            {
+                                                name: "王oo",
+                                                age: 55,
+                                            }
+                                        ],
+                                        children: [
+                                            {
+                                                depart:"1",
+                                                name: 34
+                                            },
+                                            {
+                                                depart:"2",
+                                                name: 34
+                                            },
+                                        ]
+                                    },
+                                ],
                         },
                         {
-                            name: "和平支部",
-                            value: 300,
+                            depart: "和平支部",
+                            name: 300,
+                            sub: "副本部長",
+                            group: [
+                                    {
+                                        name: "王xx",
+                                        age: 12,
+                                    },
+                                    {
+                                        name: "王oo",
+                                        age: 55,
+                                    },
+                                    {
+                                        name: "王xx",
+                                        age: 12,
+                                    },
+                                    {
+                                        name: "王oo",
+                                        age: 55,
+                                    },
+                                ],
+                            children: [
+                                {
+                                    depart: "E地區",
+                                    name: 230,
+                                    sub: "副本部長",
+                                    group: [
+                                        {
+                                            name: "王xx",
+                                            age: 12,
+                                        },
+                                        {
+                                            name: "王oo",
+                                            age: 55,
+                                        }
+                                    ],
+                                    children: [
+                                        {
+                                            depart:"1",
+                                            name: 34
+                                        },
+                                        {
+                                            depart:"2",
+                                            name: 34
+                                        },
+                                    ]
+                                },
+                                {
+                                    depart: "F地區",
+                                    name: 230,
+                                    sub: "副本部長",
+                                    group: [
+                                        {
+                                            name: "王xx",
+                                            age: 12,
+                                        },
+                                        {
+                                            name: "王oo",
+                                            age: 55,
+                                        }
+                                    ],
+                                        children: [
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    },
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                            {
+                                                depart:"女子部長",
+                                                name: "周xx",
+                                                district: "忠勇地區",
+                                                sub: "副本部長",
+                                                group: [
+                                                    {
+                                                        name: "王xx",
+                                                        age: 12,
+                                                    },
+                                                    {
+                                                        name: "王oo",
+                                                        age: 55,
+                                                    }
+                                                ],
+                                            },
+                                        ]
+                                },
+                            ],
                         },
                     ],
                 },
                 treeConfig: { 
-                    nodeWidth: 120, nodeHeight: 100, levelHeight: 200 
+                    nodeWidth: 180, 
+                    nodeHeight: 110, 
+                    levelHeight: 150 
                 },
+            }
+        },
+        methods: {
+            zoomIn() {
+                this.$refs.vueTreeChart.zoomIn();
+            },
+            zoomOut() {
+                this.$refs.vueTreeChart.zoomOut();
             }
         }
     }
 </script>
 <template>
     <div>
+        <button type="button" @click="zoomIn">縮放 +</button>
+        <button type="button" @click="zoomOut">縮放 -</button>
         <vue-tree
             class="treeWrapper"
             :dataset="richMediaData"
             :config="treeConfig"
+            ref="vueTreeChart"
         >
             <template v-slot:node="{ node, collapsed }">
             <div
                 class="rich-media-node"
                 :style="{ border: collapsed ? '2px solid grey' : '' }"
             >
-                <span style="padding: 4px 0; font-weight: bold"
-                >{{ node.name }}</span
-                >
+                <div>
+                    <div v-if="node.district" style="font-weight: bold">{{ node.district }}</div>
+                    <span style="font-weight: bold">{{ node.depart }}</span><br> <span>{{node.name}} {{node.age}}</span>
+                    <br><br>
+                    <span style="font-weight: bold">{{ node.sub }}</span><br>
+                    <ul>
+                        <li v-for="item in node.group" :key="item.name">
+                            {{ item.name }} {{ item.age }}
+                        </li>
+                    </ul>
+
+                </div>
             </div>
             </template>
         </vue-tree>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
     .container {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .treeWrapper {
+        width: 100vw;
+        height: 130vh !important;
+    }
+    .rich-media-node {
+        width: 150px;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        background-color: #FFF;
+        border: 1px solid #000;
+        border-radius: 4px;
+        text-align: center;
     }
 </style>
