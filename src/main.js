@@ -5,6 +5,15 @@ import Vue2OrgTree from 'vue2-org-tree';
 //vue-okr-tree
 import 'vue-okr-tree/dist/vue-okr-tree.css';
 
+//vue - json-2-excel
+import JsonExcel from "vue-json-excel";
+Vue.component("downloadExcel", JsonExcel);
+
+//axios
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+Vue.use(VueAxios, axios);
+
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'

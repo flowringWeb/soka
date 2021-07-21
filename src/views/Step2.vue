@@ -620,10 +620,10 @@ export default {
             </el-tab-pane>
         </el-tabs> -->
         
-        <!-- <GoTree></GoTree>
-        <VueOkrTree></VueOkrTree> -->
+        <GoTree></GoTree>
+        <!-- <VueOkrTree></VueOkrTree>
         <VueOrgTree></VueOrgTree>
-        <!-- <VueTreeChart></VueTreeChart> -->
+        <VueTreeChart></VueTreeChart> -->
     </div>
 </template>
 <style lang="scss">
