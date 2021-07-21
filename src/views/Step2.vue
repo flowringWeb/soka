@@ -197,6 +197,61 @@ export default {
 
             ],
             radio: '2',
+            //劃分後表格
+            tableData4: [
+                {
+                type: '壯',
+                num: 30,
+                depart: 20,
+                apple: 10,
+                future: 14,
+                junior: 40,
+                senior: 10,
+                college: 60,
+                peace: 50,
+                light: 33,
+                win: 18
+                }, 
+                {
+                type: '婦',
+                num: 88,
+                depart: 20,
+                apple: 10,
+                future: 14,
+                junior: 40,
+                senior: 10,
+                college: 60,
+                peace: 50,
+                light: 33,
+                win: 18
+                }, 
+                {
+                type: '男',
+                num: 30,
+                depart: 20,
+                apple: 10,
+                future: 14,
+                junior: 40,
+                senior: 10,
+                college: 60,
+                peace: 50,
+                light: 33,
+                win: 18
+                }, 
+                {
+                type: '女',
+                num: 30,
+                depart: 20,
+                apple: 10,
+                future: 14,
+                junior: 40,
+                senior: 10,
+                college: 60,
+                peace: 50,
+                light: 33,
+                win: 18
+                }, 
+            ]   
         };
     },
     methods: {
@@ -597,6 +652,76 @@ export default {
                     </section>
                 </el-col>
             </el-row>
+            <el-row>
+                <el-col :span="18"> 
+                    <el-table
+                        :data="tableData4"
+                        show-summary
+                        style="width: 100%">
+                        <el-table-column
+                        prop="type"
+                        label=""
+                        width="auto">
+                        </el-table-column>
+                        <el-table-column label="組織數據">
+                            <el-table-column
+                            prop="num"
+                            label="人數"
+                            width="auto">
+                            </el-table-column>
+                            <el-table-column
+                            prop="depart"
+                            label="幹部數"
+                            width="auto">
+                            </el-table-column>
+                            <el-table-column
+                            prop="apple"
+                            label="紅蘋果"
+                            width="auto">
+                            </el-table-column>
+                        </el-table-column>
+                        <el-table-column label="學生人數">
+                            <el-table-column
+                            prop="future"
+                            label="未來部"
+                            width="auto">
+                            </el-table-column>
+                            <el-table-column
+                            prop="junior"
+                            label="國中部"
+                            width="auto">
+                            </el-table-column>
+                            <el-table-column
+                            prop="senior"
+                            label="高中部"
+                            width="auto">
+                            </el-table-column>
+                            <el-table-column
+                            prop="college"
+                            label="大學部"
+                            width="auto">
+                            </el-table-column>
+                        </el-table-column>
+                        <el-table-column label="下一層組織樹">
+                            <el-table-column
+                            prop="peace"
+                            label="和平支部"
+                            width="auto">
+                            </el-table-column>
+                            <el-table-column
+                            prop="light"
+                            label="榮光支部"
+                            width="auto">
+                            </el-table-column>
+                            <el-table-column
+                            prop="win"
+                            label="勝利支部"
+                            width="auto">
+                            </el-table-column>
+                        </el-table-column>
+                    </el-table>
+                </el-col>
+            </el-row>
         </div>
         <!-- <div style="margin-bottom: 20px;">
             <el-button
@@ -618,6 +743,7 @@ export default {
             </el-tab-pane>
         </el-tabs> -->
         
+        <!-- 直向組織樹圖 -->
         <!-- <GoTree></GoTree> -->
         <!-- <VueOrgTree></VueOrgTree> -->
         <VueTreeChart></VueTreeChart> 
