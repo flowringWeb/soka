@@ -2,7 +2,6 @@
 import Steps from "@/components/Steps.vue";
 import Pagination from "@/components/Pagination.vue";
 import GoTree from "@/components/GoTree.vue";
-import VueOkrTree from "@/components/VueOkrTree.vue";
 import VueOrgTree from "@/components/VueOrgTree.vue";
 import VueTreeChart from "@/components/VueTreeChart.vue";
 export default {
@@ -10,7 +9,6 @@ export default {
         Steps,
         Pagination,
         GoTree,
-        VueOkrTree,
         VueOrgTree,
         VueTreeChart
     },
@@ -620,9 +618,8 @@ export default {
             </el-tab-pane>
         </el-tabs> -->
         
-        <GoTree></GoTree>
-        <!-- <VueOkrTree></VueOkrTree> -->
-        <VueOrgTree></VueOrgTree>
+        <!-- <GoTree></GoTree>
+        <VueOrgTree></VueOrgTree> -->
         <VueTreeChart></VueTreeChart> 
     </div>
 </template>

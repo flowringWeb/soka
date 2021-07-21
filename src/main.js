@@ -2,9 +2,6 @@
 import VueTree from '@ssthouse/vue-tree-chart';
 import Vue2OrgTree from 'vue2-org-tree';
 
-//vue-okr-tree
-import 'vue-okr-tree/dist/vue-okr-tree.css';
-
 //vue - json-2-excel
 import JsonExcel from "vue-json-excel";
 Vue.component("downloadExcel", JsonExcel);
