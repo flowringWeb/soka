@@ -199,31 +199,19 @@ export default {
             ],
             radio: '2',
             //劃分後表格
-            nextLevel: [
+            columns: [
                 {
-                    name: "和平支部",
-                    childs: {
-                        peaces: 50,
-                        lights: 33,
-                        wins: 18
-                    }
+                    prop: 'peace',
+                    label: '和平支部',
                 },
                 {
-                    name: "榮光支部",
-                    childs: {
-                        peaces: 50,
-                        lights: 33,
-                        wins: 18
-                    }
+                    prop: 'light',
+                    label: '榮光支部',
                 },
                 {
-                    name: "勝利支部",
-                    childs: {
-                        peaces: 5,
-                        lights: 3,
-                        wins: 8
-                    }
-                }
+                    prop: 'win',
+                    label: '勝利支部',
+                },
             ],
             tableData4: [
                 {
@@ -235,11 +223,9 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
-                        peace: 50,
-                        light: 33,
-                        win: 18
-                    }
+                    peace: 50,
+                    light: 33,
+                    win: 18
                 }, 
                 {
                     type: '婦',
@@ -250,11 +236,9 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
-                        peace: 50,
-                        light: 4,
-                        win: 18
-                    }
+                    peace: 45,
+                    light: 33,
+                    win: 18
                 }, 
                 {
                     type: '男',
@@ -265,11 +249,9 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
-                        peace: 50,
-                        light: 3,
-                        win: 18
-                    }
+                    peace: 50,
+                    light: 333,
+                    win: 18
                 }, 
                 {
                     type: '女',
@@ -280,19 +262,15 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
-                        peace: 20,
-                        light: 33,
-                        win: 88
-                    }
+                    peace: 5,
+                    light: 33,
+                    win: 185
                 }, 
             ]   
         };
     },
     computed: {
-        showLabel() {
-            return this.nextLevel;
-        }
+        
     },
     methods: {
         //element UI tab 測試
@@ -779,29 +757,11 @@ export default {
                         <el-table-column label="下一層組織樹">
                             <el-table-column 
                             width="auto" 
-                            v-for="(item) in showLabel" 
-                            :key="item.name"
-                            :label="item.name"
-                            
+                            v-for="(item) in columns" 
+                            :key="item.label"
+                            :label="item.label"
+                            :prop="item.prop"
                             >
-                            </el-table-column>
-                        </el-table-column>
-
-                        <el-table-column label="下一層組織樹">
-                            <el-table-column
-                            prop="child.peace"
-                            :label="nextLevel[0].name"
-                            width="auto">
-                            </el-table-column>
-                            <el-table-column
-                            prop="child.light"
-                            :label="nextLevel[1].name"
-                            width="auto">
-                            </el-table-column>
-                            <el-table-column
-                            prop="child.win"
-                            :label="nextLevel[2].name"
-                            width="auto">
                             </el-table-column>
                         </el-table-column>
                     </el-table>
