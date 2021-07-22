@@ -198,61 +198,100 @@ export default {
             ],
             radio: '2',
             //劃分後表格
+            nextLevel: [
+                {
+                    name: "和平支部",
+                    childs: {
+                        peaces: 50,
+                        lights: 33,
+                        wins: 18
+                    }
+                },
+                {
+                    name: "榮光支部",
+                    childs: {
+                        peaces: 50,
+                        lights: 33,
+                        wins: 18
+                    }
+                },
+                {
+                    name: "勝利支部",
+                    childs: {
+                        peaces: 5,
+                        lights: 3,
+                        wins: 8
+                    }
+                }
+            ],
             tableData4: [
                 {
-                type: '壯',
-                num: 30,
-                depart: 20,
-                apple: 10,
-                future: 14,
-                junior: 40,
-                senior: 10,
-                college: 60,
-                peace: 50,
-                light: 33,
-                win: 18
+                    type: '壯',
+                    num: 30,
+                    depart: 20,
+                    apple: 10,
+                    future: 14,
+                    junior: 40,
+                    senior: 10,
+                    college: 60,
+                    child: {
+                        peace: 50,
+                        light: 33,
+                        win: 18
+                    }
                 }, 
                 {
-                type: '婦',
-                num: 88,
-                depart: 20,
-                apple: 10,
-                future: 14,
-                junior: 40,
-                senior: 10,
-                college: 60,
-                peace: 50,
-                light: 33,
-                win: 18
+                    type: '婦',
+                    num: 88,
+                    depart: 20,
+                    apple: 10,
+                    future: 14,
+                    junior: 40,
+                    senior: 10,
+                    college: 60,
+                    child: {
+                        peace: 50,
+                        light: 4,
+                        win: 18
+                    }
                 }, 
                 {
-                type: '男',
-                num: 30,
-                depart: 20,
-                apple: 10,
-                future: 14,
-                junior: 40,
-                senior: 10,
-                college: 60,
-                peace: 50,
-                light: 33,
-                win: 18
+                    type: '男',
+                    num: 30,
+                    depart: 20,
+                    apple: 10,
+                    future: 14,
+                    junior: 40,
+                    senior: 10,
+                    college: 60,
+                    child: {
+                        peace: 50,
+                        light: 3,
+                        win: 18
+                    }
                 }, 
                 {
-                type: '女',
-                num: 30,
-                depart: 20,
-                apple: 10,
-                future: 14,
-                junior: 40,
-                senior: 10,
-                college: 60,
-                peace: 50,
-                light: 33,
-                win: 18
+                    type: '女',
+                    num: 30,
+                    depart: 20,
+                    apple: 10,
+                    future: 14,
+                    junior: 40,
+                    senior: 10,
+                    college: 60,
+                    child: {
+                        peace: 20,
+                        light: 33,
+                        win: 88
+                    }
                 }, 
             ]   
         };
+    },
+    computed: {
+        showLabel() {
+            return this.nextLevel;
+        }
     },
     methods: {
         //element UI tab 測試
@@ -331,6 +370,18 @@ export default {
         onSubmit() {
             console.log('submit!');
         },
+        //改變表格中資料
+        changeData() {
+            let anotherChild = {
+                peace: 99,
+                light: 99,
+                win: 99
+            }
+            this.tableData4.forEach((item, index, arr) => {
+                console.log(arr[index].child);
+                item.child = anotherChild;
+            })
+        }
     },
 };
 </script>
@@ -653,7 +704,10 @@ export default {
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="18"> 
+                <el-col :span="18">
+                    <div>
+                        <el-button @click="changeData">更換</el-button>
+                    </div>
                     <el-table
                         :data="tableData4"
                         show-summary
@@ -702,20 +756,32 @@ export default {
                             width="auto">
                             </el-table-column>
                         </el-table-column>
+
+                        <el-table-column label="下一層組織樹">
+                            <el-table-column 
+                            width="auto" 
+                            v-for="(item) in showLabel" 
+                            :key="item.name"
+                            :label="item.name"
+                            
+                            >
+                            </el-table-column>
+                        </el-table-column>
+
                         <el-table-column label="下一層組織樹">
                             <el-table-column
-                            prop="peace"
-                            label="和平支部"
+                            prop="child.peace"
+                            :label="nextLevel[0].name"
                             width="auto">
                             </el-table-column>
                             <el-table-column
-                            prop="light"
-                            label="榮光支部"
+                            prop="child.light"
+                            :label="nextLevel[1].name"
                             width="auto">
                             </el-table-column>
                             <el-table-column
-                            prop="win"
-                            label="勝利支部"
+                            prop="child.win"
+                            :label="nextLevel[2].name"
                             width="auto">
                             </el-table-column>
                         </el-table-column>
