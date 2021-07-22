@@ -201,18 +201,62 @@ export default {
             //劃分後表格
             columns: [
                 {
-                    prop: 'peace',
+                    prop: 'child.peace', //亦可用物件傳遞
                     label: '和平支部',
                 },
                 {
-                    prop: 'light',
+                    prop: 'child.light',
                     label: '榮光支部',
                 },
                 {
-                    prop: 'win',
+                    prop: 'child.win',
                     label: '勝利支部',
                 },
             ],
+            nextChild: [
+                {
+                    peace: 100,
+                    light: 101,
+                    win: 102
+                },
+                {
+                    peace: 200,
+                    light: 301,
+                    win: 202
+                },
+                {
+                    peace: 300,
+                    light: 301,
+                    win: 302
+                },
+                {
+                    peace: 400,
+                    light: 401,
+                    win: 402
+                },
+            ],
+            // tableData5: [
+            //     {
+            //         peace: 50,
+            //         light: 12,
+            //         win: 18,
+            //     },
+            //     {
+            //         peace: 45,
+            //         light: 33,
+            //         win: 18
+            //     },
+            //     {
+            //         peace: 50,
+            //         light: 333,
+            //         win: 18
+            //     },
+            //     {
+            //         peace: 5,
+            //         light: 33,
+            //         win: 185
+            //     },
+            // ],
             tableData4: [
                 {
                     type: '壯',
@@ -223,9 +267,11 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    peace: 50,
-                    light: 33,
-                    win: 18
+                    child: {
+                        peace: 50,
+                        light: 12,
+                        win: 18,
+                    }
                 }, 
                 {
                     type: '婦',
@@ -236,9 +282,11 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    peace: 45,
-                    light: 33,
-                    win: 18
+                    child: {
+                        peace: 45,
+                        light: 33,
+                        win: 18
+                    }
                 }, 
                 {
                     type: '男',
@@ -249,9 +297,11 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    peace: 50,
-                    light: 333,
-                    win: 18
+                    child: {
+                        peace: 50,
+                        light: 333,
+                        win: 18
+                    }
                 }, 
                 {
                     type: '女',
@@ -262,15 +312,17 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    peace: 5,
-                    light: 33,
-                    win: 185
+                    child: {
+                        peace: 5,
+                        light: 33,
+                        win: 185
+                    }
                 }, 
             ]   
         };
     },
     computed: {
-        
+
     },
     methods: {
         //element UI tab 測試
@@ -351,15 +403,13 @@ export default {
         },
         //改變表格中資料
         changeData() {
-            let anotherChild = {
-                peace: 99,
-                light: 99,
-                win: 99
-            }
-            this.tableData4.forEach((item, index, arr) => {
-                console.log(arr[index].child);
-                item.child = anotherChild;
+            this.tableData4.forEach((item,index, arr)=> {
+                arr[index].child.peace=this.nextChild[index].peace;
+                arr[index].child.light=this.nextChild[index].light;
+                arr[index].child.win=this.nextChild[index].win;
             })
+
+            // this.tableData5 = this.nextChild;
         }
     },
 };
@@ -753,7 +803,6 @@ export default {
                             width="auto">
                             </el-table-column>
                         </el-table-column>
-
                         <el-table-column label="下一層組織樹">
                             <el-table-column 
                             width="auto" 
@@ -768,6 +817,23 @@ export default {
                 </el-col>
             </el-row>
         </div>
+        <!-- <div>
+            <el-button @click="changeData">更換</el-button>
+            <el-table
+                :data="tableData5"
+                style="width: 100%">
+                <el-table-column label="下一層組織樹">
+                    <el-table-column 
+                    width="auto" 
+                    v-for="(item) in columns" 
+                    :key="item.label"
+                    :label="item.label"
+                    :prop="item.prop"
+                    >
+                    </el-table-column>
+                </el-table-column>
+            </el-table>
+        </div> -->
         <!-- <div style="margin-bottom: 20px;">
             <el-button
                 size="small"
