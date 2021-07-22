@@ -123,7 +123,8 @@ export default {
                 editingPerson: "Andy",
                 preLevel: "青山地區",
                 progress: "",
-                version: 3
+                version: 3,
+                district: []
             },
             options: [
                 {
@@ -496,6 +497,24 @@ export default {
                 <el-col :span="18">
                     <section class="archiTree">
                         <h5 class="sub-title">(一)組織圖(選擇節點)</h5>
+                        <div class="archiTree__select">
+                            <el-form :inline="true">
+                                <el-form-item label="區域名稱搜尋:">
+                                <el-select
+                                    v-model="form2.district"
+                                    placeholder="請選擇"
+                                >
+                                    <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    >
+                                    </el-option>
+                                </el-select>
+                                </el-form-item>
+                            </el-form>
+                        </div>
                         <el-tree
                             class="archiTree__tree"
                             :data="data"
@@ -845,6 +864,10 @@ export default {
         &__option {
             display: flex;
             justify-content: center;
+        }
+        &__select {
+            display: flex;
+            justify-content: flex-end;
         }
     }
 
