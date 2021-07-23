@@ -199,18 +199,18 @@ export default {
             ],
             radio: '2',
             //劃分後表格
-            columns: [
+            nextColumns: [
                 {
-                    prop: 'child.peace', //亦可用物件傳遞
-                    label: '和平支部',
+                    prop: 'peace', //亦可用物件傳遞
+                    label: '和平部長',
                 },
                 {
-                    prop: 'child.light',
-                    label: '榮光支部',
+                    prop: 'light',
+                    label: '榮光部長',
                 },
                 {
-                    prop: 'child.win',
-                    label: '勝利支部',
+                    prop: 'win',
+                    label: '勝利部長',
                 },
             ],
             nextChild: [
@@ -235,28 +235,20 @@ export default {
                     win: 402
                 },
             ],
-            // tableData5: [
-            //     {
-            //         peace: 50,
-            //         light: 12,
-            //         win: 18,
-            //     },
-            //     {
-            //         peace: 45,
-            //         light: 33,
-            //         win: 18
-            //     },
-            //     {
-            //         peace: 50,
-            //         light: 333,
-            //         win: 18
-            //     },
-            //     {
-            //         peace: 5,
-            //         light: 33,
-            //         win: 185
-            //     },
-            // ],
+            columns: [
+                {
+                    prop: 'child.peace', //亦可用物件傳遞
+                    label: '和平支部',
+                },
+                {
+                    prop: 'child.light',
+                    label: '榮光支部',
+                },
+                {
+                    prop: 'child.win',
+                    label: '勝利支部',
+                },
+            ],
             tableData4: [
                 {
                     type: '壯',
@@ -401,13 +393,14 @@ export default {
         onSubmit() {
             console.log('submit!');
         },
-        //改變表格中資料
+        //改變下一層組織樹資料
         changeData() {
+            this.columns.forEach((item, index, arr) => {
+                arr[index].label = this.nextColumns[index].label;
+            })
             this.tableData4.forEach((item,index, arr)=> {
                 arr[index].child = this.nextChild[index];
             })
-
-            // this.tableData5 = this.nextChild;
         }
     },
 };
@@ -815,23 +808,6 @@ export default {
                 </el-col>
             </el-row>
         </div>
-        <!-- <div>
-            <el-button @click="changeData">更換</el-button>
-            <el-table
-                :data="tableData5"
-                style="width: 100%">
-                <el-table-column label="下一層組織樹">
-                    <el-table-column 
-                    width="auto" 
-                    v-for="(item) in columns" 
-                    :key="item.label"
-                    :label="item.label"
-                    :prop="item.prop"
-                    >
-                    </el-table-column>
-                </el-table-column>
-            </el-table>
-        </div> -->
         <!-- <div style="margin-bottom: 20px;">
             <el-button
                 size="small"
