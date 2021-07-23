@@ -404,9 +404,7 @@ export default {
         //改變表格中資料
         changeData() {
             this.tableData4.forEach((item,index, arr)=> {
-                arr[index].child.peace=this.nextChild[index].peace;
-                arr[index].child.light=this.nextChild[index].light;
-                arr[index].child.win=this.nextChild[index].win;
+                arr[index].child = this.nextChild[index];
             })
 
             // this.tableData5 = this.nextChild;
@@ -855,9 +853,9 @@ export default {
         </el-tabs> -->
         
         <!-- 直向組織樹圖 -->
-        <!-- <GoTree></GoTree> -->
+        <GoTree></GoTree>
         <!-- <VueOrgTree></VueOrgTree> -->
-        <VueTreeChart></VueTreeChart> 
+        <!-- <VueTreeChart></VueTreeChart>  -->
     </div>
 </template>
 <style lang="scss">

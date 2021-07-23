@@ -258,18 +258,19 @@ export default {
                 $(
                     go.Panel,
                     "Position",
-                    // $(
-                    //     //整个卡片
-                    //     go.Shape,
-                    //     "RoundedRectangle",
-                    //     {
-                    //         fill: "white",
-                    //         strokeWidth: 0,
-                    //         width: 100,
-                    //         height: 100,
-                    //     },
-                    //     new go.Binding("fill", "color")
-                    // ),
+                    $(
+                        //整个卡片
+                        go.Shape,
+                        "RoundedRectangle",
+                        {
+                            fill: "#FFF",
+                            strokeWidth: 1,
+                            stroke: "#000",
+                            width: 150,
+                            height: 100,
+                        },
+                        new go.Binding("fill", "color")
+                    ),
 
                     // $(
                     //     go.Panel,
