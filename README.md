@@ -1,19 +1,16 @@
-# soka
+# 創價專案
 
-## Project setup
+## 專案開啟操作步驟：
+
+(1) 下載本專案 ZIP檔
+
+(2) 以編輯器開啟專案，輸入下列指令，安裝套件
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+(3) 輸入下列指令，開啟專案
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
