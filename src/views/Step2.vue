@@ -4,13 +4,15 @@ import Pagination from "@/components/Pagination.vue";
 import GoTree from "@/components/GoTree.vue";
 import VueOrgTree from "@/components/VueOrgTree.vue";
 import VueTreeChart from "@/components/VueTreeChart.vue";
+import GoTree2 from "@/components/GoTree2.vue";
 export default {
     components: {
         Steps,
         Pagination,
         GoTree,
         VueOrgTree,
-        VueTreeChart
+        VueTreeChart,
+        GoTree2
     },
     data() {
         return {
@@ -829,7 +831,8 @@ export default {
         </el-tabs> -->
         
         <!-- 直向組織樹圖 -->
-        <GoTree></GoTree>
+        <!-- <GoTree></GoTree> -->
+        <GoTree2></GoTree2>
         <!-- <VueOrgTree></VueOrgTree> -->
         <!-- <VueTreeChart></VueTreeChart>  -->
     </div>
