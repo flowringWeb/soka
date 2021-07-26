@@ -3,14 +3,40 @@
         data() {
             return {
                 nodeDataArray: [
-                    { key: 0, name: "Ban Ki-moon 반기문", nation: "SouthKorea", title: "Secretary-General of the United Nations", headOf: "Secretariat" },
-                    { key: 1, boss: 0, name: "Patricia O'Brien", nation: "Ireland", title: "Under-Secretary-General for Legal Affairs and United Nations Legal Counsel", headOf: "Office of Legal Affairs" },
-                    { key: 3, boss: 1, name: "Peter Taksøe-Jensen", nation: "Denmark", title: "Assistant Secretary-General for Legal Affairs" },
-                    { key: 9, boss: 3, name: "Other Employees" },
-                    { key: 4, boss: 1, name: "Maria R. Vicien - Milburn", nation: "Argentina", title: "General Legal Division Director", headOf: "General Legal Division" },
-                    { key: 10, boss: 4, name: "Other Employees" },
-                    { key: 5, boss: 1, name: "Václav Mikulka", nation: "CzechRepublic", title: "Codification Division Director", headOf: "Codification Division" },
-                    { key: 11, boss: 5, name: "Other Employees" },
+                    { key: 0, age: 30, title: "Ban Ki-moon 반기문", name: "Secretary-General of the United Nations", headOf: "Secretariat" },
+
+                    { key: 1, boss: 0, age: 30, group: [{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}], group2:[{name: "宋xx" , age: 10}, {name: "宋xx", age: 10}, {name: "宋xx" , age: 10}], title: "八德本部女子部長", name: "王曉明", headOf: "副本部長", headOf2: "總合長" },
+
+                    { key: 2, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "aaa" },
+                    { key: 3, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "bbb" },
+                    { key: 4, boss: 1, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Maria R. Vicien - Milburn", name: "General Legal Division Director", headOf: "General Legal Division" },
+                    { key: 5, boss: 1, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Peter Taksøe-Jensen", name: "Assistant Secretary-General for Legal Affairs" },
+                    { key: 6, boss: 2, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Pn", name: "Assistant Secretary-General for Legal Affairs" },
+                    { key: 7, boss: 2, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Yni", name: "Assistant Secretary-General for Legal Affairs" },
+                    { key: 8, boss: 3, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 9, boss: 3, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees2" },
+                    { key: 10, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 11, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 12, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 13, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 14, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 15, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 16, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 17, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 18, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 19, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 20, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 21, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+
+                    { key: 22, boss: 7, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 23, boss: 7, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 24, boss: 8, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 25, boss: 8, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+
+                    { key: 26, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 27, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 28, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 29, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                 ]
             }
         },
@@ -18,14 +44,14 @@
             initGo: function() {
                 const $ = go.GraphObject.make;
                 var mt8 = new go.Margin(8, 0, 0, 0);
-                var mr8 = new go.Margin(0, 8, 0, 0);
                 var ml8 = new go.Margin(0, 0, 0, 8);
+                var my8 = new go.Margin(8, 0, 8, 0);
                 var roundedRectangleParams = {
                     parameter1: 2,  // set the rounded corner
-                    spot1: go.Spot.TopLeft, spot2: go.Spot.BottomRight  // make content go all the way to inside edges of rounded corners
+                    spot1: go.Spot.TopLeft, spot2: go.Spot.BottomRight  // 使內容一直到圓角的內邊緣
                 };
                 var myDiagram = $(go.Diagram, "orgSelfTree", {
-                    "undoManager.isEnabled": false,
+                    "undoManager.isEnabled": true,
                     layout: $(go.TreeLayout, {
                         angle: 90,
                         layerSpacing: 40,
@@ -33,6 +59,7 @@
                     })
                 });
 
+                //node節點樣板
                 myDiagram.nodeTemplate = 
                 $(go.Node, "Auto",
                     {
@@ -43,40 +70,34 @@
                         selectionAdornmentTemplate:
                         $(go.Adornment, "Auto",
                             $(go.Shape, "RoundedRectangle", roundedRectangleParams,
-                            { fill: null, stroke: "#7986cb", strokeWidth: 3 }
+                            { fill: null, stroke: "#7986cb", strokeWidth: 1 }
                             ),
                             $(go.Placeholder)
                         )  // end Adornment
                     },
                     $(go.Shape, "RoundedRectangle", roundedRectangleParams,
                         { name: "SHAPE", fill: "#fff", strokeWidth: 0 },
-                        // gold if highlighted, white otherwise
-                        new go.Binding("fill", "isHighlighted", function(h) { return h ? "gold" : "#fff"; }).ofObject()
                     ),
                     $(go.Panel, "Vertical",
                         $(go.Panel, "Horizontal",
-                            { margin: 8 },
-                            $(go.Picture,  // flag image, only visible if a nation is specified
-                                { margin: mr8, visible: false, desiredSize: new go.Size(50, 50) },
-                                new go.Binding("source", "nation", this.theNationFlagConverter),
-                                new go.Binding("visible", "nation", function(nat) { return nat !== undefined; })
-                            ),
+                            { margin: 12 },
                             $(go.Panel, "Table",
                                 $(go.TextBlock,
                                     {
                                         row: 0, alignment: go.Spot.Left,
-                                        font: "16px Roboto, sans-serif",
+                                        font: "1rem Roboto, sans-serif",
                                         stroke: "rgba(0, 0, 0, .87)",
                                         maxSize: new go.Size(160, NaN)
                                     },
-                                    new go.Binding("text", "name")
+                                    new go.Binding("text", "title")
                                 ),
-                                $(go.TextBlock, this.textStyle("title"),
+                                $(go.TextBlock, this.textStyle("name"),
                                     {
+                                        margin: mt8,
                                         row: 1, alignment: go.Spot.Left,
                                         maxSize: new go.Size(160, NaN)
                                     },
-                                    new go.Binding("text", "title")
+                                    new go.Binding("text", "name")
                                 ),
                                 $("PanelExpanderButton", "INFO",
                                     { row: 0, column: 1, rowSpan: 2, margin: ml8 }
@@ -98,22 +119,71 @@
                                 defaultAlignment: go.Spot.Left,  // thus no need to specify alignment on each element
                             },
                             $(go.TextBlock, this.textStyle("headOf"),
-                                new go.Binding("text", "headOf", function(head) { return "Head of: " + head; })
-                            ),
-                            $(go.TextBlock, this.textStyle("boss"),
-                                new go.Binding("margin", "headOf", function(head) { return mt8; }), // some space above if there is also a headOf value
-                                new go.Binding("text", "boss", function(boss) {
-                                var boss = myDiagram.model.findNodeDataForKey(boss);
-                                if (boss !== null) {
-                                    return "Reporting to: " + boss.name;
-                                }
-                                    return "";
+                                new go.Binding("text", "headOf", function(head) { 
+                                    return head + ':'; 
                                 })
-                            )
+                            ),
+                            $(go.Panel, "Table",
+                                new go.Binding("itemArray", "group"),
+                                {
+                                    itemTemplate:
+                                    $(go.Panel, "TableRow",
+                                        $(go.TextBlock,
+                                            new go.Binding("text", "name"),
+                                            { column: 0, margin: 2 }
+                                        ),
+                                        $(go.TextBlock,
+                                            new go.Binding("text", "age"),
+                                            { column: 1, margin: 2 }
+                                        ),
+                                    )
+                                }
+                            ),
+                            $(go.Shape, "LineH",
+                                {
+                                    stroke: "rgba(0, 0, 0, .60)", strokeWidth: 1, 
+                                    strokeDashArray:[1, 1],
+                                    height: 1,
+                                },
+                                { margin: my8 },
+                                new go.Binding("visible").ofObject("INFO")
+                            ),
+                            $(go.TextBlock, this.textStyle("headOf2"),
+                                new go.Binding("text", "headOf2", function(head) { 
+                                    return head + ':'; 
+                                })
+                            ),
+                            $(go.Panel, "Table",
+                                new go.Binding("itemArray", "group2"),
+                                {
+                                    itemTemplate:
+                                    $(go.Panel, "TableRow",
+                                        $(go.TextBlock,
+                                            new go.Binding("text", "name"),
+                                            { column: 0, margin: 2 }
+                                        ),
+                                        $(go.TextBlock,
+                                            new go.Binding("text", "age"),
+                                            { column: 1, margin: 2 }
+                                        ),
+                                    )
+                                }
+                            ),
+                            // $(go.TextBlock, this.textStyle("boss"),
+                            //     new go.Binding("margin", "headOf", function(head) { return mt8; }), // some space above if there is also a headOf value
+                            //     new go.Binding("text", "boss", function(boss) {
+                            //     var boss = myDiagram.model.findNodeDataForKey(boss);
+                            //     if (boss !== null) {
+                            //         return "Reporting to: " + boss.name;
+                            //     }
+                            //         return "";
+                            //     })
+                            // )
                         )
                     )
                 )
                 
+                //連結設定
                 myDiagram.linkTemplate =
                 $(go.Link, 
                     go.Link.Orthogonal,
@@ -121,6 +191,7 @@
                     $(go.Shape, { strokeWidth: 3, stroke: "#424242" })
                 );
 
+                //資料流
                 myDiagram.model =
                 $(go.TreeModel,
                 {
@@ -128,19 +199,21 @@
                     nodeDataArray: this.nodeDataArray
                 });
 
+                //建立左上角追蹤視窗
+                var myOverview =
+                $(go.Overview, "myOverviewDiv",
+                { observed: myDiagram, contentAlignment: go.Spot.Center }); 
+
             },
-            textStyle: function(field) {
+            textStyle: function(field) {    
                 return [
                     {
-                        font: "12px Roboto, sans-serif", stroke: "rgba(0, 0, 0, .60)",
-                        visible: false  // only show textblocks when there is corresponding data for them
+                        font: "bold 12px Roboto, sans-serif", stroke: "rgba(0, 0, 0, .60)",
+                        visible: true  // only show textblocks when there is corresponding data for them
                     },
                     new go.Binding("visible", field, function(val) { return val !== undefined; })
                 ];
             },
-            theNationFlagConverter: function() {
-                return "https://www.nwoods.com/images/emojiflags/" + nation + ".png";
-            }
         },
         mounted: function() {
             this.initGo();
@@ -148,17 +221,28 @@
     }
 </script>
 <template>
-    <div>
+    <div style="position: relative;">
         <div id="orgSelfTree"></div>
-
+        <div id="myOverviewDiv"></div> 
     </div>
 </template>
 <style lang="scss" scoped>
     #orgSelfTree {
         box-sizing: border-box;
         width: 100%;
-        height: 80vh;
+        // height: 80vh;
         background-color: #f2f2f2; 
         border: solid 1px black;
+    }
+
+    #myOverviewDiv {
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        top: 10px;
+        left: 10px;
+        background-color: #f2f2f2;
+        z-index: 300;
+        border: solid 1px #7986cb;
     }
 </style>

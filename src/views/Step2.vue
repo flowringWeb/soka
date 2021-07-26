@@ -832,7 +832,10 @@ export default {
         
         <!-- 直向組織樹圖 -->
         <!-- <GoTree></GoTree> -->
-        <GoTree2></GoTree2>
+        <div class="mt-3 mb-5">
+            <GoTree2></GoTree2>
+
+        </div>
         <!-- <VueOrgTree></VueOrgTree> -->
         <!-- <VueTreeChart></VueTreeChart>  -->
     </div>
