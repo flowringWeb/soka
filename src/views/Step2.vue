@@ -17,7 +17,7 @@ export default {
     data() {
         return {
             //steps
-            currentStep: 1,
+            active: 1,
             //tabs
             editableTabsValue: '2',
             tabIndex: 2,
@@ -409,7 +409,7 @@ export default {
 </script>
 <template>
     <div>
-        <Steps :currentStep="currentStep"></Steps>
+        <Steps :active="active"></Steps>
 
         <div class="title">STEP 2: 組織劃分- 組織單位異動</div>
         <div class="stepForm">

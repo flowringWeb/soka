@@ -1,12 +1,13 @@
 <script>
 export default {
   props: {
-    currentStep: {
+    active: {
       type: Number,
     },
   },
   data() {
     return {
+      currentStep: this.active,
       stepList: [
         {
           title: "step1",
@@ -51,9 +52,18 @@ export default {
       ],
     }
   },
+  methods: {
+    //回上一步
+    stepChange(current){
+        console.log(current, this.currentStep);
+        if(current < this.currentStep){
+            this.currentStep = current;
+        }
+    }
+  }
 };
 </script>
-<template lang="">
+<template>
     <div>
         <el-steps
           class="mb-md-5"
@@ -67,6 +77,7 @@ export default {
               :description="item.description"
               :icon="item.icon"
               :key="index"
+              @click.native="stepChange(index)"
             >
             </el-step>
       </el-steps>

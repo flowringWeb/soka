@@ -11,7 +11,7 @@
         data() {
             return {
                 //steps
-                currentStep: 2,
+                active: 2,
 
                 //form 表單
                 labelPosition: "left",
@@ -202,7 +202,7 @@
 </script>
 <template>
     <div>
-        <Steps :currentStep="currentStep"></Steps>
+        <Steps :active="active"></Steps>
         <div class="title">STEP 3: 組織劃分- 人員異動</div>
         <div class="pt-2 pb-5">
             <div class="stepForm">

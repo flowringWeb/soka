@@ -221,7 +221,7 @@ export default {
         },
       ],
       //steps
-      currentStep: 0,
+      active: 0,
       stepList: [
         {
           title: "step1",
@@ -352,7 +352,7 @@ export default {
 <template>
   <!-- ref= "form" 即使col不同也可以在同個 form 裡 -->
   <div>
-    <Steps :currentStep="currentStep"></Steps>
+    <Steps :active="active"></Steps>
 
     <div class="title">STEP 1: 組織劃分- 建立 Project</div>
     <div class="stepForm">
