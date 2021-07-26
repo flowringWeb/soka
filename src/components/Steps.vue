@@ -90,8 +90,7 @@ export default {
               @mouseover.native="hover = true"
               @mouseleave.native="hover = false"
             >
-            </el-step>
-            
+            </el-step>  
       </el-steps>
       <el-button v-show="hover" type="primary" icon="el-icon-edit" plain round>回步驟</el-button>        
     </div>
