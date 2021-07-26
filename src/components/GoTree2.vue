@@ -3,9 +3,19 @@
         data() {
             return {
                 nodeDataArray: [
-                    { key: 0, age: 30, title: "Ban Ki-moon 반기문", name: "Secretary-General of the United Nations", headOf: "Secretariat" },
+                    { key: 0, age: 30, title: "Ban Ki-moon 반기문", name: "Secretary-General", headOf: "Secretariat" },
 
-                    { key: 1, boss: 0, age: 30, group: [{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}], group2:[{name: "宋xx" , age: 10}, {name: "宋xx", age: 10}, {name: "宋xx" , age: 10}], title: "八德本部女子部長", name: "王曉明", headOf: "副本部長", headOf2: "總合長" },
+                    { 
+                    key: 1, 
+                    boss: 0, 
+                    age: 30, 
+                    group: [{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}],
+                    group2:[{name: "宋xx" , age: 10}, {name: "宋xx", age: 10}, {name: "宋xx" , age: 10}], 
+                    title: "八德本部女子部長", 
+                    name: "王曉明", 
+                    headOf: "副本部長", 
+                    headOf2: "總合長",
+                    },
 
                     { key: 2, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "aaa" },
                     { key: 3, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "bbb" },
