@@ -22,6 +22,7 @@
     "@vue/cli-service": "~4.5.0",
     "axios": "^0.21.1",
     "babel-plugin-component": "^1.1.1",
+    "bootstrap": "^5.0.2",
     "element-theme-chalk": "^2.15.3",
     "element-themex": "^1.0.3",
     "gojs": "^2.1.45",

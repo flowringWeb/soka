@@ -834,7 +834,6 @@ export default {
         <!-- <GoTree></GoTree> -->
         <div class="mt-3 mb-5">
             <GoTree2></GoTree2>
-
         </div>
         <!-- <VueOrgTree></VueOrgTree> -->
         <!-- <VueTreeChart></VueTreeChart>  -->

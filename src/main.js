@@ -11,13 +11,23 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios);
 
+//vue-org-tree
+Vue.component('vue-tree', VueTree);
+Vue.use(Vue2OrgTree);
+
+//element UI
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import "reset-css";
-import "./spacing.scss";
+
+//bootstrap custom scss
+import "./custom.scss";
+
+//vue-org-tree
 import "./style.css";
+
 import {
   Pagination,
   Dialog,
@@ -88,8 +98,6 @@ import {
   Notification
 } from 'element-ui';
 
-Vue.component('vue-tree', VueTree);
-Vue.use(Vue2OrgTree);
 
 Vue.use(Pagination);
 Vue.use(Dialog);

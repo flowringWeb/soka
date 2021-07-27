@@ -93,7 +93,7 @@
                     </div>
                 </el-col>
             </el-row>
-            <el-row>
+            <el-row class="mb-3">
                 <el-col :span="18">
                     <el-table :data="tableData"  :header-cell-style="{ background: '#eee' }">
                         <el-table-column prop="id" label="編號" align="center">
@@ -124,6 +124,9 @@
                             </template>
                         </el-table-column>
                     </el-table>
+                    <el-row type="flex" justify="center">
+                        <el-button type="primary">送審</el-button>
+                    </el-row>
                 </el-col>
             </el-row>
         </div>
