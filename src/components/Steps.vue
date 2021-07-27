@@ -62,6 +62,7 @@ export default {
             this.currentStep = selectStep;
         }
     },
+    //符合當個 step ，顯現回步驟
     mouseOver(selectStep) {
       console.log(selectStep, this.currentStep);
       if (selectStep === this.currentStep) {

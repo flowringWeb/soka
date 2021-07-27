@@ -14,7 +14,34 @@
                 form4: {
                     resource: '',
                     note: ''
-                }
+                },
+                tableData: [
+                    {
+                        id: 1111,
+                        name: "許XX",
+                        job: "正長",
+                        depart_class: "壯年部",
+                        sign_date: "2016-19-10",
+                        sign_time: "16:40:30",
+                        sign_detail: "1天00時00分00秒",
+                        audit_result: "同意",
+                        audit_option: "未填寫",
+                        type: "primary"
+                    },
+                    {
+                        id: 2222,
+                        name: "許XX",
+                        job: "正長",
+                        depart_class: "婦女部",
+                        sign_date: "2016-19-10",
+                        sign_time: "16:40:30",
+                        sign_detail: "1天00時00分00秒",
+                        audit_result: "同意",
+                        audit_option: "未填寫",
+                        type: "primary"
+                    },
+                ]
+
             }
         }
     }
@@ -64,6 +91,39 @@
                     <div class="mb-3">
                         <el-button type="success" round>瀏覽劃分前後地圖</el-button>
                     </div>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="18">
+                    <el-table :data="tableData"  :header-cell-style="{ background: '#eee' }">
+                        <el-table-column prop="id" label="編號" align="center">
+                        </el-table-column>
+                        <el-table-column prop="name" label="姓名" align="center">
+                        </el-table-column>
+                        <el-table-column prop="job" label="職務" align="center">
+                        </el-table-column>
+                        <el-table-column prop="depart_class" label="部別" align="center">
+                        </el-table-column>
+                        <el-table-column prop="sign_date" label="簽核時間/處理時間" align="center" width="150">
+                            <template slot-scope="scope">
+                                <div>{{ scope.row.sign_date}}</div>
+                                <div>{{ scope.row.sign_time}}</div>
+                                <div>{{ scope.row.sign_detail}}</div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="audit_result" label="內部審核結果" align="center">
+                        </el-table-column>
+                        <el-table-column prop="audit_option" label="內部審核意見" align="center">
+                        </el-table-column>
+                        <el-table-column prop="revise_btn" label="修改" align="center">
+                            <template slot-scope="scope">
+                                <el-button
+                                :type="scope.row.type"
+                                size="small"
+                                >修改</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </el-col>
             </el-row>
         </div>
