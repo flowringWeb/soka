@@ -62,14 +62,19 @@ export default {
             this.currentStep = selectStep;
         }
     },
-    mouseOver(val) {
-      if( val === 0) {
-        this.hover = false;
+    mouseOver(selectStep) {
+      console.log(selectStep, this.currentStep);
+      if (selectStep === this.currentStep) {
+        if (this.currentStep === 0) {
+          this.hover = false;
+        }else {
+          this.hover = true;
+        }
       } else {
-        this.hover = true;
+        this.hover = false;
       }
     },
-    mouseLeave(val) {
+    mouseLeave(selectStep) {
       this.hover = false;
     }
   }
