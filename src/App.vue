@@ -19,6 +19,7 @@ export default {
       <router-link to="/Step2">Step2</router-link> |
       <router-link to="/Step3">Step3</router-link> |
       <router-link to="/Step4">Step4</router-link> |
+      <router-link to="/Step5">Step5</router-link> |
       <!-- <PropTest :sample="msg"></PropTest> -->
     </div>
     <router-view/>
