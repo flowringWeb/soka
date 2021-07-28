@@ -211,8 +211,12 @@
                         </el-form-item>
                         <el-form-item label="報名&附件:">
                             <el-form-item>
-                                <el-table :data="tableData" :span-method="objectSpanMethod">
+                                <el-table :data="tableData" border :span-method="objectSpanMethod">
                                     <el-table-column prop="fileName" label="檔名" align="center">
+                                        <template slot-scope="scope">
+                                            <div>{{ scope.row.fileName }} </div>
+                                            <img src="https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500" width="100" alt="劃分前後地圖附件">
+                                        </template>
                                 </el-table-column>
                                 <el-table-column prop="fileState" label="附件說明" align="center">
                                 </el-table-column>
@@ -229,6 +233,10 @@
                             </el-form-item>
                         </el-form-item>
                     </el-form>
+                    <div class="d-flex justify-content-center">
+                        <el-button type="primary">送簽</el-button>
+                        <el-button type="primary">取消</el-button>
+                    </div>
                 </el-col>
             </el-row>
         </section>
