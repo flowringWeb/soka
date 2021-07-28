@@ -36,6 +36,33 @@
                         label: "組織分佈",
                     },
                 ],
+                tableData: [
+                    {
+                        fileName: "地圖.jpg",
+                        fileState: "組織劃分前後組織樹",
+                    },
+                    {
+                        fileName: "bb",
+                        fileState: "組織劃分前後人數統計表",
+                    },
+                    {
+                        fileName: "cc",
+                        fileState: "組織劃分前後地圖",
+                    },
+                ],
+            }
+        },
+        methods: {
+            // rowspan => https://blog.csdn.net/touhapppy/article/details/106037500
+            objectSpanMethod({ rowIndex, columnIndex }) {
+                console.log( rowIndex, columnIndex);
+                if (columnIndex === 0) {
+                    if (rowIndex === 0) {
+                        return [3, 1];
+                    } else {
+                        return [0, 0]
+                    }
+                }
             }
         }
     }
@@ -172,8 +199,6 @@
                                 :autosize="{ minRows: 6, maxRows: 12 }"
                             ></el-input>
                         </el-form-item>
-                    </el-form>
-                    <el-form label-width="auto" size="medium" :label-position="labelPosition">
                         <el-form-item label="組織劃分案說明:">
                             <el-input
                                 type="textarea"
@@ -184,10 +209,26 @@
                                 :autosize="{ minRows: 6, maxRows: 12 }"
                             ></el-input>
                         </el-form-item>
+                        <el-form-item label="報名&附件:">
+                            <el-form-item>
+                                <el-table :data="tableData" :span-method="objectSpanMethod">
+                                    <el-table-column prop="fileName" label="檔名" align="center">
+                                </el-table-column>
+                                <el-table-column prop="fileState" label="附件說明" align="center">
+                                </el-table-column>
+                                <el-table-column prop="" label="檢視" align="center">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                            size="mini"
+                                            type="primary"
+                                            @click="handleEdit(scope.$index, scope.row)">檢視
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                                </el-table>
+                            </el-form-item>
+                        </el-form-item>
                     </el-form>
-                </el-col>
-                <el-col :span="18">
-
                 </el-col>
             </el-row>
         </section>

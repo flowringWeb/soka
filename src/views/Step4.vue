@@ -83,13 +83,13 @@
                 </el-col>
                 <el-col :span="6">
                     <div class="mb-3">
-                        <el-button type="success" round>瀏覽劃分前後組織樹</el-button>
+                        <el-button type="success">瀏覽劃分前後組織樹</el-button>
                     </div>
                     <div class="mb-3">
-                        <el-button type="success" round>瀏覽劃分前後人數統計表</el-button>
+                        <el-button type="success">瀏覽劃分前後人數統計表</el-button>
                     </div>
                     <div class="mb-3">
-                        <el-button type="success" round>瀏覽劃分前後地圖</el-button>
+                        <el-button type="success">瀏覽劃分前後地圖</el-button>
                     </div>
                 </el-col>
             </el-row>
@@ -130,27 +130,6 @@
                 </el-col>
             </el-row>
         </div>
-        <!-- <div class="container">
-            <div class="row">
-                <div class="col-6 col-md-4">
-                    <div>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium molestias numquam, ab eum distinctio excepturi eveniet repellat quia! Expedita eius commodi sint magnam odio ipsa maiores dolore eligendi itaque at!</p>
-                    </div>
-                    <div>aa</div>
-                </div>
-                <div class="col-6 col-md-4">
-                    <div>
-                        <ul>
-                            <li class="item">1</li>
-                            <li class="item">2</li>
-                            <li class="item">3</li>
-                            <li class="item">4</li>
-                        </ul>
-                    </div>
-                    <div>bb</div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </template>
 <style lang="scss" scoped>
