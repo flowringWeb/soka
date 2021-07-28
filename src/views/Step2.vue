@@ -141,7 +141,7 @@ export default {
             tableData1: [
                 {
                     org: "勝利組",
-                    col1: "",
+                    col1: "11",
                     lastLevel: "青山地區",
                     place: "地區綜合長",
                     pcode: 231,
@@ -610,7 +610,6 @@ export default {
                                 <el-table-column prop="org" label="組織名稱" align="center">
                                 </el-table-column>
                                 <el-table-column
-                                    prop="col1"
                                     label="狀態說明"
                                     align="center"
                                 >

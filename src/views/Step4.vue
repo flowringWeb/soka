@@ -26,7 +26,8 @@
                         sign_detail: "1天00時00分00秒",
                         audit_result: "同意",
                         audit_option: "未填寫",
-                        type: "primary"
+                        type: "primary",
+                        isEdit: false
                     },
                     {
                         id: 2222,
@@ -38,10 +39,19 @@
                         sign_detail: "1天00時00分00秒",
                         audit_result: "同意",
                         audit_option: "未填寫",
-                        type: "primary"
+                        type: "primary",
+                        isEdit: false
                     },
                 ]
 
+            }
+        },
+        methods: {
+            handleSaveRow(index) {
+                this.tableData[index].isEdit = false;
+            },
+            handleEditRow(index) {
+                this.tableData[index].isEdit = true;
             }
         }
     }
@@ -111,15 +121,26 @@
                                 <div>{{ scope.row.sign_detail}}</div>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="audit_result" label="內部審核結果" align="center">
+                        <el-table-column label="內部審核結果" align="center">
+                            <template slot-scope="scope">
+                                <el-input v-model="scope.row.audit_result" :disabled="!scope.row.isEdit"></el-input>
+                            </template>
                         </el-table-column>
                         <el-table-column prop="audit_option" label="內部審核意見" align="center">
                         </el-table-column>
                         <el-table-column prop="revise_btn" label="修改" align="center">
                             <template slot-scope="scope">
                                 <el-button
+                                    size="mini"
+                                    type="primary"
+                                    plain
+                                    @click="handleSaveRow(scope.$index)">
+                                    儲存
+                                </el-button>
+                                <el-button
                                 :type="scope.row.type"
-                                size="small"
+                                size="mini"
+                                @click="handleEditRow(scope.$index)"
                                 >修改</el-button>
                             </template>
                         </el-table-column>
