@@ -251,6 +251,20 @@ export default {
                     label: '勝利支部',
                 },
             ],
+            columns2: [
+                {
+                    prop: 'peace', //亦可用物件傳遞
+                    label: '和平支部',
+                },
+                {
+                    prop: 'light',
+                    label: '榮光支部',
+                },
+                {
+                    prop: 'win',
+                    label: '勝利支部',
+                },
+            ],
             tableData4: [
                 {
                     type: '壯',
@@ -261,11 +275,11 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
+                    
                         peace: 50,
                         light: 12,
                         win: 18,
-                    }
+                    
                 }, 
                 {
                     type: '婦',
@@ -276,11 +290,11 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
+                    
                         peace: 45,
                         light: 33,
                         win: 18
-                    }
+                    
                 }, 
                 {
                     type: '男',
@@ -291,11 +305,11 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
+                    
                         peace: 50,
                         light: 333,
                         win: 18
-                    }
+                    
                 }, 
                 {
                     type: '女',
@@ -306,11 +320,11 @@ export default {
                     junior: 40,
                     senior: 10,
                     college: 60,
-                    child: {
+                    
                         peace: 5,
                         light: 33,
                         win: 185
-                    }
+                    
                 }, 
             ]   
         };
@@ -403,6 +417,37 @@ export default {
             this.tableData4.forEach((item,index, arr)=> {
                 arr[index].child = this.nextChild[index];
             })
+        },
+        //匯出Excel
+        handleDownload() {
+            import('@/vendor/Export2Excel').then(excel => {
+                const multiHeader = [['部別', '組織數據', '', '', '學生人數', '', '', '', '下一層組織樹', '', '']]
+                const header = ['', '人數', '幹部數', '紅蘋果', '未來部', '國中部','高中部', '大學部','和平支部','榮光支部','勝利支部']
+                const filterVal = ['type', 'num', 'depart', 'apple', 'future','junior', 'senior','college','peace','light','win']
+                const list = this.tableData4
+                const data = this.formatJson(filterVal, list)
+                const merges = ['A1:A2', 'B1:D1', 'E1:H1', 'I1:K1']
+                excel.export_json_to_excel({
+                    multiHeader,
+                    header,
+                    merges,
+                    data
+                })
+            })
+        },
+        // formatJson(filterVal, jsonData) {
+        //     return jsonData.map(v => filterVal.map(j => {
+        //         if (j === 'timestamp') {
+        //             return parseTime(v[j])
+        //         } else {
+        //             return v[j]
+        //         }
+        //     }))
+        // },
+        formatJson(filterVal, jsonData) {
+            return jsonData.map(v => filterVal.map(j => {
+                return v[j];
+            }))
         }
     },
 };
@@ -746,14 +791,15 @@ export default {
                 <el-col :span="18">
                     <div>
                         <el-button @click="changeData">更換</el-button>
+                        <el-button @click="handleDownload" type="success">Excel匯出</el-button>
                     </div>
                     <el-table
                         :data="tableData4"
-                        show-summary
+                        highlight-current-row
                         style="width: 100%">
                         <el-table-column
                         prop="type"
-                        label=""
+                        label="部別"
                         width="auto">
                         </el-table-column>
                         <el-table-column label="組織數據">
@@ -798,7 +844,7 @@ export default {
                         <el-table-column label="下一層組織樹">
                             <el-table-column 
                             width="auto" 
-                            v-for="(item) in columns" 
+                            v-for="(item) in columns2" 
                             :key="item.label"
                             :label="item.label"
                             :prop="item.prop"
