@@ -27,7 +27,7 @@ const routes = [
   },
   //PDF 下載頁面
   {
-    path: '/Download',
+    path: '/Step3/Download',
     name: 'Download',
     component: () => import('../views/Download.vue'),
     hidden: true

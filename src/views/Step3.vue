@@ -258,7 +258,7 @@
                                     <img @click="dialogMapVisible = true" class="mr-4" src="https://images.pexels.com/photos/21014/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500" width="100" alt="劃分前後地圖附件">
                                     <div class="attachItem__dnpdf mr-4"> 2. PDF 下載</div>
                                     <!-- <el-button type="primary" round>瀏覽</el-button> -->
-                                    <router-link target="_blank" to="/download">
+                                    <router-link target="_blank" to="/step3/download">
                                         <el-button type="primary">
                                             瀏覽
                                         </el-button>
