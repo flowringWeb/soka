@@ -3,6 +3,7 @@
         data() {
             return {
                 article: '',
+                fullscreenLoading: true
             }
         },
         methods: {
@@ -12,10 +13,11 @@
                     document.title = title;
                     this.article = data.default;
                     setTimeout(() => {
+                        this.fullscreenLoading = false
                         this.$nextTick(() => {
                             window.print()
                         })
-                    }, 900)
+                    }, 2000)
                 })
             }
         },
@@ -26,7 +28,7 @@
 </script>
 
 <template>
-    <div>
+    <div v-loading.fullscreen.lock="fullscreenLoading" class="main-article" element-loading-text="請稍後">
         <div class="article__heading">
             <div class="article__heading__title">
                 {{ article.title }}
@@ -41,25 +43,32 @@
 </template>
 
 <style lang="scss" scoped>
+    .main-article {
+        padding: 20px;
+        margin: 0 auto;
+        display: block;
+        width: 740px;
+        background: #fff;
+    }
     .article__heading {
-    position: relative;
-    padding: 0 0 20px;
-    overflow: hidden;
+        position: relative;
+        padding: 0 0 20px;
+        overflow: hidden;
     }
 
     .article__heading__title {
-    display: block;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    font-size: 32px;
-    line-height: 48px;
-    font-weight: 600;
-    color: #333;
-    overflow: hidden;
+        display: block;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        font-size: 32px;
+        line-height: 48px;
+        font-weight: 600;
+        color: #333;
+        overflow: hidden;
     }
 
     .node-article-content {
