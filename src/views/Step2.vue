@@ -426,6 +426,7 @@ export default {
                 const filterVal = ['type', 'num', 'depart', 'apple', 'future','junior', 'senior','college','peace','light','win']
                 const list = this.tableData4
                 const data = this.formatJson(filterVal, list)
+                // console.log(data);
                 const merges = ['A1:A2', 'B1:D1', 'E1:H1', 'I1:K1']
                 excel.export_json_to_excel({
                     multiHeader,
@@ -437,18 +438,27 @@ export default {
         },
         // formatJson(filterVal, jsonData) {
         //     return jsonData.map(v => filterVal.map(j => {
-        //         if (j === 'timestamp') {
-        //             return parseTime(v[j])
-        //         } else {
-        //             return v[j]
+        //         console.log(v['child'][j])
+        //         if( typeof(v.child) === 'object') {
+        //             return v['child'][j]
         //         }
         //     }))
         // },
         formatJson(filterVal, jsonData) {
             return jsonData.map(v => filterVal.map(j => {
-                return v[j];
+                return v[j]
             }))
-        }
+        },
+        // formatJson(filterVal, jsonData) {
+        //     return jsonData.map(v => filterVal.map(j => {
+        //         var part1 =  v[j];
+        //         var part2 = v['child'];
+        //         console.log(part1, part2);
+
+
+
+        //     }))
+        // },
     },
 };
 </script>
