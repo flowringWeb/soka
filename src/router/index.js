@@ -25,6 +25,13 @@ const routes = [
     name: 'Step3',
     component: () => import('../views/Step3.vue')
   },
+  //PDF 下載頁面
+  {
+    path: '/Download',
+    name: 'Download',
+    component: () => import('../views/Download.vue'),
+    hidden: true
+  },
   {
     path: '/Step4',
     name: 'Step4',
