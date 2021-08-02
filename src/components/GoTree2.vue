@@ -2,7 +2,52 @@
     export default {
         data() {
             return {
+                nodeDataArray: [
+                    { key: 0, age: 30, title: "Ban Ki-moon 반기문", name: "Secretary-General", headOf: "Secretariat" },
 
+                    { 
+                    key: 1, 
+                    boss: 0, 
+                    age: 30, 
+                    group: [{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}],
+                    group2:[{name: "宋xx" , age: 10}, {name: "宋xx", age: 10}, {name: "宋xx" , age: 10}], 
+                    title: "八德本部女子部長", 
+                    name: "王曉明", 
+                    headOf: "副本部長", 
+                    headOf2: "總合長",
+                    },
+
+                    { key: 2, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "aaa" },
+                    { key: 3, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "bbb" },
+                    { key: 4, boss: 1, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Maria R. Vicien - Milburn", name: "General Legal Division Director", headOf: "General Legal Division" },
+                    { key: 5, boss: 1, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Peter Taksøe-Jensen", name: "Assistant Secretary-General for Legal Affairs" },
+                    { key: 6, boss: 2, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Pn", name: "Assistant Secretary-General for Legal Affairs" },
+                    { key: 7, boss: 2, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Yni", name: "Assistant Secretary-General for Legal Affairs" },
+                    { key: 8, boss: 3, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 9, boss: 3, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees2" },
+                    { key: 10, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 11, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 12, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 13, boss: 4, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 14, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 15, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 16, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 17, boss: 5, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 18, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 19, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 20, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 21, boss: 6, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+
+                    { key: 22, boss: 7, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 23, boss: 7, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 24, boss: 8, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 25, boss: 8, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+
+                    { key: 26, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 27, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 28, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    { key: 29, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                ]
             }
         },
         methods: {
