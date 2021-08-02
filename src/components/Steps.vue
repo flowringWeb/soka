@@ -64,7 +64,7 @@ export default {
     },
     //符合當個 step ，顯現回步驟
     mouseOver(selectStep) {
-      console.log(selectStep, this.currentStep);
+      // console.log(selectStep, this.currentStep);
       if (selectStep === this.currentStep) {
         if (this.currentStep === 0) {
           this.hover = false;

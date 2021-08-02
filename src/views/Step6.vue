@@ -75,7 +75,7 @@
         methods: {
             // rowspan => https://blog.csdn.net/touhapppy/article/details/106037500
             objectSpanMethod({ rowIndex, columnIndex }) {
-                console.log( rowIndex, columnIndex);
+                // console.log( rowIndex, columnIndex);
                 if (columnIndex === 0) {
                     if (rowIndex === 0) {
                         return [3, 1];
