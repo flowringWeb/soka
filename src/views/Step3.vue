@@ -485,6 +485,11 @@
         background-color: #409af2;
         padding: 1rem;
     }
+    .sub-title {
+        padding: 0.5rem 0;
+        color: #FFF;
+        background-color: #000;
+    }
     .stepForm {
         padding: 3rem 1rem;
     }
