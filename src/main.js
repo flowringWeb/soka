@@ -174,6 +174,24 @@ Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
 
 
+router.beforeResolve((to, from, next) => {
+
+  if (to.name) {
+      let options = {
+        lock: true,
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      }
+      let loadingInstance = Loading.service(options);
+      setTimeout(() => {
+        loadingInstance.close();
+      }, 900)
+  }
+  next()
+})
+
+
 Vue.config.productionTip = false
 
 new Vue({
