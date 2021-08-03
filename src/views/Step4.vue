@@ -25,7 +25,7 @@
                         sign_time: "16:40:30",
                         sign_detail: "1天00時00分00秒",
                         audit_result: "同意",
-                        audit_option: "未填寫",
+                        audit_option: "測試填寫",
                         type: "primary",
                         isEdit: false
                     },
@@ -126,7 +126,16 @@
                                 <el-input v-model="scope.row.audit_result" :disabled="!scope.row.isEdit"></el-input>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="audit_option" label="內部審核意見" align="center">
+                        <el-table-column label="內部審核意見" align="center">
+                            <template slot-scope="scope">
+                                <el-input
+                                    type="textarea"
+                                    :rows="1"
+                                    placeholder="Please input"
+                                    v-model="scope.row.audit_option"
+                                    :disabled="!scope.row.isEdit">
+                                </el-input>
+                            </template>
                         </el-table-column>
                         <el-table-column prop="revise_btn" label="修改" align="center">
                             <template slot-scope="scope">
