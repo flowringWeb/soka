@@ -138,7 +138,10 @@
             }
         },
         methods: {
-
+            //嘗試改 expand 外觀
+            // getRowKeys(row) {
+            //     console.log(row.children);
+            // }
         }
         
     }
@@ -392,6 +395,8 @@
                                 </el-table-column>
                             </el-table>
                             <Pagination></Pagination>
+
+                            <el-button type="primary" icon="el-icon-minus">Search</el-button>
                         </div>
                     </section>
                 </el-col>
@@ -423,4 +428,8 @@
         justify-content: center;
     }
 }
+
+// \e6d9 +
+// \e6d8 -
+
 </style>
