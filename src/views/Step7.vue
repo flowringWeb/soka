@@ -19,7 +19,8 @@
                     date2: "2019/09",
                     time: "2021/03/01 08:00",
                     depart: "女子部",
-                    unit: ""
+                    unit: "",
+                    name: ""
                 },
                 district_options: [
                     {
@@ -232,18 +233,18 @@
                                     </el-select>
                                 </el-form-item>
                                 <el-form-item label="姓名:">
-                                <el-select
-                                    v-model="form.name"
-                                    placeholder="請選擇"
-                                >
-                                    <el-option
-                                    v-for="item in name_options"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value"
+                                    <el-select
+                                        v-model="form.name"
+                                        placeholder="請選擇"
                                     >
-                                    </el-option>
-                                </el-select>
+                                        <el-option
+                                        v-for="item in name_options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                        >
+                                        </el-option>
+                                    </el-select>
                                 </el-form-item>
                             </el-form>
                             <el-tree
@@ -281,50 +282,117 @@
                                 <el-button type="primary">單位查職務</el-button>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-around">
-                            <div>單位職務清單</div>
-                            <div>組織單位: 大同支部女子部</div>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between px-3">
+                                <div>單位職務清單</div>
+                                <div>組織單位: 大同支部女子部</div>
+                            </div>
+                            <el-table :data="tableData_report"  :header-cell-style="{ background: '#eee' }">
+                                <el-table-column prop="report_unit" label="單位" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_title" label="職務名稱" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_member" label="會員名稱" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_startDate" label="開始日期" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_endDate" label="結束日期" align="center">
+                                </el-table-column>
+                                <el-table-column label="原因" align="center" type="expand">
+                                    <template slot-scope="scope">
+                                        <el-tabs type="border-card">
+                                            <el-tab-pane label="卸任原因">{{scope.row.step_down_reason}}</el-tab-pane>
+                                            <el-tab-pane label="信心狀況">{{scope.row.confidence_state}}</el-tab-pane>
+                                            <el-tab-pane label="目前挑戰">{{scope.row.challenge_now}}</el-tab-pane>
+                                        </el-tabs>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="report_changeIcon" label="異動" align="center">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                            size="mini"
+                                            type="primary"
+                                            @click="handleEdit(scope.$index, scope.row)">異動
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="report_changeIcon" label="儲存" align="center">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                            size="mini"
+                                            type="primary"
+                                            @click="handleEdit(scope.$index, scope.row)">儲存
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <Pagination></Pagination>
                         </div>
-                        <el-table :data="tableData_report"  :header-cell-style="{ background: '#eee' }">
-                            <el-table-column prop="report_unit" label="單位" align="center">
-                            </el-table-column>
-                            <el-table-column prop="report_title" label="職務名稱" align="center">
-                            </el-table-column>
-                            <el-table-column prop="report_member" label="會員名稱" align="center">
-                            </el-table-column>
-                            <el-table-column prop="report_startDate" label="開始日期" align="center">
-                            </el-table-column>
-                            <el-table-column prop="report_endDate" label="結束日期" align="center">
-                            </el-table-column>
-                            <el-table-column label="原因" align="center" type="expand">
-                                <template slot-scope="scope">
-                                    <el-tabs type="border-card">
-                                        <el-tab-pane label="卸任原因">{{scope.row.step_down_reason}}</el-tab-pane>
-                                        <el-tab-pane label="信心狀況">{{scope.row.confidence_state}}</el-tab-pane>
-                                        <el-tab-pane label="目前挑戰">{{scope.row.challenge_now}}</el-tab-pane>
-                                    </el-tabs>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="report_changeIcon" label="異動" align="center">
-                                <template slot-scope="scope">
-                                    <el-button
-                                        size="mini"
-                                        type="primary"
-                                        @click="handleEdit(scope.$index, scope.row)">異動
-                                    </el-button>
-                                </template>
-                            </el-table-column>
-                            <el-table-column prop="report_changeIcon" label="儲存" align="center">
-                                <template slot-scope="scope">
-                                    <el-button
-                                        size="mini"
-                                        type="primary"
-                                        @click="handleEdit(scope.$index, scope.row)">儲存
-                                    </el-button>
-                                </template>
-                            </el-table-column>
-                        </el-table>
-                        <Pagination></Pagination>
+                        <div class="mb-4">
+                            <div>
+                                <el-form ref="form">
+                                    <el-form-item label="姓名">
+                                        <el-select
+                                            v-model="form.name"
+                                            placeholder="請選擇"
+                                        >
+                                            <el-option
+                                            v-for="item in name_options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value"
+                                            >
+                                            </el-option>
+                                        </el-select>
+                                    </el-form-item>
+                                </el-form>
+                                <el-button type="primary"> 姓名查職務</el-button>
+                            </div>
+                            <div class="d-flex justify-content-between px-3">
+                                <div>人員職務清單 (組織 + 人才)</div>
+                                <div>會員</div>
+                            </div>
+                            <el-table :data="tableData_report"  :header-cell-style="{ background: '#eee' }">
+                                <el-table-column prop="report_unit" label="單位" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_title" label="職務名稱" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_member" label="會員名稱" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_startDate" label="開始日期" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_endDate" label="結束日期" align="center">
+                                </el-table-column>
+                                <el-table-column label="原因" align="center" type="expand">
+                                    <template slot-scope="scope">
+                                        <el-tabs type="border-card">
+                                            <el-tab-pane label="卸任原因">{{scope.row.step_down_reason}}</el-tab-pane>
+                                            <el-tab-pane label="信心狀況">{{scope.row.confidence_state}}</el-tab-pane>
+                                            <el-tab-pane label="目前挑戰">{{scope.row.challenge_now}}</el-tab-pane>
+                                        </el-tabs>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="report_changeIcon" label="異動" align="center">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                            size="mini"
+                                            type="primary"
+                                            @click="handleEdit(scope.$index, scope.row)">異動
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="report_changeIcon" label="儲存" align="center">
+                                    <template slot-scope="scope">
+                                        <el-button
+                                            size="mini"
+                                            type="primary"
+                                            @click="handleEdit(scope.$index, scope.row)">儲存
+                                        </el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                            <Pagination></Pagination>
+                        </div>
                     </section>
                 </el-col>
             </el-row>
