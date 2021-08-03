@@ -1,8 +1,10 @@
 <script>
     import Steps from "@/components/Steps.vue";
+    import Pagination from "@/components/Pagination.vue";
     export default {
         components: {
             Steps,
+            Pagination,
         },
         data() {
             return {
@@ -39,6 +41,99 @@
                         label: "林曉玉",
                     },
                 ],
+                //element UI tree
+                data: [
+                    {
+                    label: '汐止區女子部',
+                    children: [
+                        {
+                            label: '區女子部長',
+                            children: [{
+                                label: 'aa'
+                                }]
+                        },
+                        {
+                            label: '汐止北本部女子部',
+                            children: [
+                                {
+                                    label: '本部女子部長',
+                                    children: [{
+                                        label: 'bb'
+                                    }]
+                                },
+                                {
+                                    label: '大同支部女子部',
+                                    children: [{
+                                        label: '支部女子部長'
+                                    }]
+                                },
+                                {
+                                    label: '新台支部女子部',
+                                    children: [
+                                        {
+                                            label: '支部女子部長'
+                                        },
+                                        {
+                                            label: '白雲地區女子部'
+                                        },
+                                        {
+                                            label: '青山地區女子部',
+                                            children: [
+                                                {
+                                                    label: '地區女子部長',
+                                                },
+                                                {
+                                                    label: '勝利組',
+                                                    children: [
+                                                        {
+                                                            label: '組長',
+                                                        },
+                                                        {
+                                                            label: '組員'
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    label: '吉祥組',
+                                                    children: [
+                                                        {
+                                                            label: '組長',
+                                                        },
+                                                        {
+                                                            label: '組員'
+                                                        }
+                                                    ]
+                                                },
+                                            ]
+                                        },
+                                    ]
+                                }
+                            ]
+                        }]
+                    }, 
+                ],
+                tableData_report: [
+                    {
+                        report_unit: "大同支部女子部",
+                        report_title: "支部女子部長",
+                        report_member: "王曉明",
+                        report_startDate: "2014/04/13",
+                        report_endDate: "2014/04/13",
+                        step_down_reason: "出國",
+                        confidence_state: "很有信心",
+                        challenge_now: "挑戰成功"
+                    },
+                    {
+                        report_unit: "大同支部女子部",
+                        report_title: "支部女子部長",
+                        report_member: "林曉諭",
+                        report_startDate: "2014/04/13",
+                        report_endDate: "2014/04/13",
+                        step_down_reason: "不適任",
+                        confidence_state: "很有信心",
+                        challenge_now: "挑戰成功"
+                    },
+                ]
             }
         },
         methods: {
@@ -116,8 +211,8 @@
             </el-row>
         </section>
         <section>
-            <el-row>
-                <el-col :span="11">
+            <el-row type="flex" justify="space-around">
+                <el-col :span="10">
                     <section class="archiTree">
                         <div class="sub-title mb-4">(一)組織圖(選擇節點)</div>
                         <div>
@@ -151,11 +246,86 @@
                                 </el-select>
                                 </el-form-item>
                             </el-form>
+                            <el-tree
+                                class="archiTree__tree"
+                                :data="data"
+                                node-key="id"
+                                default-expand-all
+                                draggable
+                            >
+                            </el-tree>
                         </div>
                     </section>
                 </el-col>
-                <el-col :span="12">
-
+                <el-col :span="13">
+                    <section>
+                        <div class="sub-title mb-4">(二)職務提報&解除</div>
+                        <div class="d-flex">
+                            <el-form ref="form" :inline="true">
+                                <el-form-item label="單位:">
+                                    <el-select
+                                        v-model="form.district"
+                                        placeholder="請選擇"
+                                    >
+                                        <el-option
+                                        v-for="item in district_options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                        >
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-form>
+                            <div>
+                                <el-button type="primary">單位查職務</el-button>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-around">
+                            <div>單位職務清單</div>
+                            <div>組織單位: 大同支部女子部</div>
+                        </div>
+                        <el-table :data="tableData_report"  :header-cell-style="{ background: '#eee' }">
+                            <el-table-column prop="report_unit" label="單位" align="center">
+                            </el-table-column>
+                            <el-table-column prop="report_title" label="職務名稱" align="center">
+                            </el-table-column>
+                            <el-table-column prop="report_member" label="會員名稱" align="center">
+                            </el-table-column>
+                            <el-table-column prop="report_startDate" label="開始日期" align="center">
+                            </el-table-column>
+                            <el-table-column prop="report_endDate" label="結束日期" align="center">
+                            </el-table-column>
+                            <el-table-column label="原因" align="center" type="expand">
+                                <template slot-scope="scope">
+                                    <el-tabs type="border-card">
+                                        <el-tab-pane label="卸任原因">{{scope.row.step_down_reason}}</el-tab-pane>
+                                        <el-tab-pane label="信心狀況">{{scope.row.confidence_state}}</el-tab-pane>
+                                        <el-tab-pane label="目前挑戰">{{scope.row.challenge_now}}</el-tab-pane>
+                                    </el-tabs>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="report_changeIcon" label="異動" align="center">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        size="mini"
+                                        type="primary"
+                                        @click="handleEdit(scope.$index, scope.row)">異動
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="report_changeIcon" label="儲存" align="center">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        size="mini"
+                                        type="primary"
+                                        @click="handleEdit(scope.$index, scope.row)">儲存
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <Pagination></Pagination>
+                    </section>
                 </el-col>
             </el-row>
         </section>
