@@ -17,6 +17,20 @@
                     headOf2: "總合長",
                     },
 
+                    // {
+                    // key: 1, 
+                    // boss: 0,
+                    // age: 30,
+                    // gallery: [
+                    //     {role:"總合長", group:[{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}]},
+                    //     {role:"副本部長", group:[{name: "宋xx", age: 55}, {name: "金xx", age: 35}, {name: "王xx", age: 45}]}
+                    // ], 
+                    // title: "八德本部",
+                    // role: "女子部長",
+                    // name: "王曉明",
+                    // },
+
+
                     { key: 2, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "aaa" },
                     { key: 3, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "bbb" },
                     { key: 4, boss: 1, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Maria R. Vicien - Milburn", name: "General Legal Division Director", headOf: "General Legal Division" },
@@ -179,6 +193,23 @@
                                     )
                                 }
                             ),
+                            //new 資料流
+                            // $(go.Panel, "Table",
+                            //     new go.Binding("itemArray", this.getGroup()),
+                            //     {
+                            //         itemTemplate:
+                            //         $(go.Panel, "TableRow",
+                            //             $(go.TextBlock,
+                            //                 new go.Binding("text", "name"),
+                            //                 { column: 0, margin: 2 }
+                            //             ),
+                            //             $(go.TextBlock,
+                            //                 new go.Binding("text", "age"),
+                            //                 { column: 1, margin: 2 }
+                            //             ),
+                            //         )
+                            //     }
+                            // ),
                             // $(go.TextBlock, this.textStyle("boss"),
                             //     new go.Binding("margin", "headOf", function(head) { return mt8; }), // some space above if there is also a headOf value
                             //     new go.Binding("text", "boss", function(boss) {
@@ -214,6 +245,10 @@
                 $(go.Overview, "myOverviewDiv",
                 { observed: myDiagram, contentAlignment: go.Spot.Center }); 
 
+                document.getElementById('zoomToFit').addEventListener('click', function() {
+                    myDiagram.commandHandler.zoomToFit();
+                });
+
             },
             textStyle: function(field) {    
                 return [
@@ -224,15 +259,37 @@
                     new go.Binding("visible", field, function(val) { return val !== undefined; })
                 ];
             },
+            getGroup() {
+                var gallery = null;
+                var groupArr = null;
+                this.nodeDataArray.forEach((item) => {
+                    gallery = item.gallery;
+                })
+                gallery.forEach((item) => {
+                    groupArr = item.group;
+                    return groupArr;
+                })
+            }
         },
         mounted: function() {
             this.initGo();
-        }
+
+                // var gallery = null;
+                // var groupArr = null;
+                // this.nodeDataArray.forEach((item) => {
+                //     gallery = item.gallery;
+                // })
+                // gallery.forEach((item) => {
+                //     groupArr = item.group;
+                // console.log('=>',groupArr);
+                // })
+        },
     }
 </script>
 <template>
     <div style="position: relative;">
         <div id="orgSelfTree"></div>
+        <el-button type="primary" id="zoomToFit">Zoom to Fit</el-button>
         <div id="myOverviewDiv"></div> 
     </div>
 </template>
