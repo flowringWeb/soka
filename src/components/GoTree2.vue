@@ -62,12 +62,12 @@
                     { key: 28, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                     { key: 29, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                 ],
-                peopleCount: [
-                    {title:"區級",number:5,pTime:1,},
-                    {title:"本部級",number:18,pTime:2},
-                    {title:"支部級",number:22,pTime:5},
-                    {title:"地區級",number:63,pTime:16}
-                ],
+                // peopleCount: [
+                //     {title:"區級",number:5,pTime:1,},
+                //     {title:"本部級",number:18,pTime:2},
+                //     {title:"支部級",number:22,pTime:5},
+                //     {title:"地區級",number:63,pTime:16}
+                // ],
             }
         },
         methods: {
@@ -98,7 +98,7 @@
                     //     itemTemplate:
                     //     $(go.Panel, "TableRow",
                     //         $(go.TextBlock,
-                    //             new go.Binding("text", "title"),
+                    //             new go.Binding("text", "depart"),
                     //             { column: 0, margin: 2 }
                     //         ),
                     //         $(go.TextBlock,
