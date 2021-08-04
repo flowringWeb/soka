@@ -221,7 +221,11 @@
                             //     })
                             // )
                         )
-                    )
+                    ),
+                    $("TreeExpanderButton", {
+                        alignment: go.Spot.Bottom,
+                        alignmentFocus: go.Spot.Center
+                    })
                 )
                 
                 //連結設定
@@ -295,6 +299,10 @@
             <div>
                 <div>人數統計 (兼任)</div>
                 <ul>
+                    <!-- 無法由 data 取得資料
+                    <li v-for="(item) in peopleCount" :key="item.title">
+                        {{ item.title}} : {{ item.number }} 人 +( {{ item.pTime}} )
+                    </li> -->
                     <li>區級：5人 +(1)</li>
                     <li>本部級：18人 +(2)</li>
                     <li>支部級：22人 +(5)</li>
@@ -340,6 +348,7 @@
         background-color: #f2f2f2;
         font-size: 0.8rem;
         z-index: 300;
+        border: solid 1px #7986cb;
         ul {
             padding-left: 0;
         }
