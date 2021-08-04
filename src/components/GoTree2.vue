@@ -61,7 +61,13 @@
                     { key: 27, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                     { key: 28, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                     { key: 29, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
-                ]
+                ],
+                peopleCount: [
+                    {title:"區級",number:5,pTime:1,},
+                    {title:"本部級",number:18,pTime:2},
+                    {title:"支部級",number:22,pTime:5},
+                    {title:"地區級",number:63,pTime:16}
+                ],
             }
         },
         methods: {
@@ -70,6 +76,7 @@
                 var mt8 = new go.Margin(8, 0, 0, 0);
                 var ml8 = new go.Margin(0, 0, 0, 8);
                 var my8 = new go.Margin(8, 0, 8, 0);
+                var mb8 = new go.Margin(0, 0, 8, 0);
                 var roundedRectangleParams = {
                     parameter1: 2,  // set the rounded corner
                     spot1: go.Spot.TopLeft, spot2: go.Spot.BottomRight  // 使內容一直到圓角的內邊緣
@@ -82,6 +89,73 @@
                         nodeSpacing: 40,
                     })
                 });
+
+                myDiagram.add(
+                    $(go.Part, "Table", 
+                    { position: new go.Point(0, 150), selectable: false }, //selectable 可控制點選及拖曳
+                    // new go.Binding("itemArray", "peopleCount"),
+                    // {
+                    //     itemTemplate:
+                    //     $(go.Panel, "TableRow",
+                    //         $(go.TextBlock,
+                    //             new go.Binding("text", "title"),
+                    //             { column: 0, margin: 2 }
+                    //         ),
+                    //         $(go.TextBlock,
+                    //             new go.Binding("text", "number"),
+                    //             { column: 1, margin: 2 }
+                    //         ),
+                    //         $(go.TextBlock,
+                    //             new go.Binding("text", "pTime"),
+                    //             { column: 2, margin: 2 }
+                    //         ),
+                    //     )
+                    // },
+                    $(go.TextBlock, "人數統計 (兼任)",
+                        { row: 0, font: "700 14px Droid Serif, sans-serif", margin: mb8 }),
+                    $(go.Panel, "Horizontal",
+                        { row: 1, alignment: go.Spot.Left },
+                        $(go.TextBlock, "區級:",
+                        { font: "700 13px Droid Serif, sans-serif" }),
+                        $(go.TextBlock, "5人 +(1)",
+                        { font: "13px Droid Serif, sans-serif" })
+                    ), 
+                    $(go.Panel, "Horizontal",
+                        { row: 2, alignment: go.Spot.Left },
+                        $(go.TextBlock, "本部級:",
+                        { font: "700 13px Droid Serif, sans-serif" }),
+                        $(go.TextBlock, "18人 +(2)",
+                        { font: "13px Droid Serif, sans-serif" })
+                    ),
+                    $(go.Panel, "Horizontal",
+                        { row: 3, alignment: go.Spot.Left },
+                        $(go.TextBlock, "支部級:",
+                        { font: "700 13px Droid Serif, sans-serif" }),
+                        $(go.TextBlock, "22人 +(5)",
+                        { font: "13px Droid Serif, sans-serif" })
+                    ),
+                    $(go.Panel, "Horizontal",
+                        { row: 4, alignment: go.Spot.Left },
+                        $(go.TextBlock, "地區級:",
+                        { font: "700 13px Droid Serif, sans-serif" }),
+                        $(go.TextBlock, "63人 +(16)",
+                        { font: "13px Droid Serif, sans-serif" })
+                    ),
+                    $(go.Panel, "Horizontal",
+                        { row: 5, alignment: go.Spot.Left, margin: mb8 },
+                        $(go.TextBlock, "總計:",
+                        { font: "700 13px Droid Serif, sans-serif" }),
+                        $(go.TextBlock, "108人",
+                        { font: "13px Droid Serif, sans-serif" })
+                    ),
+                    $(go.Panel, "Vertical",
+                        { row: 6, alignment: go.Spot.Left,  },
+                        $(go.TextBlock, "列印日期:",
+                        { font: "700 13px Droid Serif, sans-serif" }),
+                        $(go.TextBlock, "2016.04.29",
+                        { font: "13px Droid Serif, sans-serif" })
+                    ),
+                ));
 
                 //node節點樣板
                 myDiagram.nodeTemplate = 
@@ -226,7 +300,7 @@
                         alignment: go.Spot.Bottom,
                         alignmentFocus: go.Spot.Center
                     })
-                )
+                );
                 
                 //連結設定
                 myDiagram.linkTemplate =
@@ -249,6 +323,7 @@
                 $(go.Overview, "myOverviewDiv",
                 { observed: myDiagram, contentAlignment: go.Spot.Center }); 
 
+                //組織圖縮小比例
                 document.getElementById('zoomToFit').addEventListener('click', function() {
                     myDiagram.commandHandler.zoomToFit();
                 });
@@ -295,14 +370,10 @@
         <div id="orgSelfTree"></div>
         <el-button type="primary" id="zoomToFit">縮小比例</el-button>
         <div id="myOverviewDiv"></div> 
-        <div id="personCount" class="d-flex">
+        <!-- <div id="personCount" class="d-flex">
             <div>
                 <div>人數統計 (兼任)</div>
                 <ul>
-                    <!-- 無法由 data 取得資料
-                    <li v-for="(item) in peopleCount" :key="item.title">
-                        {{ item.title}} : {{ item.number }} 人 +( {{ item.pTime}} )
-                    </li> -->
                     <li>區級：5人 +(1)</li>
                     <li>本部級：18人 +(2)</li>
                     <li>支部級：22人 +(5)</li>
@@ -319,7 +390,7 @@
                     <li>(18,21,24,28,43)</li>
                 </ul>
             </div>
-        </div> 
+        </div>  -->
     </div>
 </template>
 <style lang="scss" scoped>
