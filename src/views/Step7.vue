@@ -20,7 +20,8 @@
                     time: "2021/03/01 08:00",
                     depart: "女子部",
                     unit: "",
-                    name: ""
+                    name: "",
+                    order: "組織單位 + 職務名稱"
                 },
                 district_options: [
                     {
@@ -134,7 +135,9 @@
                         confidence_state: "很有信心",
                         challenge_now: "挑戰成功"
                     },
-                ]
+                ],
+                checkList: ["自己提的"],
+                checkList2: ["總和", "圈", "區"]
             }
         },
         methods: {
@@ -395,13 +398,56 @@
                                 </el-table-column>
                             </el-table>
                             <Pagination></Pagination>
-
-                            <el-button type="primary" icon="el-icon-minus">Search</el-button>
                         </div>
                     </section>
                 </el-col>
             </el-row>
         </section>
+        <section>
+            <el-row>
+                <el-col :span="20" class="px-3">
+                    <div class="sub-title mb-4">(三)人事異動轉簽呈</div>
+                    <div class="d-flex">
+                        <div>資料篩選:</div>
+                        <el-checkbox-group v-model="checkList">
+                            <el-checkbox label="自己提的"></el-checkbox>
+                            <el-checkbox label="關卡中有自己"></el-checkbox>
+                            <el-checkbox label="和我無關的"></el-checkbox>
+                        </el-checkbox-group>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div>被提報職務的層級:</div>
+                        <el-checkbox-group v-model="checkList2">
+                            <el-checkbox label="總和"></el-checkbox>
+                            <el-checkbox label="圈"></el-checkbox>
+                            <el-checkbox label="區"></el-checkbox>
+                            <el-checkbox label="本部"></el-checkbox>
+                            <el-checkbox label="支部"></el-checkbox>
+                            <el-checkbox label="地區"></el-checkbox>
+                            <el-checkbox label="組"></el-checkbox>
+                        </el-checkbox-group>
+                        <el-button type="primary" size="small">查詢</el-button>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <el-form ref="form" :inline="true">
+                            <el-form-item label="預設排序順位:" class="mb-0">
+                                <el-input v-model="form.order" 
+                                    clearable
+                                    placeholder="組織單位 + 職務名稱"
+                                    :disabled="true">
+                                </el-input>
+                            </el-form-item>
+                        </el-form>
+                        <el-button type="primary" size="small">排序</el-button>
+                    </div>
+                    <div>
+                        <div>人事輸入清單</div>
+                        
+                    </div>
+                </el-col>
+            </el-row>
+        </section>
+
     </div>
 </template>
 <style lang="scss" scoped>
@@ -427,6 +473,9 @@
         display: flex;
         justify-content: center;
     }
+}
+.el-checkbox {
+    margin-right: 15px;
 }
 
 // \e6d9 +
