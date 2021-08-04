@@ -137,7 +137,30 @@
                     },
                 ],
                 checkList: ["自己提的"],
-                checkList2: ["總和", "圈", "區"]
+                checkList2: ["總和", "圈", "區"],
+                multipleSelection: [],
+                affair_data: [
+                    {
+                        affair_mem_id: 12414,
+                        affair_mem_name: "王曉明",
+                        affair_job_title: "副本部長",
+                        affair_level: "支部",
+                        affair_depart: "大同支部女子部",
+                        affair_job_status: "卸任",
+                        affair_set_person: "汐止區長",
+                        affair_maintain_person: "基北圈圈長"
+                    },
+                    {
+                        affair_mem_id: 3525,
+                        affair_mem_name: "林曉諭",
+                        affair_job_title: "副本部長",
+                        affair_level: "支部",
+                        affair_depart: "大同支部男子部",
+                        affair_job_status: "卸任",
+                        affair_set_person: "汐止區長",
+                        affair_maintain_person: "基北圈圈長"
+                    }
+                ],
             }
         },
         methods: {
@@ -145,6 +168,10 @@
             // getRowKeys(row) {
             //     console.log(row.children);
             // }
+            //人事輸入清單
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
+            }
         }
         
     }
@@ -442,7 +469,47 @@
                     </div>
                     <div>
                         <div>人事輸入清單</div>
-                        
+                        <el-table :data="affair_data" class="mb-3" :header-cell-style="{ background: '#eee' }"
+                        @selection-change="handleSelectionChange">
+                            <el-table-column type="selection" align="center">
+                            </el-table-column>
+                            <el-table-column prop="affair_mem_id" label="會員編號" align="center">
+                            </el-table-column>
+                            <el-table-column prop="affair_mem_name" label="會員姓名" align="center">
+                            </el-table-column>
+                            <el-table-column
+                                prop="affair_job_title"
+                                label="職務名稱"
+                                show-overflow-tooltip
+                                align="center"
+                                >
+                            </el-table-column>
+                            <el-table-column prop="affair_level" label="層級" align="center">
+                            </el-table-column>
+                            <el-table-column prop="affair_depart" label="所屬單位" align="center">
+                            </el-table-column>
+                            <el-table-column prop="affair_job_status" label="職務狀態" align="center">
+                            </el-table-column>
+                            <el-table-column prop="affair_set_person" label="建立人員" align="center">
+                            </el-table-column>
+                            <el-table-column prop="affair_maintain_person" label="維護人員" align="center">
+                            </el-table-column>
+                            <el-table-column align="center" width="180">
+                                <template slot-scope="scope">
+                                    <el-button
+                                        size="mini"
+                                        type="primary"
+                                        @click="handleEdit(scope.$index, scope.row)">刪除
+                                    </el-button>
+                                    <el-button
+                                        size="mini"
+                                        type="primary"
+                                        @click="handleDelete(scope.$index, scope.row)">編輯
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <Pagination></Pagination>
                     </div>
                 </el-col>
             </el-row>

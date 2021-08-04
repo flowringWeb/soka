@@ -121,12 +121,12 @@
                                 <div>{{ scope.row.sign_detail}}</div>
                             </template>
                         </el-table-column>
-                        <el-table-column label="內部審核結果" align="center">
+                        <el-table-column label="內部審核結果" align="center" width="150">
                             <template slot-scope="scope">
                                 <el-input v-model="scope.row.audit_result" :disabled="!scope.row.isEdit"></el-input>
                             </template>
                         </el-table-column>
-                        <el-table-column label="內部審核意見" align="center">
+                        <el-table-column label="內部審核意見" align="center" width="150">
                             <template slot-scope="scope">
                                 <el-input
                                     type="textarea"
@@ -137,7 +137,7 @@
                                 </el-input>
                             </template>
                         </el-table-column>
-                        <el-table-column prop="revise_btn" label="修改" align="center">
+                        <el-table-column prop="revise_btn" label="修改" align="center" width="150">
                             <template slot-scope="scope">
                                 <el-button
                                     size="mini"
