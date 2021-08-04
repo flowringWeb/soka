@@ -289,8 +289,29 @@
 <template>
     <div style="position: relative;">
         <div id="orgSelfTree"></div>
-        <el-button type="primary" id="zoomToFit">Zoom to Fit</el-button>
+        <el-button type="primary" id="zoomToFit">縮小比例</el-button>
         <div id="myOverviewDiv"></div> 
+        <div id="personCount" class="d-flex">
+            <div>
+                <div>人數統計 (兼任)</div>
+                <ul>
+                    <li>區級：5人 +(1)</li>
+                    <li>本部級：18人 +(2)</li>
+                    <li>支部級：22人 +(5)</li>
+                    <li>地區級：63人 +(16)</li>
+                    <li>總計：108人</li>
+                </ul>
+            </div>
+            <div class="ml-5">
+                <div>幹部年齡分布(min,Q1,mean,Q3,max)</div>
+                <ul>
+                    <li>(27,28,29,29,35)</li>
+                    <li>(23,27,30,34,39)</li>
+                    <li>(22,25,27,31,35)</li>
+                    <li>(18,21,24,28,43)</li>
+                </ul>
+            </div>
+        </div> 
     </div>
 </template>
 <style lang="scss" scoped>
@@ -311,5 +332,19 @@
         background-color: #f2f2f2;
         z-index: 300;
         border: solid 1px #7986cb;
+    }
+    #personCount {
+        position: absolute;
+        top: 120px;
+        left: 10px;
+        background-color: #f2f2f2;
+        font-size: 0.8rem;
+        z-index: 300;
+        ul {
+            padding-left: 0;
+        }
+        > div {
+            padding: 0 0.5rem;
+        }
     }
 </style>
