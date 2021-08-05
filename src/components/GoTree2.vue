@@ -15,12 +15,6 @@
                     name: "王曉明", 
                     headOf: "副本部長", 
                     headOf2: "總合長",
-                    peopleCount: [   
-                        {depart:"區級",number:5,pTime:1,},
-                        {depart:"本部級",number:18,pTime:2},
-                        {depart:"支部級",number:22,pTime:5},
-                        {depart:"地區級",number:63,pTime:16}
-                        ]
                     },
 
                     // {
@@ -67,6 +61,15 @@
                     { key: 27, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                     { key: 28, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                     { key: 29, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
+                    {   category: "simple",
+                        peopleArr:[              
+                            {depart:"區級",number:5,pTime:1, min:27,Q1:28,mean:29,Q3:29,max:35},
+                            {depart:"本部級",number:18,pTime:2, min:23,Q1:27,mean:30,Q3:34,max:39},
+                            {depart:"支部級",number:22,pTime:5, min:22,Q1:25,mean:27,Q3:31,max:35},
+                            {depart:"地區級",number:63,pTime:16, min:18,Q1:21,mean:24,Q3:28,max:43}
+                        ]
+
+                    },
                 ],
                 peopleCount: [
                     {depart:"區級",number:5,pTime:1,},
@@ -109,87 +112,181 @@
                     })
                 });
 
-                myDiagram.model.addNodeData( 
-                    {depart:"區級",number:5,pTime:1,},
-                    {depart:"本部級",number:18,pTime:2},
-                    {depart:"支部級",number:22,pTime:5},
-                    {depart:"地區級",number:63,pTime:16}
-                );
-
-                myDiagram.add(
-                    $(go.Part, "Table", 
+                var simpletemplate =
+                $(go.Part, "Table", 
                     { position: new go.Point(0, 150), selectable: false }, //selectable 可控制點選及拖曳
-
                     $(go.TextBlock, "人數統計 (兼任)",
                         { row: 0, column: 0, font: "700 14px Droid Serif, sans-serif" }),
-                    $(go.Panel, "Horizontal",
-                        { row: 1, column: 0, alignment: go.Spot.Left },
-                        $(go.TextBlock, "區級:",
-                        { font: "700 13px Droid Serif, sans-serif" }),
-                        $(go.TextBlock, "5人 +(1)",
-                        { font: "13px Droid Serif, sans-serif" })
-                    ), 
-                    $(go.Panel, "Horizontal",
-                        { row: 2, column: 0, alignment: go.Spot.Left },
-                        $(go.TextBlock, "本部級:",
-                        { font: "700 13px Droid Serif, sans-serif" }),
-                        $(go.TextBlock, "18人 +(2)",
-                        { font: "13px Droid Serif, sans-serif" })
+                    $(go.Panel, "Table", { row: 1, column: 0, alignment: go.Spot.Left },
+                        new go.Binding("itemArray", "peopleArr"),
+                        {
+                            itemTemplate:
+                            $(go.Panel, "TableRow",
+                                $(go.TextBlock,
+                                    new go.Binding("text", "depart", function(ele) { return ele + ":"}),
+                                    { column: 0, margin: 2 }
+                                ),
+                                $(go.TextBlock,
+                                    new go.Binding("text", "number", function(ele) { return ele + "人"}),
+                                    { column: 1, margin: 2 }
+                                ),
+                                $(go.TextBlock,
+                                    new go.Binding("text", "pTime", function(ele) { return "+(" + ele + ")"}),
+                                    { column: 2, margin: 2 }
+                                ),
+                            )
+                        }
                     ),
-                    $(go.Panel, "Horizontal",
-                        { row: 3, column: 0, alignment: go.Spot.Left },
-                        $(go.TextBlock, "支部級:",
-                        { font: "700 13px Droid Serif, sans-serif" }),
-                        $(go.TextBlock, "22人 +(5)",
-                        { font: "13px Droid Serif, sans-serif" })
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 4, column: 0, alignment: go.Spot.Left },
-                        $(go.TextBlock, "地區級:",
-                        { font: "700 13px Droid Serif, sans-serif" }),
-                        $(go.TextBlock, "63人 +(16)",
-                        { font: "13px Droid Serif, sans-serif" })
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 5, column: 0, alignment: go.Spot.Left, margin: mb8 },
-                        $(go.TextBlock, "總計:",
-                        { font: "700 13px Droid Serif, sans-serif" }),
-                        $(go.TextBlock, "108人",
-                        { font: "13px Droid Serif, sans-serif" })
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 6, column: 0, alignment: go.Spot.Left,  },
-                        $(go.TextBlock, "列印日期:",
-                        { font: "700 13px Droid Serif, sans-serif" }),
-                        $(go.TextBlock, "2016.04.29",
-                        { font: "13px Droid Serif, sans-serif" })
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 0, column: 1, alignment: go.Spot.Left, margin: mb8 },
-                        $(go.TextBlock, "幹部年齡分布(min,Q1,mean,Q3,max)",
-                        { font: "700 14px Droid Serif, sans-serif" }),
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 1, column: 1, alignment: go.Spot.Left,  },
-                        $(go.TextBlock, "(27,28,29,29,35)",
-                        { font: "13px Droid Serif, sans-serif" }),
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 2, column: 1, alignment: go.Spot.Left,  },
-                        $(go.TextBlock, "(23,27,30,34,39)",
-                        { font: "13px Droid Serif, sans-serif" }),
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 3, column: 1, alignment: go.Spot.Left,  },
-                        $(go.TextBlock, "(22,25,27,31,35)",
-                        { font: "13px Droid Serif, sans-serif" }),
-                    ),
-                    $(go.Panel, "Horizontal",
-                        { row: 4, column: 1, alignment: go.Spot.Left,  },
-                        $(go.TextBlock, "(18,21,24,28,43)",
-                        { font: "13px Droid Serif, sans-serif" }),
-                    ),
-                ));
+
+                    // $(go.TextBlock, "人數統計 (兼任)",
+                    //     { row: 0, column: 0, font: "700 14px Droid Serif, sans-serif" }),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 1, column: 0, alignment: go.Spot.Left },
+                    //     $(go.TextBlock, "區級:",
+                    //     { font: "700 13px Droid Serif, sans-serif" }),
+                    //     $(go.TextBlock, "5人 +(1)",
+                    //     { font: "13px Droid Serif, sans-serif" })
+                    // ), 
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 2, column: 0, alignment: go.Spot.Left },
+                    //     $(go.TextBlock, "本部級:",
+                    //     { font: "700 13px Droid Serif, sans-serif" }),
+                    //     $(go.TextBlock, "18人 +(2)",
+                    //     { font: "13px Droid Serif, sans-serif" })
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 3, column: 0, alignment: go.Spot.Left },
+                    //     $(go.TextBlock, "支部級:",
+                    //     { font: "700 13px Droid Serif, sans-serif" }),
+                    //     $(go.TextBlock, "22人 +(5)",
+                    //     { font: "13px Droid Serif, sans-serif" })
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 4, column: 0, alignment: go.Spot.Left },
+                    //     $(go.TextBlock, "地區級:",
+                    //     { font: "700 13px Droid Serif, sans-serif" }),
+                    //     $(go.TextBlock, "63人 +(16)",
+                    //     { font: "13px Droid Serif, sans-serif" })
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 5, column: 0, alignment: go.Spot.Left, margin: mb8 },
+                    //     $(go.TextBlock, "總計:",
+                    //     { font: "700 13px Droid Serif, sans-serif" }),
+                    //     $(go.TextBlock, "108人",
+                    //     { font: "13px Droid Serif, sans-serif" })
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 6, column: 0, alignment: go.Spot.Left,  },
+                    //     $(go.TextBlock, "列印日期:",
+                    //     { font: "700 13px Droid Serif, sans-serif" }),
+                    //     $(go.TextBlock, "2016.04.29",
+                    //     { font: "13px Droid Serif, sans-serif" })
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 0, column: 1, alignment: go.Spot.Left, margin: mb8 },
+                    //     $(go.TextBlock, "幹部年齡分布(min,Q1,mean,Q3,max)",
+                    //     { font: "700 14px Droid Serif, sans-serif" }),
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 1, column: 1, alignment: go.Spot.Left,  },
+                    //     $(go.TextBlock, "(27,28,29,29,35)",
+                    //     { font: "13px Droid Serif, sans-serif" }),
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 2, column: 1, alignment: go.Spot.Left,  },
+                    //     $(go.TextBlock, "(23,27,30,34,39)",
+                    //     { font: "13px Droid Serif, sans-serif" }),
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 3, column: 1, alignment: go.Spot.Left,  },
+                    //     $(go.TextBlock, "(22,25,27,31,35)",
+                    //     { font: "13px Droid Serif, sans-serif" }),
+                    // ),
+                    // $(go.Panel, "Horizontal",
+                    //     { row: 4, column: 1, alignment: go.Spot.Left,  },
+                    //     $(go.TextBlock, "(18,21,24,28,43)",
+                    //     { font: "13px Droid Serif, sans-serif" }),
+                    // ),
+                );
+
+                var templmap = new go.Map();
+                templmap.add("simple", simpletemplate);
+                myDiagram.nodeTemplateMap = templmap;
+
+                // myDiagram.add(
+                //     $(go.Part, "Table", 
+                //     { position: new go.Point(0, 150), selectable: false }, //selectable 可控制點選及拖曳
+
+                //     $(go.TextBlock, "人數統計 (兼任)",
+                //         { row: 0, column: 0, font: "700 14px Droid Serif, sans-serif" }),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 1, column: 0, alignment: go.Spot.Left },
+                //         $(go.TextBlock, "區級:",
+                //         { font: "700 13px Droid Serif, sans-serif" }),
+                //         $(go.TextBlock, "5人 +(1)",
+                //         { font: "13px Droid Serif, sans-serif" })
+                //     ), 
+                //     $(go.Panel, "Horizontal",
+                //         { row: 2, column: 0, alignment: go.Spot.Left },
+                //         $(go.TextBlock, "本部級:",
+                //         { font: "700 13px Droid Serif, sans-serif" }),
+                //         $(go.TextBlock, "18人 +(2)",
+                //         { font: "13px Droid Serif, sans-serif" })
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 3, column: 0, alignment: go.Spot.Left },
+                //         $(go.TextBlock, "支部級:",
+                //         { font: "700 13px Droid Serif, sans-serif" }),
+                //         $(go.TextBlock, "22人 +(5)",
+                //         { font: "13px Droid Serif, sans-serif" })
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 4, column: 0, alignment: go.Spot.Left },
+                //         $(go.TextBlock, "地區級:",
+                //         { font: "700 13px Droid Serif, sans-serif" }),
+                //         $(go.TextBlock, "63人 +(16)",
+                //         { font: "13px Droid Serif, sans-serif" })
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 5, column: 0, alignment: go.Spot.Left, margin: mb8 },
+                //         $(go.TextBlock, "總計:",
+                //         { font: "700 13px Droid Serif, sans-serif" }),
+                //         $(go.TextBlock, "108人",
+                //         { font: "13px Droid Serif, sans-serif" })
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 6, column: 0, alignment: go.Spot.Left,  },
+                //         $(go.TextBlock, "列印日期:",
+                //         { font: "700 13px Droid Serif, sans-serif" }),
+                //         $(go.TextBlock, "2016.04.29",
+                //         { font: "13px Droid Serif, sans-serif" })
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 0, column: 1, alignment: go.Spot.Left, margin: mb8 },
+                //         $(go.TextBlock, "幹部年齡分布(min,Q1,mean,Q3,max)",
+                //         { font: "700 14px Droid Serif, sans-serif" }),
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 1, column: 1, alignment: go.Spot.Left,  },
+                //         $(go.TextBlock, "(27,28,29,29,35)",
+                //         { font: "13px Droid Serif, sans-serif" }),
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 2, column: 1, alignment: go.Spot.Left,  },
+                //         $(go.TextBlock, "(23,27,30,34,39)",
+                //         { font: "13px Droid Serif, sans-serif" }),
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 3, column: 1, alignment: go.Spot.Left,  },
+                //         $(go.TextBlock, "(22,25,27,31,35)",
+                //         { font: "13px Droid Serif, sans-serif" }),
+                //     ),
+                //     $(go.Panel, "Horizontal",
+                //         { row: 4, column: 1, alignment: go.Spot.Left,  },
+                //         $(go.TextBlock, "(18,21,24,28,43)",
+                //         { font: "13px Droid Serif, sans-serif" }),
+                //     ),
+                // ));
 
                 //node節點樣板
                 myDiagram.nodeTemplate = 
