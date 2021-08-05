@@ -72,7 +72,6 @@
                             {depart:"支部級",number:22,pTime:5, min:22,Q1:25,mean:27,Q3:31,max:35},
                             {depart:"地區級",number:63,pTime:16, min:18,Q1:21,mean:24,Q3:28,max:43}
                         ]
-
                     },
                 ],
                 peopleCount: [
