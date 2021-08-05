@@ -49,6 +49,11 @@ export default {
           description: "人事任命簽核",
           icon: "el-icon-edit",
         },
+        {
+          title: "step9",
+          description: "待全區會生效",
+          icon: "el-icon-edit",
+        },
       ],
       hover: false,
       hoverData: {}
