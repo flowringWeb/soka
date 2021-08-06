@@ -1,8 +1,10 @@
 <script>
     import Steps from "@/components/Steps.vue";
+    import Pagination from "@/components/Pagination.vue";
     export default {
         components: {
             Steps,
+            Pagination
         },
         data() {
             return {
@@ -28,7 +30,7 @@
                     date: "2011/04/15",
                     birth: "1989/08/08",
                     new_title: "副會長",
-                    option: "意見"
+                    option: "意見欄"
                 },
                 job_status_table: [
                     {
@@ -62,6 +64,24 @@
                         report_table_confidence: "未婚",
                         report_table_challenge: "準備考試",
                         report_table_reason: "原因"
+                    },
+                ],
+                sign_history_table: [
+                    {
+                        sign_history_table_person: "xxx",
+                        sign_history_table_title: "部長",
+                        sign_history_table_time: "2011/04/14",
+                        sign_history_table_challenge: "xxx",
+                        sign_history_table_option: "ooo",
+                        sign_history_table_reason: "ooo"
+                    },
+                    {
+                        sign_history_table_person: "111",
+                        sign_history_table_title: "部長",
+                        sign_history_table_time: "2011/04/14",
+                        sign_history_table_challenge: "xxx",
+                        sign_history_table_option: "ooo",
+                        sign_history_table_reason: "ooo"
                     },
                 ]
             }
@@ -208,8 +228,6 @@
                     <p>* 提報或卸任的異動,要視登入權限來顯示</p>
                     <p>* 現有的職務則都看的到</p>
                 </el-col>
-            </el-row>
-            <el-row>
                 <el-col :span="24">
                     <div class="d-flex">
                         <div>職務現況(新增)：</div>
@@ -256,6 +274,28 @@
                             </el-input>
                         </el-form-item>
                     </el-form>
+                </el-col>
+                <el-col :span="24">
+                    <div class="sub-title mb-4">(三)簽核歷程</div>
+                    <el-table :data="sign_history_table">
+                            <el-table-column prop="sign_history_table_person" label="填寫人" align="center">
+                            </el-table-column>
+                            <el-table-column prop="sign_history_table_title" label="單位職稱" align="center">
+                            </el-table-column>
+                            <el-table-column prop="sign_history_table_time" label="簽核時間" align="center">
+                            </el-table-column>
+                            <el-table-column prop="sign_history_table_challenge" label="流程關卡" align="center">
+                            </el-table-column>
+                            <el-table-column prop="sign_history_table_option" label="流程選項" align="center">
+                            </el-table-column>
+                            <el-table-column prop="sign_history_table_reason" label="原因或說明" align="center">
+                            </el-table-column>
+                        </el-table>
+                    <Pagination></Pagination>
+                    <div class="d-flex justify-content-center">
+                        <el-button type="primary">同意</el-button>
+                        <el-button type="primary">不同意</el-button>
+                    </div>
                 </el-col>
             </el-row>
         </section>
