@@ -27,8 +27,43 @@
                     new_depart: "大同之部女子部",
                     date: "2011/04/15",
                     birth: "1989/08/08",
-                    new_title: "副會長"
-                }
+                    new_title: "副會長",
+                    option: "意見"
+                },
+                job_status_table: [
+                    {
+                        job_status_title: "支部女子副部長",
+                        job_status_level: "支部",
+                        job_status_top: "汐止北本部",
+                        job_status_now: "大同支部女子部",
+                        job_status_start_date: "2019/09/09",
+                        job_status_end_date: "2019/09/09",
+                        job_status_status: "提報卸任",
+                        job_status_audit: "待審"
+                    },
+                    {
+                        job_status_title: "支部女子副部長",
+                        job_status_level: "本部",
+                        job_status_top: "汐止北本部",
+                        job_status_now: "大同支部女子部",
+                        job_status_start_date: "2019/09/09",
+                        job_status_end_date: "2019/09/09",
+                        job_status_status: "提報卸任",
+                        job_status_audit: "待審"
+                    },
+                ],
+                report_table: [
+                    {
+                        report_table_confidence: "已婚",
+                        report_table_challenge: "準備考試",
+                        report_table_reason: "原因"
+                    },
+                    {
+                        report_table_confidence: "未婚",
+                        report_table_challenge: "準備考試",
+                        report_table_reason: "原因"
+                    },
+                ]
             }
         },
         
@@ -149,20 +184,76 @@
                             </el-col>
                         </el-form-item>
                             <el-form-item label="生日:">
-                            <el-col :span="11">
-                                <el-date-picker
-                                    type="date"
-                                    placeholder="2021-07-06"
-                                    v-model="report_change_form.birth"
-                                    :disabled="true"
-                                ></el-date-picker>
-                            </el-col>
+                                <el-col :span="11">
+                                    <el-date-picker
+                                        type="date"
+                                        placeholder="2021-07-06"
+                                        v-model="report_change_form.birth"
+                                        :disabled="true"
+                                    ></el-date-picker>
+                                </el-col>
                         </el-form-item>
                         <el-form-item label="新任職稱:">
                                 <el-input v-model="report_change_form.new_title" 
                                     clearable
                                     :disabled="true">
                                 </el-input>
+                        </el-form-item>
+                    </el-form>
+                </el-col>
+                <el-col :span="8">
+                    <el-form>
+                        <el-form-item></el-form-item>
+                    </el-form>
+                    <p>* 提報或卸任的異動,要視登入權限來顯示</p>
+                    <p>* 現有的職務則都看的到</p>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="24">
+                    <div class="d-flex">
+                        <div>職務現況(新增)：</div>
+                        <el-table :data="job_status_table">
+                            <el-table-column prop="job_status_title" label="職務名稱" align="center">
+                            </el-table-column>
+                            <el-table-column prop="job_status_level" label="層級" align="center">
+                            </el-table-column>
+                            <el-table-column prop="job_status_top" label="上層單位" align="center">
+                            </el-table-column>
+                            <el-table-column prop="job_status_now" label="所屬單位" align="center">
+                            </el-table-column>
+                            <el-table-column prop="job_status_start_date" label="開始日期" align="center">
+                            </el-table-column>
+                            <el-table-column prop="job_status_end_date" label="結束日期" align="center">
+                            </el-table-column>
+                            <el-table-column prop="job_status_status" label="職務狀態" align="center">
+                            </el-table-column>
+                            <el-table-column prop="job_status_audit" label="審核狀態" align="center">
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                    <div class="d-flex">
+                        <div>報告：</div>
+                            <el-table :data="report_table">
+                                <el-table-column prop="report_table_confidence" label="信心狀況" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_table_challenge" label="目前挑戰" align="center">
+                                </el-table-column>
+                                <el-table-column prop="report_table_reason" label="提報原因" align="center">
+                                </el-table-column>
+                        </el-table>
+                    </div>
+                    <el-form ref="report_change_form" label-width="auto" size="medium" :label-position="labelPosition">
+                        <el-form-item label="簽核人員意見:">
+                            <el-input
+                                type="textarea"
+                                v-model="report_change_form.option"
+                                clearable
+                                maxlength="150"
+                                show-word-limit
+                                :autosize="{ minRows: 5, maxRows: 8 }"
+                            >
+                            </el-input>
                         </el-form-item>
                     </el-form>
                 </el-col>
