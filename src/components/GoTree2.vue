@@ -499,7 +499,7 @@
     #orgSelfTree {
         box-sizing: border-box;
         width: 100%;
-        // height: 80vh;
+        height: 100vh;
         background-color: #f2f2f2; 
         border: solid 1px black;
     }
