@@ -292,7 +292,7 @@
                             </el-table-column>
                         </el-table>
                     <Pagination></Pagination>
-                    <div class="d-flex justify-content-center mt-3">
+                    <div class="d-flex justify-content-center mt-5">
                         <el-button type="primary">同意</el-button>
                         <el-button type="primary">不同意</el-button>
                     </div>
