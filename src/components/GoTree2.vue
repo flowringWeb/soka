@@ -9,8 +9,14 @@
                     key: 1, 
                     boss: 0, 
                     age: 30, 
-                    group: [{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}],
-                    group2:[{name: "宋xx" , age: 10}, {name: "宋xx", age: 10}, {name: "宋xx" , age: 10}], 
+                    group: 
+                    [
+                        {name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}
+                    ],
+                    group2:
+                    [
+                        {name: "宋xx" , age: 10}, {name: "宋xx", age: 10}, {name: "宋xx" , age: 10}
+                    ], 
                     title: "八德本部女子部長", 
                     name: "王曉明", 
                     headOf: "副本部長", 
@@ -22,14 +28,19 @@
                     // boss: 0,
                     // age: 30,
                     // gallery: [
-                    //     {role:"總合長", group:[{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}]},
-                    //     {role:"副本部長", group:[{name: "宋xx", age: 55}, {name: "金xx", age: 35}, {name: "王xx", age: 45}]}
+                    //     {
+                    //     role:"總合長", 
+                    //     group:[{name: "連xx", age: 55}, {name: "何xx", age: 35}, {name: "王xx", age: 45}]
+                    //     },
+                    //     {
+                    //     role:"副本部長", 
+                    //     group:[{name: "宋xx", age: 55}, {name: "金xx", age: 35}, {name: "王xx", age: 45}]
+                    //     }
                     // ], 
                     // title: "八德本部",
                     // role: "女子部長",
                     // name: "王曉明",
                     // },
-
 
                     { key: 2, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "aaa" },
                     { key: 3, boss: 0, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "bbb" },
@@ -61,7 +72,8 @@
                     { key: 27, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                     { key: 28, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
                     { key: 29, boss: 9, age: 30, group: [{name: "連xx"}, {name: "何xx"}], title: "Other Employees" },
-                    {   category: "simple",
+                    {   
+                        category: "simple",
                         infoTitle_1: "人數統計 (兼任)",
                         infoTitle_2: "幹部之年齡分布 (min,Q1,mean,Q3,max)",
                         infoTitle_3: "列印日期",
@@ -371,7 +383,7 @@
                             ),
                             //new 資料流
                             // $(go.Panel, "Table",
-                            //     new go.Binding("itemArray", this.getGroup()),
+                            //     new go.Binding("itemArray", 'group'),
                             //     {
                             //         itemTemplate:
                             //         $(go.Panel, "TableRow",
@@ -432,24 +444,17 @@
 
             },
             textStyle: function(field) {    
+                // console.log('22', field);
                 return [
                     {
                         font: "bold 12px Roboto, sans-serif", stroke: "rgba(0, 0, 0, .60)",
                         visible: true  // only show textblocks when there is corresponding data for them
                     },
-                    new go.Binding("visible", field, function(val) { return val !== undefined; })
+                    new go.Binding("visible", field, function(val) { 
+                        // console.log('222', val , typeof(val));
+                        return val !== undefined; 
+                    })
                 ];
-            },
-            getGroup() {
-                var gallery = null;
-                var groupArr = null;
-                this.nodeDataArray.forEach((item) => {
-                    gallery = item.gallery;
-                })
-                gallery.forEach((item) => {
-                    groupArr = item.group;
-                    return groupArr;
-                })
             }
         },
         mounted: function() {
